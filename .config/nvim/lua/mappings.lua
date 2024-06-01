@@ -44,7 +44,7 @@ map("n", "<leader>gi", telescope.lsp_implementations, {
   desc = "Goto the definition of the word under the cursor, if there's only one,otherwise show all options in Telescope",
 })
 
-map("n", "<leader>gi", telescope.lsp_references, {
+map("n", "<leader>gR", telescope.lsp_references, {
   desc = "Lists LSP references for word under the cursor, jumps to reference on",
 })
 -- NOTE: END-DIAGNOSTICS
