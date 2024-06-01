@@ -496,6 +496,7 @@ return {
         "vim",
         "lua",
         "vimdoc",
+        "markdown",
         "rust",
         "cpp",
         "c",

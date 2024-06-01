@@ -7,12 +7,48 @@ map = vim.keymap.set
 
 unmap = vim.keymap.del
 
+-- NOTE: UNMAP
 unmap("n", "<leader>/")
+unmap("n", "<M-i>")
+unmap("n", "<M-h>")
+unmap("n", "<M-v>")
+unmap("n", "<C-W><C-D>")
+unmap("n", "<C-W>d")
+
+-- NOTE: END-UNMAP
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+
 map("n", "<leader>/", "<cmd>Oil<CR>", { desc = "Open parent directory" })
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+-- NOTE: END-DIAGNOSTICS
+local telescope = require "telescope.builtin"
+map("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show diagnostic under the cursor" })
+map("n", "<leader>ra", vim.lsp.buf.rename, { desc = "Renames all references to the symbol under the cursor" })
+map(
+  "n",
+  "<leader>ca",
+  vim.lsp.buf.code_action,
+  { desc = "Selects a code action available at the current cursor position" }
+)
+map("n", "<leader>gd", telescope.lsp_definitions, {
+  desc = "Goto the definition of the word under the cursor, if there's only one,otherwise show all options in Telescope",
+})
+
+map("n", "<leader>ld", telescope.diagnostics, {
+  desc = "Lists diagnostics in the current file buffer",
+})
+
+map("n", "<leader>gi", telescope.lsp_implementations, {
+  desc = "Goto the definition of the word under the cursor, if there's only one,otherwise show all options in Telescope",
+})
+
+map("n", "<leader>gi", telescope.lsp_references, {
+  desc = "Lists LSP references for word under the cursor, jumps to reference on",
+})
+-- NOTE: END-DIAGNOSTICS
+-- NOTE: DAP
 map("n", "<leader>sb", "<cmd> DapToggleBreakpoint <CR>", { desc = "Toggle breakpoint" })
 
 map(
@@ -28,6 +64,10 @@ map(
   "<cmd>lua require('dap.ui.widgets.sidebar.scopes').open() <CR>",
   { desc = "Open debugging sidebar" }
 )
+
+-- NOTE: END-DAP
+
+-- NOTE: RUST CRATES
 
 local function show_documentation()
   local filetype = vim.bo.filetype
@@ -58,16 +98,17 @@ end
 
 map("n", "<leader>rcf", select_features, { desc = "show features pop up" })
 
+-- NOTE: END-RUST CRATES
 map("n", "<C-h>", "<C-w>h", { desc = "Goto to window left " })
 map("n", "<C-l>", "<C-w>l", { desc = "Goto to window right " })
 map("n", "<C-k>", "<C-w>k", { desc = "Goto to window up " })
 map("n", "<C-j>", "<C-w>j", { desc = "Goto to window down " })
 map("n", "<leader>cC", require("crates").open_crates_io, {})
 -- Resize Windows
-map("n", "<C-Left>", "<C-w><", { desc = "Resize window left" })
-map("n", "<C-Right>", "<C-w>>", { desc = "Resize window right " })
-map("n", "<C-Up>", "<C-w>+", { desc = "Resize window up " })
-map("n", "<C-Down>", "<C-w>-", { desc = "Resize window down " })
+map("n", "<M-Left>", "<C-w><", { desc = "Resize window left" })
+map("n", "<M-Right>", "<C-w>>", { desc = "Resize window right " })
+map("n", "<M-Up>", "<C-w>+", { desc = "Resize window up " })
+map("n", "<M-Down>", "<C-w>-", { desc = "Resize window down " })
 
 -- Windows
 map("n", "<leader>ñ", "<CMD>vsplit<CR>", { desc = "vertical split" })
