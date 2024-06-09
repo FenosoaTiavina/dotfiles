@@ -41,7 +41,7 @@ map("n", "<leader>ld", telescope.diagnostics, {
 })
 
 map("n", "<leader>gi", telescope.lsp_implementations, {
-  desc = "Goto the definition of the word under the cursor, if there's only one,otherwise show all options in Telescope",
+  desc = "Goto the implementation of the word under the cursor if there's only one,otherwise show all options in Telescope",
 })
 
 map("n", "<leader>gR", telescope.lsp_references, {
