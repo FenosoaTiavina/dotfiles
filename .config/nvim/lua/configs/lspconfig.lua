@@ -23,3 +23,28 @@ lspconfig.tsserver.setup {
   on_init = on_init,
   capabilities = capabilities,
 }
+
+lspconfig.intelephense.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+}
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--pch-storage=memory",
+    "--all-scopes-completion",
+    "--pretty",
+    "--header-insertion=never",
+    "-j=4",
+    "--inlay-hints",
+    "--header-insertion-decorators",
+    "--function-arg-placeholders",
+    "--completion-style=detailed",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  init_option = { fallbackFlags = { "-std=c++2a" } },
+  capabilities = capabilities,
+}

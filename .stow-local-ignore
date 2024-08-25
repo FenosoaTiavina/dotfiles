@@ -20,6 +20,8 @@ _darcs
 
 .*\.bak
 
+.*\.zsh_history
+
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
