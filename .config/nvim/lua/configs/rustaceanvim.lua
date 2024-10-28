@@ -1,9 +1,8 @@
-local on_attach = require("configs.lspconfig").on_attach
-local capabilities = require("configs.lspconfig").capabilities
+local nvlsp = require "nvchad.configs.lspconfig"
 
 vim.g.rustaceanvim = {
   server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
+    on_attach = nvlsp.on_attach,
+    capabilities = nvlsp.capabilities,
   },
 }

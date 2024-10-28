@@ -27,7 +27,6 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
 end
 
 return {
-
   -- INFO: disable plugins:
   {
     "NvChad/nvterm",
@@ -41,13 +40,66 @@ return {
     "nvim-tree/nvim-tree.lua",
     enabled = false,
   },
+  {
+    "NvChad/nvterm",
+    enabled = false,
+  },
+
   -- INFO: disable plugins
+
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        ---Add a space b/w comment and the line
+        padding = true,
+        ---Whether the cursor should stay at its position
+        sticky = true,
+        ---Lines to be ignored while (un)comment
+        ignore = nil,
+        ---LHS of toggle mappings in NORMAL mode
+        toggler = {
+          ---Line-comment toggle keymap
+          line = "gcc",
+          ---Block-comment toggle keymap
+          block = "gbc",
+        },
+        ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+        opleader = {
+          ---Line-comment keymap
+          line = "gc",
+          ---Block-comment keymap
+          block = "gb",
+        },
+        ---LHS of extra mappings
+        extra = {
+          ---Add comment on the line above
+          above = "gcO",
+          ---Add comment on the line below
+          below = "gco",
+          ---Add comment at the end of line
+          eol = "gcA",
+        },
+        ---Enable keybindings
+        ---NOTE: If given `false` then the plugin won't create any mappings
+        mappings = {
+          ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+          basic = true,
+          ---Extra mapping; `gco`, `gcO`, `gcA`
+          extra = true,
+        },
+        ---Function to call before (un)comment
+        pre_hook = nil,
+        ---Function to call after (un)comment
+        post_hook = nil,
+      }
+    end,
+  },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts =       require "configs.conform"
+
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -158,7 +210,11 @@ return {
       require("ufo").setup {
         fold_virt_text_handler = handler,
         open_fold_hl_timeout = 150,
-        close_fold_kinds_for_ft = { "imports", "comment" },
+        close_fold_kinds_for_ft = {
+          default = { "imports", "comment" },
+          json = { "array" },
+          c = { "comment", "region" },
+        },
         preview = {
           win_config = {
             border = { "", "─", "", "", "", "─", "", "" },
@@ -178,6 +234,7 @@ return {
       }
     end,
   },
+  { "ThePrimeagen/harpoon" },
   {
     "folke/todo-comments.nvim",
     lazy = false,
@@ -407,7 +464,6 @@ return {
     event = "VeryLazy",
     opts = function() end,
   },
-
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -440,23 +496,26 @@ return {
 
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "stylua",
-        "html-lsp",
-        "css-lsp",
-        "prettier",
-        "rust-analyzer",
-      },
-    },
+    opts = {},
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
-    ft = { "rust" },
-    dependencies = "neovim/nvim-lspconfig",
-    config = function() end,
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    config = function()
+      require "configs.rustaceanvim"
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.keymap.set("n", "<leader>a", function()
+        vim.cmd.RustLsp "codeAction" -- supports rust-analyzer's grouping
+        -- or vim.lsp.buf.codeAction() if you don't want grouping.
+      end, { silent = true, buffer = bufnr })
+    end,
+  },
+  { "nvchad/volt", lazy = true },
+
+  {
+    "nvchad/minty",
+    cmd = { "Shades", "Huefy" },
   },
   {
     "mfussenegger/nvim-dap",
@@ -489,6 +548,75 @@ return {
       require("nvim-dap-virtual-text").setup()
     end,
   },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    keys = {
+      { "<leader>Sp", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+      { "<leader>Ss", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
+    },
+    config = function()
+      require("codesnap").setup {
+        mac_window_bar = false,
+        title = "",
+        code_font_family = "JetBrains Nerd Font",
+        watermark_font_family = "Pacifico",
+        bg_theme = "default",
+        breadcrumbs_separator = "/",
+        has_breadcrumbs = false,
+        has_line_number = false,
+        show_workspace = false,
+        min_width = 0,
+        bg_padding = 0,
+        save_path = os.getenv "XDG_PICTURES_DIR" or (os.getenv "HOME" .. "/Pictures/CodeSnap"),
+      }
+    end,
+  },
+  {
+    "arminveres/md-pdf.nvim",
+    branch = "main", -- you can assume that main is somewhat stable until releases will be made
+    lazy = true,
+    keys = {
+      {
+        "<leader>,",
+        function()
+          require("md-pdf").convert_md_to_pdf()
+        end,
+        desc = "Markdown preview",
+      },
+    },
+    opts = {},
+    setup = function()
+      require("md-pdf").setup {
+        --- Set margins around document
+        margins = "1.5cm",
+        -- tango, pygments are quite nice for white on white
+        highlight = "tango",
+        -- Generate a table of contents, on by default
+        toc = true,
+        -- Define a custom preview command, enabling hooks and other custom logic
+        -- if true, then the markdown file is continuously converted on each write, even if the
+        -- file viewer closed, e.g., firefox is "closed" once the document is opened in it.
+        ignore_viewer_state = true,
+        -- Specify font, `nil` uses the default font of the theme
+        -- or, where all or only some options can be specified. NOTE: those that are `nil` can be left
+        -- out completely
+        fonts = {
+          main_font = nil,
+          sans_font = "JetBrains Nerd Font",
+          mono_font = "JetBrains Nerd Font",
+          math_font = nil,
+        },
+        pandoc_user_args = {
+          -- short
+          "-V KEY[:VALUE]",
+          -- long options
+          "--standalone=[true|false]",
+        },
+      }
+    end,
+  },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

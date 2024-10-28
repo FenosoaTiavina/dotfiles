@@ -1,7 +1,6 @@
 require "nvchad.mappings"
 
 -- add yours here
---
 
 map = vim.keymap.set
 
@@ -69,7 +68,7 @@ map(
 
 -- NOTE: RUST CRATES
 
-local function show_documentation()
+local function hover()
   local filetype = vim.bo.filetype
   if vim.tbl_contains({ "vim", "help" }, filetype) then
     vim.cmd("h " .. vim.fn.expand "<cword>")
@@ -78,7 +77,11 @@ local function show_documentation()
   elseif vim.fn.expand "%:t" == "Cargo.toml" and require("crates").popup_available() then
     require("crates").show_popup()
   else
-    vim.lsp.buf.hover()
+    local winid = require("ufo").peekFoldedLinesUnderCursor()
+    if not winid then
+      -- choose one of coc.nvim and nvim lsp
+      vim.lsp.buf.hover()
+    end
   end
 end
 local function select_version()
@@ -86,7 +89,7 @@ local function select_version()
   require("crates").focus_popup()
 end
 map("n", "<leader>cv", select_version, { silent = true, desc = "Select version" })
-map("n", "K", show_documentation, { silent = true, desc = "Show documentation" })
+map("n", "K", hover, { silent = true, desc = "Show documentation" })
 
 map("n", "<leader>ru", "<cmd>lua require('crates').upgrade_all_crates()<cr>", { desc = "update crates" })
 map("n", "<leader>rf", "<cmd>lua require('crates').show_crate_popup()<cr>", { desc = "show crate pop up" })
@@ -105,15 +108,16 @@ map("n", "<C-k>", "<C-w>k", { desc = "Goto to window up " })
 map("n", "<C-j>", "<C-w>j", { desc = "Goto to window down " })
 map("n", "<leader>cC", require("crates").open_crates_io, {})
 -- Resize Windows
-map("n", "<M-Left>", "<C-w><", { desc = "Resize window left" })
-map("n", "<M-Right>", "<C-w>>", { desc = "Resize window right " })
-map("n", "<M-Up>", "<C-w>+", { desc = "Resize window up " })
-map("n", "<M-Down>", "<C-w>-", { desc = "Resize window down " })
+map("n", "<M-h>", "<C-w><", { desc = "Resize window left" })
+map("n", "<M-l>", "<C-w>>", { desc = "Resize window right " })
+map("n", "<M-k>", "<C-w>+", { desc = "Resize window up " })
+map("n", "<M-j>", "<C-w>-", { desc = "Resize window down " })
 
 -- Windows
-map("n", "<leader>ñ", "<CMD>vsplit<CR>", { desc = "vertical split" })
+map("n", "<leader>v", "<CMD>vsplit<CR>", { desc = "vertical split" })
 map("n", "<leader>p", "<CMD>split<CR>", { desc = "Horizontal split" })
 
 map("n", "<TAB>", "<CMD>bnext<CR>", { desc = "Next buffer" })
 
 map("n", "<S-TAB>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<leader>x", "<CMD>bdelete<CR>", { desc = "Previous buffer" })
