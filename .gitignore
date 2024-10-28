@@ -1,2 +1,4 @@
 **/.zsh_history
-
+**/*.bak
+**/.pk10.zsh*
+**/.zcompdump
