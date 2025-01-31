@@ -53,6 +53,7 @@ path=(~/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
+# export MANPAGER="/bin/sh -c \"col -b | bat -\""
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh

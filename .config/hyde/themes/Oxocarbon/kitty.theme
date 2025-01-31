@@ -20,8 +20,8 @@ bell_border_color #ee5396
 wayland_titlebar_color system
 macos_titlebar_color system
 
-tab_bar_style fade
-tab_fade 1
+tab_bar_style custom
+
 active_tab_foreground #161616
 active_tab_background #ee5396
 inactive_tab_foreground #dde1e6

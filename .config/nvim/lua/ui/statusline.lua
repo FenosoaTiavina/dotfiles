@@ -4,6 +4,10 @@ local get_opt = vim.api.nvim_get_option_value
 local M = {}
 
 -- see https://vimhelp.org/options.txt.html#%27statusline%27 for part fmt strs
+
+
+
+
 local stl_parts = {
   buf_info = nil,
   diag = nil,
@@ -13,7 +17,7 @@ local stl_parts = {
   pad = " ",
   path = nil,
   ro = nil,
-  scrollbar = nil,
+  -- scrollbar = nil,
   sep = "%=",
   trunc = "%<",
   venv = nil
@@ -31,8 +35,8 @@ local stl_order = {
   "diag",
   "fileinfo",
   "pad",
-  "scrollbar",
-  "pad"
+  -- "scrollbar",
+  -- "pad"
 }
 
 local icons = tools.ui.icons
@@ -99,7 +103,7 @@ local function get_path_info(root, fname, icon_tbl)
   local file_icon, icon_hl = require("mini.icons").get('file', file_name)
   file_icon = file_name ~= "" and tools.hl_str(icon_hl, file_icon) or ""
 
-  local file_icon_name = table.concat({ file_name ,file_icon})
+  local file_icon_name = table.concat({ file_name, " ", file_icon })
 
   if vim.bo.buftype == "help" then
     return table.concat({ icon_tbl["file"], file_icon_name })
@@ -159,9 +163,9 @@ local function get_diag_str()
   local err_total = total[1] or 0
   local warn_total = total[2] or 0
 
-  vim.list_extend(diag_tbl, { hl_ui_icons["error"], ' ', utils.pad_str(tostring(err_total), 3, "left"), ' ' })
-  vim.list_extend(diag_tbl, { hl_ui_icons["warn"], ' ', utils.pad_str(tostring(warn_total), 3, "left"), ' ' })
 
+  vim.list_extend(diag_tbl, { hl_ui_icons["error"], ' ', utils.pad_str(tostring(err_total), 3, "left") })
+  vim.list_extend(diag_tbl, { hl_ui_icons["warn"], ' ', utils.pad_str(tostring(warn_total), 3, "left") })
   return table.concat(diag_tbl)
 end
 
@@ -194,10 +198,12 @@ local function get_fileinfo_widget(icon_tbl)
 
   local ft = get_opt("filetype", {})
   local lines = tools.group_number(vim.api.nvim_buf_line_count(0), ',')
+  local cur_line = tools.group_number(vim.api.nvim_win_get_cursor(0)[1], ',')
+
 
   -- For source code: return icon and line count
   if not tools.nonprog_modes[ft] then
-    return table.concat({ icon_tbl.fileinfo, " ", lines, " lines" })
+    return table.concat({ icon_tbl.fileinfo, " ", cur_line, "|", lines, " lines" })
   end
 
   local wc_table = vim.fn.wordcount()
@@ -245,69 +251,71 @@ local get_py_venv = function()
   return nil
 end
 
-local function get_scrollbar()
-  local sbar_chars = {
-    '▔',
-    '🮂',
-    '🬂',
-    '🮃',
-    '▀',
-    '▄',
-    '▃',
-    '🬭',
-    '▂',
-    '▁',
-  }
+-- local function get_scrollbar()
+--   local sbar_chars = {
+--     '▔',
+--     '🮂',
+--     '🬂',
+--     '🮃',
+--     '▀',
+--     '▄',
+--     '▃',
+--     '🬭',
+--     '▂',
+--     '▁',
+--   }
 
-  local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-  local lines = vim.api.nvim_buf_line_count(0)
+--   local cur_line = vim.api.nvim_win_get_cursor(0)[1]
+--   local lines = vim.api.nvim_buf_line_count(0)
 
-  local i = math.floor((cur_line - 1) / lines * #sbar_chars) + 1
-  local sbar = string.rep(sbar_chars[i], 2)
+--   local i = math.floor((cur_line - 1) / lines * #sbar_chars) + 1
+--   local sbar = string.rep(sbar_chars[i], 2)
 
-  -- return tools.hl_str("Substitute", sbar)
-  --
-  return cur_line .. "|" .. lines
-end
+--   return tools.hl_str("Substitute", sbar)
+--   --
+--   -- return cur_line .. "|" .. lines
+-- end
+--
+--
 local function update_mode_colors()
   local current_mode = vim.api.nvim_get_mode().mode
   local mode_color = "%#StatusLineAccent#"
   if current_mode == "n" then
-      mode_color = "%#StatuslineAccent#"
+    mode_color = "%#StatuslineAccent#"
   elseif current_mode == "i" or current_mode == "ic" then
-      mode_color = "%#StatuslineInsertAccent#"
+    mode_color = "%#StatuslineInsertAccent#"
   elseif current_mode == "v" or current_mode == "V" or current_mode == "␖" then
-      mode_color = "%#StatuslineVisualAccent#"
+    mode_color = "%#StatuslineVisualAccent#"
   elseif current_mode == "R" then
-      mode_color = "%#StatuslineReplaceAccent#"
+    mode_color = "%#StatuslineReplaceAccent#"
   elseif current_mode == "c" then
-      mode_color = "%#StatuslineCmdLineAccent#"
+    mode_color = "%#StatuslineCmdLineAccent#"
   elseif current_mode == "t" then
-      mode_color = "%#StatuslineTerminalAccent#"
+    mode_color = "%#StatuslineTerminalAccent#"
   end
   return mode_color
 end
 
 local function get_current_mode()
-    local current_mode = vim.api.nvim_get_mode().mode
+  local current_mode = vim.api.nvim_get_mode().mode
   local mode_SYM
   if current_mode == "n" then
-      mode_SYM = "NOR"
+    mode_SYM = "NOR"
   elseif current_mode == "i" or current_mode == "ic" then
-      mode_SYM = "INS"
+    mode_SYM = "INS"
   elseif current_mode == "v" then
-      mode_SYM = "VIS"
-  elseif  current_mode == "V"  then
-      mode_SYM = "VSB"
+    mode_SYM = "VIS"
+  elseif current_mode == "V" then
+    mode_SYM = "VSB"
   elseif current_mode == "R" then
-      mode_SYM = "REP"
+    mode_SYM = "REP"
   elseif current_mode == "c" then
-      mode_SYM = "CMD"
+    mode_SYM = "CMD"
   elseif current_mode == "t" then
-      mode_SYM = "TRM"
+    mode_SYM = "TRM"
   end
 
-  return string.format(' %s ',mode_SYM):upper()
+  return string.format(' %s ', mode_SYM):upper()
 end
 
 
@@ -349,7 +357,7 @@ M.render = function()
   -- right
   stl_parts["diag"] = get_diag_str()
   stl_parts["fileinfo"] = get_fileinfo_widget(hl_ui_icons)
-  stl_parts["scrollbar"] = get_scrollbar()
+  -- stl_parts["scrollbar"] = get_scrollbar()
 
   -- turn all of these pieces into one string
   return ordered_tbl_concat(stl_order, stl_parts)
@@ -357,5 +365,6 @@ end
 
 
 vim.o.statusline = "%!v:lua.require('ui.statusline').render()"
+
 
 return M

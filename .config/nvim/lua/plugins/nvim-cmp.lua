@@ -1,6 +1,4 @@
 -- Auto-completion / Snippets
---
---
 
 return {
   -- https://github.com/hrsh7th/nvim-cmp
@@ -27,6 +25,20 @@ return {
     -- https://github.com/hrsh7th/cmp-cmdline
     'hrsh7th/cmp-cmdline',
   },
+
+  opts = function(_, opts)
+    local cmp = require("cmp")
+    opts.window = {
+      completion = cmp.config.window.bordered({}),
+      documentation = cmp.config.window.bordered({}),
+    }
+    -- Set view to follow cursor while typing
+    opts.view = {
+      entries = {
+        follow_cursor = true,
+      },
+    }
+  end,
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
@@ -43,16 +55,14 @@ return {
         completeopt = 'menu,menuone,noinsert',
       },
       mapping = cmp.mapping.preset.insert {
-        ['<C-n>'] = cmp.mapping.select_next_item(), -- next suggestion
-        ['<C-p>'] = cmp.mapping.select_prev_item(), -- previous suggestion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4), -- scroll backward
-        ['<C-f>'] = cmp.mapping.scroll_docs(4), -- scroll forward
-        ['<C-Tab>'] = cmp.mapping.complete {}, -- show completion suggestions
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),  -- scroll forward
+        ['<S-Tab>'] = cmp.mapping.complete {},   -- show completion suggestions
         ['<Tab>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-	-- Tab through suggestions or when a snippet is active, tab to the next argument
+        -- Tab through suggestions or when a snippet is active, tab to the next argument
         ['<C-n>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -62,7 +72,7 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
-	-- Tab backwards through suggestions or when a snippet is active, tab to the next argument
+        -- Tab backwards through suggestions or when a snippet is active, tab to the next argument
         ['<C-p>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -74,17 +84,17 @@ return {
         end, { 'i', 's' }),
       },
       sources = cmp.config.sources({
-        { name = "nvim_lsp" }, -- lsp 
-        { name = "luasnip" }, -- snippets
-        { name = "buffer" }, -- text within current buffer
-        { name = "path" }, -- file system paths
+        { name = "nvim_lsp" }, -- lsp
+        { name = "luasnip" },  -- snippets
+        { name = "buffer" },   -- text within current buffer
+        { name = "path" },     -- file system paths
       }),
       window = {
         -- Add borders to completions popups
-        -- completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       },
+
     })
   end,
- }
-
+}
