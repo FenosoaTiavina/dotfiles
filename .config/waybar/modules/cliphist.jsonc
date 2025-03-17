@@ -2,9 +2,9 @@
         "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && cliphist.sh h",
-        "on-click-right": "sleep 0.1 && cliphist.sh f",
-        "on-click-middle": "sleep 0.1 && cliphist.sh ch",
+        "on-click": "sleep 0.1 && cliphist.sh History",
+        "on-click-right": "sleep 0.1 && cliphist.sh Delete",
+        "on-click-middle": "sleep 0.1 && cliphist.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },

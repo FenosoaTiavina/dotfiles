@@ -58,7 +58,7 @@
     },
 
     "clock": {
-        "format": "{:%I:%M %p}",
+        "format": "{:%R}",
         "rotate": 0,
         "format-alt": "{:%R 󰃭 %d·%m·%y}",
         "tooltip-format": "<span>{calendar}</span>",
@@ -86,9 +86,9 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && cliphist.sh h",
-        "on-click-right": "sleep 0.1 && cliphist.sh f",
-        "on-click-middle": "sleep 0.1 && cliphist.sh ch",
+        "on-click": "sleep 0.1 && cliphist.sh History",
+        "on-click-right": "sleep 0.1 && cliphist.sh Delete",
+        "on-click-middle": "sleep 0.1 && cliphist.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -164,7 +164,7 @@
 "pulseaudio": {
     "format": "{icon} {volume}",
     "rotate": 0,
-    "format-muted": "婢",
+    "format-muted": "",
     "on-click": "pavucontrol -t 3",
     "on-click-right": "volumecontrol.sh -s ''",
     "on-click-middle": "volumecontrol.sh -o m",
@@ -186,7 +186,7 @@
 "pulseaudio#microphone": {
     "format": "{format_source}",
     "rotate": 0,
-    "format-source": "",
+    "format-source": "",
     "format-source-muted": "",
     "on-click": "pavucontrol -t 4",
     "on-click-middle": "volumecontrol.sh -i m",

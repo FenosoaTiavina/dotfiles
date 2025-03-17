@@ -8,9 +8,9 @@ return {
     require("oil").setup {
       default_file_explorer = true,
       columns = {
-        "permissions",
+        --[[ "permissions",
         "size",
-        "mtime",
+        "mtime", ]]
         "icon",
       },
       -- Buffer-local options to use for oil buffers

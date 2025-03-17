@@ -144,7 +144,7 @@ local function get_path_info(root, fname, icon_tbl)
   return table.concat({
     repo_info,
     icon_tbl["file"],
-    dir_path,
+    -- dir_path,
     file_icon_name
   })
 end

@@ -28,62 +28,62 @@ tooltip {
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
     margin-right: 0px;
     color: @main-fg;
-/*     animation: ws_normal 20s ease-in-out 1; */
+    animation: ws_normal 20s ease-in-out 1;
 }
 
 #workspaces button.active {
     background: @wb-act-bg;
     color: @wb-act-fg;
     margin-left: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-right: 2px;
-/*     animation: ws_active 20s ease-in-out 1; */
-/*     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682); */
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-fg;
-/*     animation: ws_hover 20s ease-in-out 1; */
-/*     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682); */
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 0px;
+    border-radius: 8px;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
     margin-right: 0px;
     color: @wb-color;
-/*     animation: tb_normal 20s ease-in-out 1; */
+    animation: tb_normal 20s ease-in-out 1;
 }
 
 #taskbar button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
     margin-left: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 11px;
+    padding-right: 11px;
     margin-right: 2px;
-/*     animation: tb_active 20s ease-in-out 1; */
-/*     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682); */
+    animation: tb_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #taskbar button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-color;
-/*     animation: tb_hover 20s ease-in-out 1; */
-/*     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682); */
+    animation: tb_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #tray menu * {

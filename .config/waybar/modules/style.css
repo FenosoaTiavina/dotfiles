@@ -24,7 +24,7 @@ tooltip {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: ${w_radius}px;
+    border-radius: 0px;
     margin-${x1}: ${w_margin}px;
     margin-${x2}: ${w_margin}px;
     margin-${x3}: 0px;
@@ -39,8 +39,8 @@ tooltip {
     background: @wb-act-bg;
     color: @wb-act-fg;
     margin-${x3}: ${w_margin}px;
-    padding-${x3}: ${w_padact}px;
-    padding-${x4}: ${w_padact}px;
+    padding-${x3}: 0px;
+    padding-${x4}: 0px;
     margin-${x4}: ${w_margin}px;
     animation: ws_active 20s ease-in-out 1;
     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);

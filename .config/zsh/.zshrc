@@ -53,6 +53,9 @@ path=(~/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
+export EDITOR="/usr/bin/nvim"
+export PATH="/home/fenosoa/.bun/bin:$PATH"
+
 # export MANPAGER="/bin/sh -c \"col -b | bat -\""
 
 # Source additional local files if they exist.
@@ -95,8 +98,8 @@ alias tree='tree -a -I .git'
 alias ls='ls --color'
 alias vi='nvim'
 alias c='clear'
+alias y='yazi'
 
-alias  c='clear' # clear terminal
 alias  l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all

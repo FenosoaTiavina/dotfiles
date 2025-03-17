@@ -1,6 +1,7 @@
 -- Auto-completion / Snippets
-
-return {
+--
+return {}
+--[[ return {
   -- https://github.com/hrsh7th/nvim-cmp
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
@@ -96,5 +97,5 @@ return {
       },
 
     })
-  end,
-}
+  end
+} ]]
