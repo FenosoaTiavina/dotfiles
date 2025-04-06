@@ -1,10 +1,13 @@
 local opt = vim.opt
 
+opt.winborder = 'single'
+
 -- Session Management
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Line Numbers
 opt.relativenumber = true
+opt.cursorline = true
 opt.number = true
 opt.scrolloff = 8
 

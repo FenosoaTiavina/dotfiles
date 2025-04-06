@@ -1,3 +1,4 @@
+ $HOME/.config/kitty/theme.conf|killall -SIGUSR1 kitty
 # oxocarbon theme ported to kitty, https://github.com/hbjydev/oxocarbon-kitty
 # originally made by nyoom, https://github.com/nyoom-engineering/oxocarbon
 

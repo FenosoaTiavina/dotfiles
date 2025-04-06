@@ -1,38 +1,15 @@
--- LSP Support
---
---
 local telescope = require('telescope.builtin')
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
---[[ require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = { "documentation", "detail", "additionalTextEdits" },
-} ]]
-
-
-local _border = "rounded"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
 
 vim.diagnostic.config {
-  float = { border = _border }
+  virtual_text  = false,
+  virtual_lines = true,
 }
 
 local on_attach = function()
   local keymap = vim.keymap
   -- LSP
-  --
   keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { desc = "code action" })              --code action
   keymap.set('n', '<S-k>', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover" })                               --Hover
   keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "goto to definition" })        --goto to definition
@@ -72,7 +49,6 @@ return {
       ft = "lua", -- only load on lua files
       opts = {
         library = {
-
         },
       },
     },
@@ -91,9 +67,9 @@ return {
         'zls',
         'gopls',
         'marksman',
-        "angularls",
+        'biome',
+        'angularls',
         'tailwindcss', 'jsonls',
-        'quick_lint_js',
       }
     })
 
@@ -102,7 +78,6 @@ return {
     require('mason-lspconfig').setup_handlers({
       function(server_name)
         lspconfig[server_name].setup({
-          handlers     = handlers,
           on_attach    = on_attach,
           capabilities = capabilities,
         })
@@ -112,7 +87,6 @@ return {
     -- Lua LSP settings
 
     lspconfig.lua_ls.setup {
-      handlers     = handlers,
       on_attach    = on_attach,
       capabilities = capabilities,
       settings     = {
@@ -127,7 +101,6 @@ return {
     lspconfig.zls.setup {
       on_attach    = on_attach,
       capabilities = capabilities,
-
     }
 
 
@@ -138,13 +111,13 @@ return {
       filetypes    = { "typescript", "html", "typescriptreact", "typescript.tsx" },
     }
 
-    lspconfig.quick_lint_js.setup {
+    lspconfig.biome.setup {
       on_attach    = on_attach,
       capabilities = capabilities,
-      cmd          = { "quick-lint-js", "--lsp-server" },
-      filetypes    = { "javascript", "typescript", 'js', 'ts' }
-
+      cmd          = { "biome", "lsp-proxy" },
+      filetypes    = { "astro", "css", "graphql", "javascript", "javascriptreact", "json", "jsonc", "svelte", "typescript", "typescript.tsx", "typescriptreact", "vue" },
     }
+
     lspconfig.clangd.setup {
       on_attach    = function()
         vim.keymap.set("n", "<leader>ss", "<cmd> ClangdSwitchSourceHeader <CR>",
@@ -166,14 +139,5 @@ return {
       filetypes    = { "c", "cpp", "objc", "objcpp", "h", "hpp", "inl" },
       capabilities = capabilities,
     }
-
-    -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
-    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.border = opts.border or border
-
-      return orig_util_open_floating_preview(contents, syntax, opts, ...)
-    end
   end
 }

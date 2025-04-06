@@ -1,15 +1,30 @@
 $HOME/.config/hypr/themes/theme.conf|> $HOME/.config/hypr/themes/colors.conf
 
-$GTK_THEME = adw-gtk3
-$ICON_THEME = Tela-circle-black
+$GTK_THEME = WhiteSur-Dark
+$ICON_THEME = Mkos-Big-Sur-Night
+$CURSOR_THEME = Bibata-Modern-Classic
 $COLOR_SCHEME = prefer-dark
+
+
 
 # Optional: The varibles above will be set automatically when the theme is loaded
 # This exec commands will soon be deprecated
 
 exec = gsettings set org.gnome.desktop.interface icon-theme $ICON_THEME
 exec = gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
+exec = gsettings set org.gnome.desktop.interface cursor-theme $CURSOR_THEME
+exec = gsettings set org.gnome.desktop.interface cursor-size 20
 exec = gsettings set org.gnome.desktop.interface color-scheme $COLOR_SCHEME
+
+exec = gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Mono 10'
+exec = gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font Mono 10'
+exec = gsettings set org.gnome.desktop.interface monospace-font-name 'IosevkaMono Nerd Font Mono 10'
+exec = gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+exec = gsettings set org.gnome.desktop.interface font-hinting 'full'
+
+env = HYPRCURSOR_THEME,$CURSOR_THEME
+env = HYPRCURSOR_SIZE,24
+
 
 general {
     gaps_in = 2
@@ -29,7 +44,7 @@ group {
 }
 
 decoration {
-    rounding = 8
+    rounding = 12
     shadow:enabled = false
 
     blur {

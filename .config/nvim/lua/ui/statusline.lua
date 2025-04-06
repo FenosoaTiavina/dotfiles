@@ -315,6 +315,7 @@ local function get_current_mode()
     mode_SYM = "TRM"
   end
 
+
   return string.format(' %s ', mode_SYM):upper()
 end
 
