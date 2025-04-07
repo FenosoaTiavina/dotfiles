@@ -60,6 +60,7 @@ export PATH="/home/fenosoa/.bun/bin:$PATH"
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
+z4h source ./.eww
 
 # Autoload functions.
 autoload -Uz zmv

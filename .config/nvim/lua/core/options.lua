@@ -11,6 +11,8 @@ opt.cursorline = true
 opt.number = true
 opt.scrolloff = 8
 
+
+opt.textwidth = 80
 -- Tabs & Indentation
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -34,7 +36,7 @@ opt.background = "dark"
 opt.signcolumn = "yes"
 opt.showmode = false
 vim.diagnostic.config {
-  float = { border = "rounded" }, -- add border to diagnostic popups
+	float = { border = "rounded" }, -- add border to diagnostic popups
 }
 
 -- Backspace
@@ -54,7 +56,6 @@ opt.iskeyword:append("-")
 opt.mouse = ""
 
 -- Folding
---
 --vim.o.foldcolumn = '1' -- '0' is not bad
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 opt.foldlevelstart = 99
