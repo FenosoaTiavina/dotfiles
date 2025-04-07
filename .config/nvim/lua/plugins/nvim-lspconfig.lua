@@ -63,7 +63,6 @@ return {
         'cssls', -- requires npm to be installed
         'html',  -- requires npm to be installed
         'lua_ls',
-        'clangd',
         'zls',
         'gopls',
         'marksman',
@@ -98,11 +97,11 @@ return {
         },
       },
     }
+
     lspconfig.zls.setup {
       on_attach    = on_attach,
       capabilities = capabilities,
     }
-
 
     lspconfig.angularls.setup {
       on_attach    = on_attach,

@@ -10,9 +10,7 @@ return {
           mappings = {
             -- Expand snippet at cursor position. Created globally in Insert mode.
             expand = '<M-j>',
-
-            -- Interact with default `expand.insert` session.
-            -- Created for the duration of active session(s)
+            accept = '<Tab>',
             jump_next = '<M-l>',
             jump_prev = '<M-h>',
             stop = '<ESC>',
@@ -100,6 +98,7 @@ return {
           ['<Down>'] = {},
           ['<C-p>'] = { 'select_prev', 'fallback' },
           ['<C-n>'] = { 'select_next', 'fallback' },
+
 
           ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
           ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
