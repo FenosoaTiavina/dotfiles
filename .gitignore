@@ -2,3 +2,4 @@
 **/*.bak
 **/.pk10.zsh*
 **/.zcompdump
+.config/hyde/themes/Oxocarbon/wall.set
