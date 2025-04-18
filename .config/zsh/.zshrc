@@ -51,11 +51,12 @@ z4h init || return
 # Extend PATH.
 GO_BIN="$HOME/go/bin"
 BUN_BIN="$HOME/.bun/bin"
-path=(~/bin $BUN_BIN $GOPATH $path)
+path=(~/bin:$BUN_BIN:$GOPATH:$PATH)
 
 # Export environment variables.
 export GPG_TTY=$TTY
 export EDITOR="/usr/bin/nvim"
+export PATH=$path
 
 
 
