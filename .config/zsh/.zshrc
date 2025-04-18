@@ -49,18 +49,20 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 z4h init || return
 
 # Extend PATH.
-path=(~/bin $path)
+GO_BIN="$HOME/go/bin"
+BUN_BIN="$HOME/.bun/bin"
+path=(~/bin $BUN_BIN $GOPATH $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
 export EDITOR="/usr/bin/nvim"
-export PATH="/home/fenosoa/.bun/bin:$PATH"
+
+
 
 # export MANPAGER="/bin/sh -c \"col -b | bat -\""
 
 # Source additional local files if they exist.
 z4h source ~/.env.zsh
-z4h source ./.eww
 
 # Autoload functions.
 autoload -Uz zmv
