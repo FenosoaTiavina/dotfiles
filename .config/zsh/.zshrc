@@ -51,7 +51,7 @@ z4h init || return
 # Extend PATH.
 GO_BIN="$HOME/go/bin"
 BUN_BIN="$HOME/.bun/bin"
-path=(~/bin:$BUN_BIN:$GOPATH:$PATH)
+path=(~/bin:$BUN_BIN:$GO_BIN:$PATH)
 
 # Export environment variables.
 export GPG_TTY=$TTY
