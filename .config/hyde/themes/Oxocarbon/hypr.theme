@@ -12,8 +12,6 @@ $COLOR_SCHEME = prefer-dark
 
 exec = gsettings set org.gnome.desktop.interface icon-theme $ICON_THEME
 exec = gsettings set org.gnome.desktop.interface gtk-theme $GTK_THEME
-exec = gsettings set org.gnome.desktop.interface cursor-theme $CURSOR_THEME
-exec = gsettings set org.gnome.desktop.interface cursor-size 20
 exec = gsettings set org.gnome.desktop.interface color-scheme $COLOR_SCHEME
 
 exec = gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Mono 10'
