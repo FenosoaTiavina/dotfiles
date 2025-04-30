@@ -115,9 +115,5 @@ keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
 keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({ default_text = ":E:" }) end)
 
 
-keymap.set(
-  "n",
-  "<leader>dus",
-  "<cmd>lua require('dap.ui.widgets.sidebar.scopes').open() <CR>",
-  { desc = "Open debugging sidebar" }
-)
+keymap.set("n", "<leader>dus", "<cmd>lua require('dap.ui.widgets.sidebar.scopes').open() <CR>",
+  { desc = "Open debugging sidebar" })

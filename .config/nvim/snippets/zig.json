@@ -1,12 +1,39 @@
 {
   "Import": {
     "prefix": "import",
-    "body": ["const ${1} = @import(\"${1}\")"],
+    "body": [
+      "const ${1} = @import(\"${1}\")"
+    ],
     "description": "Importing Libraries"
+  },
+  "PubImport": {
+    "prefix": "pimport",
+    "body": [
+      "pub const ${1} = @import(\"${2}\")"
+    ],
+    "description": "Public Importing Libraries"
+  },
+  "PubStruct": {
+    "prefix": "pstr",
+    "body": [
+      "pub const ${1} = struct {$2}"
+    ],
+    "description": "public struct"
+  },
+  "PubEnum": {
+    "prefix": "penum",
+    "body": [
+      "pub const ${1} = enum {$2}"
+    ],
+    "description": "public enum"
   },
   "CImport": {
     "prefix": "cimport",
-    "body": ["const c = @cImport({", "    @cDefine(\"${1}\")", "});"],
+    "body": [
+      "const c = @cImport({",
+      "    @cDefine(\"${1}\")",
+      "});"
+    ],
     "description": "Importing C Header Files"
   },
   "buildExe": {
@@ -21,5 +48,5 @@
       "b.installArtifact(exe);"
     ],
     "description": "Building an exe"
-  }     
+  }
 }
