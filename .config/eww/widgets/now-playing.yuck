@@ -1,0 +1,193 @@
+(defvar player_width 200)
+(defvar player_height 100)
+
+(defvar player_padding "10")
+(defvar player_background_border_radius "10px")
+
+(defvar load_player_background true)
+(defvar more_info false)
+
+; NOTE: parse these myself instead of having multiples
+(deflisten now_playing_artist
+  "playerctl -i firefox --follow metadata --format '{{ artist }}'"
+  ; "right so like nothing to see here i just wanna know if it will overflow or not cuz like yea it should"
+)
+(deflisten now_playing_title
+  "playerctl -i firefox --follow metadata --format '{{ title }}'"
+  ; "right so like nothing to see here i just wanna know if it will overflow or not cuz like yea it should"
+)
+
+(deflisten now_playing_status
+  "playerctl -i firefox --follow metadata --format {{status}}"
+)
+
+(deflisten now_playing_image
+  "playerctl -i firefox --follow metadata mpris:artUrl"
+)
+(deflisten now_playing_length
+  "playerctl -i firefox --follow metadata --format '{{ duration(mpris:length) }}'"
+)
+(deflisten now_playing_position
+  "playerctl -i firefox --follow position --format '{{ duration(position) }}'"
+)
+(deflisten now_playing_volume
+  "playerctl -i firefox --follow volume"
+)
+(defvar last_image "")
+
+(deflisten update_player_blurred_image
+  "scripts/blur_image.sh"
+)
+
+(defvar player_blured_image
+  "null"
+)
+
+(defwidget audio_controls[]
+  (box
+    :valign "center"
+    :halign "center"
+    :width {player_width - 100}
+    :orientation "h"
+    :class "audio_controls"
+    :space-evenly true
+    :spacing 25
+    (box
+      :visible false
+      {update_player_blurred_image}
+    )
+    (button
+      :onclick "playerctl -i firefox previous"
+      ""
+    )
+    (button
+      :onclick "playerctl -i firefox play-pause"
+      {now_playing_status == "Playing"? "":""}
+      
+    )
+    (button
+      :onclick "playerctl -i firefox next"
+      ""
+    )
+    (eventbox
+      :onscroll 'scripts/player_scroll.sh volume {}'
+      (label
+        :class "volume_control"
+        :text " ${round( now_playing_volume * 100,0 )}%"
+      )
+    )
+
+  )    
+)
+
+(defwidget player_info[]
+  (box
+    :space-evenly false
+    :orientation "v"
+    :valign "center"
+    :halign "start"
+    :spacing 6
+    :tooltip "${now_playing_title} by ${now_playing_artist}"
+    (box
+      :class "marquee"
+      (label
+        :halign "start"
+        :limit-width {player_width - player_padding}
+        :text {now_playing_title}
+        :style "color:white;font-size:large;"
+      )
+    )
+    (label
+      :halign "start"
+      :limit-width 300
+      :style "color:white;font-size:large;"
+      :text {now_playing_artist}
+    )
+    (label
+      :halign "start"
+      :limit-width 300
+      :style "color:white;font-size:large;"
+      :text 
+      "${now_playing_position} - ${now_playing_length }"
+    )
+  )
+)
+
+(defwidget album_cover []
+  (box
+    ; :height 100
+    ; :width 100
+    :valign "center"
+    :halign "start"
+    :space-evenly true
+    (box
+      :height 100
+      :width 100
+      :style "margin:10px;border-radius:10px;background:center no-repeat url('${replace(now_playing_image,"file://","")}')"
+    )
+  )
+)
+
+(defwidget audio_main[]
+  (box ;player container
+    :valign "start"
+    :orientation "v"
+    :space-evenly false
+    (overlay
+      (revealer
+        :reveal {last_image != now_playing_image? false:true}
+        :transition "crossfade"
+        :duration "2s"
+        :halign "center"
+        :valign "center"
+        (box
+          :height {player_height * 1.5}
+          :width {player_width * 1.5}
+          :style "border-radius:${player_background_border_radius};background:center no-repeat url('${player_blured_image}');background-size:cover;opacity:0.6;"
+        )
+      )
+    (eventbox
+      :onhover 'eww update more_info="true"'
+      :onhoverlost 'eww update more_info="false"'
+      (box
+        :orientation "v"
+        :spacing 8
+        :space-evenly false
+        :valign "start"
+        :style "padding:${player_padding / 4}px;"
+
+        (box
+          :space-evenly false
+          :spacing 6
+          (album_cover)
+          (player_info)
+        )
+        (audio_controls)
+      )
+    )    
+    )
+  )
+)
+
+
+(defwindow player_container
+  :monitor 0
+  :stacking "overlay"
+  :windowtype "dock"
+  :exclusive false
+  :geometry (geometry 
+             :x "1.5%"
+             :y "2%"
+             :anchor "top center"
+            )
+  (box
+    :style "background:none;"
+    (eventbox 
+      :onhoverlost "eww close player_container"
+      :style
+      "border-radius:${player_background_border_radius};opacity:1;background-color:#161616;"
+      :class "player_container"
+      (audio_main)
+    )
+  )
+)

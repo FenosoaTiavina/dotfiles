@@ -1,0 +1,5 @@
+(include './widgets/bar.yuck')
+(include './widgets/tray.yuck')
+(include './widgets/updates.yuck')
+(include './widgets/battery.yuck')
+(include './widgets/now-playing.yuck')

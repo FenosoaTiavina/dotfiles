@@ -1,0 +1,35 @@
+.audio_controls button {
+  padding: 8px;
+  border-radius: 10px;
+  background: none;
+  border: none;
+}
+
+.audio_controls button:hover {
+  background-color: #42be65;
+  color: black;
+}
+
+.player_time {
+  background-color: white;
+  opacity: 0.3;
+}
+
+.player_background {
+  animation: load 3s linear infinite;
+}
+
+
+@keyframes load {
+  0% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0.1;
+  }
+}

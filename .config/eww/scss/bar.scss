@@ -1,0 +1,52 @@
+// Global Styles
+.bar {
+  color: #ffffff;
+  border-radius: 5px;
+  background: rgba(#161616, 0.5);
+  padding: 2px 5px;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.sidestuff slider {
+  all: unset;
+  color: #ffffff;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #ee5396;
+  color: #000000;
+  border-radius: 10px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: #585858;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.workspace {
+  padding: 0 5px;
+  border-radius: 3px;
+
+  &.current {
+    background-color: rgba($color: #ee5396, $alpha: 1.0);
+    color: rgba($color: #161616, $alpha: 1.0);
+  }
+
+}
+
+.workspaces button:hover {
+  color: #42be65;
+
+  &.current {
+    background-color: rgba($color: #42be65, $alpha: 1.0);
+    color: rgba($color: #161616, $alpha: 1.0);
+  }
+
+}

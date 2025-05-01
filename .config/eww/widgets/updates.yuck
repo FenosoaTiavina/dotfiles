@@ -1,0 +1,29 @@
+(defpoll updates_data :interval "1h"
+  "scripts/systemupdate.sh"
+)
+
+(defwidget updates_tooltip []
+  (box 
+    :orientation "v"
+    :class "updates_tooltip"
+    (for up in {updates_data.tooltip}
+      (label
+        :text up
+      )
+    )
+  )
+)
+
+(defwindow updates
+  :monitor 0
+  :namespace "eww-bar"
+  :geometry (geometry 
+                  :y "10px"
+                  :x "5px"
+                  :anchor "top right")
+  :stacking "fg"
+  :exclusive false
+  :focusable "none"
+  (updates_tooltip)
+)
+

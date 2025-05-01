@@ -1,0 +1,120 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (centerwidgets)
+    (leftwidgets)
+  )
+)
+
+(defwidget centerwidgets []
+  (box 
+    :orientation "h"
+    :halign "center"
+    :spacing 5
+    :space-evenly false
+
+    (date)
+    (music)
+
+  )
+)
+
+(defwidget leftwidgets []
+  (box
+    :halign "end"
+    :spacing 5
+    :space-evenly false
+    (eventbox 
+      :onclick "eww u open_tray=true"
+      :onhover "eww u open_tray=true"
+      :onhoverlost "eww u open_tray=false"
+      (box 
+        :orientation "h" :space-evenly false :halign "end" :spacing "2"
+        :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
+
+        (tray)
+        (tray_button)
+      )
+    )
+    (eventbox
+      :onhover 'eww o updates && eww u open_notif=true ' 
+      :onhoverlost "eww c updates  && eww u open_notif=false"
+      :onclick "scripts/updates_now.sh"
+      (label
+        :class "notif_button"
+        :text "${updates_data.text}"
+      )
+    )
+    (battery 
+      :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
+    )
+  )
+)
+
+(defwidget date []
+    (label :text "${time}")
+)
+
+(defwidget workspaces []
+  (eventbox :onscroll "scripts/workspace_change.sh {} ${current_workspace}"
+    (box :orientation "h" :space-evenly false :class "workspaces" :hexpand true
+      (for workspace in workspaces
+        (button 
+          :width  "10"
+          :height "10"
+          :class "workspace ${current_workspace == workspace.id ? "current" : ""}" 
+          :onclick "hyprctl dispatch workspace ${workspace.id}" 
+          (label :text "${workspace.id}" )
+        )
+      )
+    )
+  )
+)
+
+(defwidget music []
+  (eventbox
+
+    :onclick "eww o player_container"
+    (box :class "music"
+          :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
+
+         :orientation "h"
+         :space-evenly false
+         :halign "center"
+      {music != "" ? "󰝚" : ""}
+    )
+  )
+)
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(deflisten music :initial ""
+  "playerctl -i firefox --follow metadata --format '{{ title }}' || true")
+
+(defpoll volume :interval "15ms"
+  "scripts/getvol")
+
+(defpoll time :interval "60s"
+  "date '+%b %d - %H:%M'")
+
+(defwindow bar
+  :monitor 0
+  :namespace "eww-bar"
+  :geometry (geometry :x "0%"
+                      :y "2px"
+                      :width "99.5%"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable "none"
+  (bar)
+)
