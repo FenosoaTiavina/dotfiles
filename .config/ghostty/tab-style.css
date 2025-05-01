@@ -1,0 +1,35 @@
+/*
+debug: env GTK_DEBUG=interactive ghostty
+https://docs.gtk.org/gtk4/css-overview.html
+https://docs.gtk.org/gtk4/css-properties.html
+*/
+
+
+headerbar {
+  min-height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+tabbar tabbox {
+  margin: 0;
+  padding: 0;
+  min-height: 10px;
+  background-color: #161616;
+  font-family: "Iosevka Nerd Font Mono";
+}
+
+tabbar tabbox tab {
+  margin: 0;
+  padding: 1px 0;
+  color: #fefefe;
+}
+
+tabbar tabbox tab:selected {
+  background-color: #161616;
+  color: #42be65;
+}
+
+tabbar tabbox tab label {
+  font-size: 13px;
+}
