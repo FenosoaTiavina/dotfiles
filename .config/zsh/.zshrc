@@ -57,6 +57,7 @@ path=(~/bin:$BUN_BIN:$GO_BIN:$PATH)
 export GPG_TTY=$TTY
 export EDITOR="/usr/bin/nvim"
 export PATH=$path
+export TERM=ghostty
 
 
 
