@@ -48,26 +48,33 @@
     :valign "center"
     :halign "center"
     :width {player_width - 100}
-    :orientation "h"
+    :orientation "v"
     :class "audio_controls"
     :space-evenly true
-    :spacing 25
     (box
       :visible false
       {update_player_blurred_image}
     )
-    (button
-      :onclick "playerctl -i firefox previous"
-      ""
-    )
-    (button
-      :onclick "playerctl -i firefox play-pause"
-      {now_playing_status == "Playing"? "":""}
-      
-    )
-    (button
-      :onclick "playerctl -i firefox next"
-      ""
+    (box
+    :valign "center"
+    :halign "center"
+    :class "audio_controls"
+    :width {player_width - 100}
+    :orientation "h"
+
+      (button
+        :onclick "playerctl -i firefox previous"
+        ""
+      )
+      (button
+        :onclick "playerctl -i firefox play-pause"
+        {now_playing_status == "Playing"? "":""}
+        
+      )
+      (button
+        :onclick "playerctl -i firefox next"
+        ""
+      )
     )
     (eventbox
       :onscroll 'scripts/player_scroll.sh volume {}'
@@ -89,22 +96,21 @@
     :spacing 6
     :tooltip "${now_playing_title} by ${now_playing_artist}"
     (box
-      :class "marquee"
       (label
-        :halign "start"
+        :halign "center"
         :limit-width {player_width - player_padding}
         :text {now_playing_title}
         :style "color:white;font-size:large;"
       )
     )
     (label
-      :halign "start"
+      :halign "center"
       :limit-width 300
       :style "color:white;font-size:large;"
       :text {now_playing_artist}
     )
     (label
-      :halign "start"
+      :halign "center"
       :limit-width 300
       :style "color:white;font-size:large;"
       :text 
@@ -159,7 +165,9 @@
         (box
           :space-evenly false
           :spacing 6
-          (album_cover)
+          :halign "center"
+          :hexpand true
+          ;; (album_cover)
           (player_info)
         )
         (audio_controls)
@@ -168,7 +176,6 @@
     )
   )
 )
-
 
 (defwindow player_container
   :monitor 0

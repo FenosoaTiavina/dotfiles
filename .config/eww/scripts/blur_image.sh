@@ -9,7 +9,7 @@ while true ;do
     eww update load_player_background=false
     echo "player background updated"
     IMAGE=$NEW_IMAGE
-    magick $IMAGE -filter Gaussian -blur 0x8 scripts/blur_image_name.jpeg
+    magick $IMAGE -filter Gaussian -blur 0x2 scripts/blur_image_name.jpeg
     eww update player_blured_image='scripts/blur_image_name.jpeg'
     eww update load_player_background=true
 

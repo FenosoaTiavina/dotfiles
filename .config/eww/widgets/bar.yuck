@@ -76,13 +76,15 @@
 
     :onclick "eww o player_container"
     (box :class "music"
-          :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
+          :style {music != "" ? "border-left: 1px dashed #ffffff;padding: 0px
+          5px;" : ""}
 
          :orientation "h"
          :space-evenly false
          :halign "center"
-      {music != "" ? "󰝚" : ""}
+      {music != "" ? " ${music} " : ""}
     )
+
   )
 )
 
@@ -97,7 +99,7 @@
            :value value
            :onchange onchange)))
 
-(deflisten music :initial ""
+(deflisten music 
   "playerctl -i firefox --follow metadata --format '{{ title }}' || true")
 
 (defpoll volume :interval "15ms"
