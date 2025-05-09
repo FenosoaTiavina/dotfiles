@@ -1,6 +1,7 @@
 // Config //
 configuration {
     modi:                        "drun";
+			terminal: "ghostty";
     show-icons:                  true;
     drun-display-format:         "{name}";
     font:                        "JetBrainsMono Nerd Font 9";
