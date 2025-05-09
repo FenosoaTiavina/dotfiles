@@ -102,6 +102,7 @@ alias tree='tree -a -I .git'
 
 alias ls='ls --color'
 alias vi='nvim'
+alias svi='nocorrect sudo -E nvim'
 alias c='clear'
 alias y='yazi'
 
@@ -120,7 +121,6 @@ alias vc=$EDITOR # gui code editor
 
 # Handy change dir shortcuts
 alias ..='cd ..'
-alias code='vscodium'
 alias ...='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
