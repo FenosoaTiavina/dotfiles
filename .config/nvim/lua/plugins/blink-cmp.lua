@@ -57,7 +57,6 @@ return {
         },
 
         keymap = {
-          -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
           ['<C-space>'] = {
             function(cmp)
               if cmp.is_visible() and not cmp.is_documentation_visible() then
@@ -91,9 +90,6 @@ return {
             "fallback",
           },
 
-          --[[ ['<Tab>'] = { 'snippet_forward', 'fallback' },
-      ['<S-Tab>'] = { 'snippet_backward', 'fallback' }, ]]
-
           ['<Up>'] = {},
           ['<Down>'] = {},
           ['<C-p>'] = { 'select_prev', 'fallback' },
@@ -104,7 +100,7 @@ return {
           ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 
 
-          ['<S-Tab>'] = { 'show_signature', 'hide_signature', 'fallback' },
+          ['<S-K>'] = { 'show_signature', 'hide_signature', 'fallback' },
         },
 
         enabled = function()
