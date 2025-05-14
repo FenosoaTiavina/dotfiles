@@ -13,4 +13,4 @@ config-file = ./keybind
 gtk-custom-css = tab-style.css 
 gtk-wide-tabs = false
 
-cursor-invert-fg-bg = true
+cursor-invert-fg-bg = false
