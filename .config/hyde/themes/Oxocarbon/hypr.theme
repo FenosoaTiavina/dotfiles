@@ -20,8 +20,8 @@ exec = gsettings set org.gnome.desktop.interface monospace-font-name 'IosevkaMon
 exec = gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
 exec = gsettings set org.gnome.desktop.interface font-hinting 'full'
 
-env = HYPRCURSOR_THEME,$CURSOR_THEME
-env = HYPRCURSOR_SIZE,24
+
+exec = hyprctl setcursor $CURSOR_THEME 20
 
 
 general {
