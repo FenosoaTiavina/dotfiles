@@ -2,4 +2,5 @@
 (include './widgets/tray.yuck')
 (include './widgets/updates.yuck')
 (include './widgets/battery.yuck')
-(include './widgets/now-playing.yuck')
+(include './widgets/player.yuck')
+(include './widgets/volumes.yuck')

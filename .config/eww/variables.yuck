@@ -1,9 +1,9 @@
-(defvar open_notif false)
+(defvar open_update false)
 (defvar open_tray false)
 (defvar ANIM_DURATION "200ms")
 
 (deflisten current_workspace :initial 1
 "scripts/workspace_active.sh")
 
-(deflisten workspaces
+(deflisten workspaces :initial "[]"
 "scripts/workspaces.sh")

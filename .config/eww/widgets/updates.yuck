@@ -1,14 +1,18 @@
-(defpoll updates_data :interval "1h"
+(deflisten updates_data  :initial "[]"
   "scripts/systemupdate.sh"
 )
 
 (defwidget updates_tooltip []
-  (box 
-    :orientation "v"
-    :class "updates_tooltip"
-    (for up in {updates_data.tooltip}
-      (label
-        :text up
+  (eventbox
+    :onhover {updates_data != "" && open_update == false ? 'eww o updates && eww u open_update=true ' :''}
+    :onhoverlost {updates_data != "" && open_update == true ? "eww c updates  && eww u open_update=false" : ""}
+    (box 
+      :orientation "v"
+      :class "updates_tooltip"
+      (for up in {updates_data.tooltip}
+        (label
+          :text up
+        )
       )
     )
   )
@@ -18,7 +22,7 @@
   :monitor 0
   :namespace "eww-bar"
   :geometry (geometry 
-                  :y "10px"
+                  :y "5px"
                   :x "5px"
                   :anchor "top right")
   :stacking "fg"

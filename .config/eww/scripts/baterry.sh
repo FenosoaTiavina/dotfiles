@@ -30,7 +30,7 @@ elif [ "$per" -gt "0" ]; then
 	icon="󰁺"
 	notify-send -u critical "Battery Low" "Connect Charger"
 else
-        echo "󰂎" && exit
+  echo "󰂎" && exit
 fi
 echo "$icon"
 }

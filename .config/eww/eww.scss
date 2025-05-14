@@ -2,6 +2,20 @@
   all: unset; // Unsets everything so you can style everything from scratch
 }
 
+.window {
+  color: #ffffff;
+  border-radius: 5px;
+  background: rgba(#161616, 0.5);
+  padding: 2px;
+}
+
+.value_t {
+  border-radius: 50px;
+  padding: 0px 10px;
+  background-color: rgba($color: #ee5396, $alpha: 1.0);
+}
+
+
 @import "scss/tray.scss";
 @import "scss/bar.scss";
 @import "scss/updates.scss";

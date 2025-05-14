@@ -2,7 +2,7 @@
   (centerbox :orientation "h"
     (workspaces)
     (centerwidgets)
-    (leftwidgets)
+    (rightwidgets)
   )
 )
 
@@ -15,15 +15,14 @@
 
     (date)
     (music)
-
   )
 )
 
-(defwidget leftwidgets []
+(defwidget rightwidgets []
   (box
     :halign "end"
-    :spacing 5
     :space-evenly false
+    (volumes_main)
     (eventbox 
       :onclick "eww u open_tray=true"
       :onhover "eww u open_tray=true"
@@ -31,23 +30,21 @@
       (box 
         :orientation "h" :space-evenly false :halign "end" :spacing "2"
         :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
-
         (tray)
         (tray_button)
       )
     )
     (eventbox
-      :onhover 'eww o updates && eww u open_notif=true ' 
-      :onhoverlost "eww c updates  && eww u open_notif=false"
-      :onclick "scripts/updates_now.sh"
+      :onhover {updates_data != "" && open_update == false ? 'eww o updates && eww u open_update=true ' :''}
+      :onhoverlost {updates_data != "" && open_update == true ? "eww c updates  && eww u open_update=false" : ""}
+      :onclick "eww u open_update=false && scripts/updates_now.sh "
       (label
         :class "notif_button"
-        :text "${updates_data.text}"
+        :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
+        :text "${updates_data.text?:"󰮯"}"
       )
     )
-    (battery 
-      :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
-    )
+    (battery :style "padding: 0px 5px;")
   )
 )
 
@@ -70,40 +67,6 @@
     )
   )
 )
-
-(defwidget music []
-  (eventbox
-
-    :onclick "eww o player_container"
-    (box :class "music"
-          :style {music != "" ? "border-left: 1px dashed #ffffff;padding: 0px
-          5px;" : ""}
-
-         :orientation "h"
-         :space-evenly false
-         :halign "center"
-      {music != "" ? " ${music} " : ""}
-    )
-
-  )
-)
-
-(defwidget metric [label value onchange]
-  (box :orientation "h"
-       :class "metric"
-       :space-evenly false
-    (box :class "label" label)
-    (scale :min 0
-           :max 101
-           :active {onchange != ""}
-           :value value
-           :onchange onchange)))
-
-(deflisten music 
-  "playerctl -i firefox --follow metadata --format '{{ title }}' || true")
-
-(defpoll volume :interval "15ms"
-  "scripts/getvol")
 
 (defpoll time :interval "60s"
   "date '+%b %d - %H:%M'")

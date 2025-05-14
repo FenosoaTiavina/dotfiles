@@ -1,3 +1,29 @@
+
+(defvar music_focus false)
+
+(defwidget music []
+  (eventbox
+    :onclick {music != "" ? "eww o player_container": ""}
+    :onhoverlost {"eww get music_focus" == false 
+      ? "eww c player_container ; eww u music_focus=false" :""}
+    (box :class "music"
+          :style "border-left: 1px dashed #ffffff;padding: 0px
+          5px;"
+
+         :orientation "h"
+         :space-evenly false
+         :halign "center"
+      {music != "" ? " ${music} " : "No Media"}
+    )
+
+  )
+)
+
+(deflisten music 
+  "playerctl --follow metadata --format '{{ title }}' || true")
+
+
+;;------------------------------------------------------------------------------
 (defvar player_width 200)
 (defvar player_height 100)
 
@@ -7,31 +33,28 @@
 (defvar load_player_background true)
 (defvar more_info false)
 
-; NOTE: parse these myself instead of having multiples
 (deflisten now_playing_artist
-  "playerctl -i firefox --follow metadata --format '{{ artist }}'"
-  ; "right so like nothing to see here i just wanna know if it will overflow or not cuz like yea it should"
+  "playerctl --follow metadata --format '{{ artist }}'"
 )
 (deflisten now_playing_title
-  "playerctl -i firefox --follow metadata --format '{{ title }}'"
-  ; "right so like nothing to see here i just wanna know if it will overflow or not cuz like yea it should"
+  "playerctl --follow metadata --format '{{ title }}'"
 )
 
 (deflisten now_playing_status
-  "playerctl -i firefox --follow metadata --format {{status}}"
+  "playerctl --follow metadata --format {{status}}"
 )
 
 (deflisten now_playing_image
-  "playerctl -i firefox --follow metadata mpris:artUrl"
+  "playerctl --follow metadata mpris:artUrl"
 )
 (deflisten now_playing_length
-  "playerctl -i firefox --follow metadata --format '{{ duration(mpris:length) }}'"
+  "playerctl --follow metadata --format '{{ duration(mpris:length) }}'"
 )
 (deflisten now_playing_position
-  "playerctl -i firefox --follow position --format '{{ duration(position) }}'"
+  "playerctl --follow position --format '{{ duration(position) }}'"
 )
 (deflisten now_playing_volume
-  "playerctl -i firefox --follow volume"
+  "playerctl --follow volume"
 )
 (defvar last_image "")
 
@@ -48,9 +71,9 @@
     :valign "center"
     :halign "center"
     :width {player_width - 100}
-    :orientation "v"
+    :orientation "h"
     :class "audio_controls"
-    :space-evenly true
+    :space-evenly false
     (box
       :visible false
       {update_player_blurred_image}
@@ -63,16 +86,16 @@
     :orientation "h"
 
       (button
-        :onclick "playerctl -i firefox previous"
+        :onclick "playerctl previous"
         ""
       )
       (button
-        :onclick "playerctl -i firefox play-pause"
+        :onclick "playerctl play-pause"
         {now_playing_status == "Playing"? "":""}
         
       )
       (button
-        :onclick "playerctl -i firefox next"
+        :onclick "playerctl next"
         ""
       )
     )
@@ -100,7 +123,7 @@
         :halign "center"
         :limit-width {player_width - player_padding}
         :text {now_playing_title}
-        :style "color:white;font-size:large;"
+        :style "color:white"
       )
     )
     (label
@@ -121,8 +144,8 @@
 
 (defwidget album_cover []
   (box
-    ; :height 100
-    ; :width 100
+    :height 100
+    :width 100
     :valign "center"
     :halign "start"
     :space-evenly true
@@ -147,32 +170,32 @@
         :halign "center"
         :valign "center"
         (box
-          :height {player_height * 1.5}
-          :width {player_width * 1.5}
+          :height {player_height * 1.5 + player_padding}
+          :width {player_width * 1.5 + player_padding}
           :style "border-radius:${player_background_border_radius};background:center no-repeat url('${player_blured_image}');background-size:cover;opacity:0.6;"
         )
       )
-    (eventbox
-      :onhover 'eww update more_info="true"'
-      :onhoverlost 'eww update more_info="false"'
-      (box
-        :orientation "v"
-        :spacing 8
-        :space-evenly false
-        :valign "start"
-        :style "padding:${player_padding / 4}px;"
-
+      (eventbox
+        :onhover 'eww update more_info="true"'
+        :onhoverlost 'eww update more_info="false"'
         (box
+          :orientation "v"
+          :spacing 5
           :space-evenly false
-          :spacing 6
-          :halign "center"
-          :hexpand true
-          ;; (album_cover)
-          (player_info)
+          :valign "start"
+          :style "padding:${player_padding / 4}px;"
+
+          (box
+            :space-evenly false
+            :spacing 6
+            :halign "center"
+            :hexpand true
+            ;; (album_cover)
+            (player_info)
+          )
+          (audio_controls)
         )
-        (audio_controls)
-      )
-    )    
+      )    
     )
   )
 )
@@ -188,11 +211,11 @@
              :anchor "top center"
             )
   (box
-    :style "background:none;"
+    :class "window"
+    :style "padding: ${player_padding}px ; "
     (eventbox 
-      :onhoverlost "eww close player_container"
-      :style
-      "border-radius:${player_background_border_radius};opacity:1;background-color:#161616;"
+      :onhoverlost "eww close player_container ; eww u music_focus=false"
+      :onhover "eww u music_focus=true"
       :class "player_container"
       (audio_main)
     )

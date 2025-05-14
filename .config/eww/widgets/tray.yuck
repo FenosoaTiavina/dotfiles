@@ -3,6 +3,7 @@
     :halign "end"
     :transition "slideright" :reveal {open_tray} :duration {ANIM_DURATION}
     (box :class "tray_box" :orientation "h" :space-evenly false
+      :style "background-color: rgba($color: #42be65, $alpha: 0.5); padding: 0 5px;"
       (systray
         :hexpand true :halign "center" :spacing "10" 
         :icon-size "15" :prepend-new "true"
