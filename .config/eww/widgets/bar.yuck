@@ -35,9 +35,13 @@
       )
     )
     (eventbox
-      :onhover {updates_data != "" && open_update == false ? 'eww o updates && eww u open_update=true ' :''}
-      :onhoverlost {updates_data != "" && open_update == true ? "eww c updates  && eww u open_update=false" : ""}
-      :onclick "eww u open_update=false && scripts/updates_now.sh "
+      :onhover {updates_data != "[]" && open_update == false ? 'eww o updates && eww u open_update=true ' :''}
+      :onhoverlost {updates_data != "[]" && open_update == true ? "eww c updates  && eww u open_update=false" : ""}
+      :onclick {
+        updates_data != "󰮯" && updates_data != "[]"?
+        "scripts/updates_now.sh" :
+        ""
+        }
       (label
         :class "notif_button"
         :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
