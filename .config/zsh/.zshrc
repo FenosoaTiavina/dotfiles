@@ -49,7 +49,7 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 z4h init || return
 
 # Extend PATH.
-GO_BIN="$HOME/go/bin"
+GO_BIN="$HOME/.local/bin/go/bin"
 BUN_BIN="$HOME/.bun/bin"
 path=(~/bin:$BUN_BIN:$GO_BIN:$PATH)
 
