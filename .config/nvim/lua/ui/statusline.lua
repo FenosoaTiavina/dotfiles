@@ -100,10 +100,12 @@ end
 local function get_path_info(root, fname, icon_tbl)
   local file_name = vim.fn.fnamemodify(fname, ":t")
 
+
   local file_icon, icon_hl = require("mini.icons").get('file', file_name)
   file_icon = file_name ~= "" and tools.hl_str(icon_hl, file_icon) or ""
 
-  local file_icon_name = table.concat({ file_name, " ", file_icon })
+
+  local file_icon_name = table.concat({ tools.hl_str('SlFgRed', file_name), " ", file_icon })
 
   if vim.bo.buftype == "help" then
     return table.concat({ icon_tbl["file"], file_icon_name })
@@ -126,7 +128,6 @@ local function get_path_info(root, fname, icon_tbl)
   if remote and branch then
     --  print("BRANCH: ", branch)
     dir_path = string.gsub(dir_path, "^" .. escape_str(root) .. "/", "")
-
     repo_info = table.concat({
       icon_tbl["branch"],
       ' ',
@@ -251,68 +252,56 @@ local get_py_venv = function()
   return nil
 end
 
--- local function get_scrollbar()
---   local sbar_chars = {
---     '▔',
---     '🮂',
---     '🬂',
---     '🮃',
---     '▀',
---     '▄',
---     '▃',
---     '🬭',
---     '▂',
---     '▁',
---   }
+--[[ local function get_scrollbar()
+  local sbar_chars = {
+    '▔',
+    '🮂',
+    '🬂',
+    '🮃',
+    '▀',
+    '▄',
+    '▃',
+    '🬭',
+    '▂',
+    '▁',
+  }
 
---   local cur_line = vim.api.nvim_win_get_cursor(0)[1]
---   local lines = vim.api.nvim_buf_line_count(0)
+  local cur_line = vim.api.nvim_win_get_cursor(0)[1]
+  local lines = vim.api.nvim_buf_line_count(0)
 
---   local i = math.floor((cur_line - 1) / lines * #sbar_chars) + 1
---   local sbar = string.rep(sbar_chars[i], 2)
+  local i = math.floor((cur_line - 1) / lines * #sbar_chars) + 1
+  local sbar = string.rep(sbar_chars[i], 2)
 
---   return tools.hl_str("Substitute", sbar)
---   --
---   -- return cur_line .. "|" .. lines
--- end
---
---
-local function update_mode_colors()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = "%#StatusLineAccent#"
-  if current_mode == "n" then
-    mode_color = "%#StatuslineAccent#"
-  elseif current_mode == "i" or current_mode == "ic" then
-    mode_color = "%#StatuslineInsertAccent#"
-  elseif current_mode == "v" or current_mode == "V" or current_mode == "␖" then
-    mode_color = "%#StatuslineVisualAccent#"
-  elseif current_mode == "R" then
-    mode_color = "%#StatuslineReplaceAccent#"
-  elseif current_mode == "c" then
-    mode_color = "%#StatuslineCmdLineAccent#"
-  elseif current_mode == "t" then
-    mode_color = "%#StatuslineTerminalAccent#"
-  end
-  return mode_color
-end
+  return tools.hl_str("Substitute", sbar)
+  --
+  -- return cur_line .. "|" .. lines
+end ]]
 
 local function get_current_mode()
   local current_mode = vim.api.nvim_get_mode().mode
   local mode_SYM
+  local mode_hl
   if current_mode == "n" then
     mode_SYM = "NOR"
+    mode_SYM = tools.hl_str('SlFgBlue', mode_SYM)
   elseif current_mode == "i" or current_mode == "ic" then
     mode_SYM = "INS"
+    mode_SYM = tools.hl_str('SlFgGreen', mode_SYM)
   elseif current_mode == "v" then
     mode_SYM = "VIS"
+    mode_SYM = tools.hl_str('SlFgPurple', mode_SYM)
   elseif current_mode == "V" then
     mode_SYM = "VSB"
+    mode_SYM = tools.hl_str('SlFgPurple', mode_SYM)
   elseif current_mode == "R" then
     mode_SYM = "REP"
+    mode_SYM = tools.hl_str('SlFgLightGrey', mode_SYM)
   elseif current_mode == "c" then
     mode_SYM = "CMD"
+    mode_SYM = tools.hl_str('SlFgRed', mode_SYM)
   elseif current_mode == "t" then
     mode_SYM = "TRM"
+    mode_SYM = tools.hl_str('SlFgDarkGrey', mode_SYM)
   end
 
 
@@ -335,7 +324,7 @@ M.render = function()
 
   local buf_num = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 
-
+  -- left
   stl_parts["vimode"] = get_current_mode()
   stl_parts["path"] = get_path_info(root, fname, hl_ui_icons)
   stl_parts["ro"] = get_opt("readonly", { buf = buf_num }) and hl_ui_icons["readonly"] or ""
@@ -350,10 +339,6 @@ M.render = function()
   end
 
   -- middle
-  -- filetype-specific info
-  if vim.bo.filetype == "python" then
-    stl_parts["venv"] = get_py_venv()
-  end
 
   -- right
   stl_parts["diag"] = get_diag_str()

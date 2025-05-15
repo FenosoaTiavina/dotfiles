@@ -9,7 +9,7 @@ return {
     -- https://github.com/nvim-neotest/nvim-nio
     'nvim-neotest/nvim-nio',
     -- https://github.com/theHamsta/nvim-dap-virtual-text
-    'theHamsta/nvim-dap-virtual-text', -- inline variable text while debugging
+    'theHamsta/nvim-dap-virtual-text',   -- inline variable text while debugging
     -- https://github.com/nvim-telescope/telescope-dap.nvim
     'nvim-telescope/telescope-dap.nvim', -- telescope integration with dap
   },
@@ -88,18 +88,18 @@ return {
       max_value_lines = 100
     }
   },
-  config = function (_, opts)
+  config = function(_, opts)
     local dap = require('dap')
     require('dapui').setup(opts)
 
     -- Customize breakpoint signs
     vim.api.nvim_set_hl(0, "DapStoppedHl", { fg = "#98BB6C", bg = "#2A2A2A", bold = true })
     vim.api.nvim_set_hl(0, "DapStoppedLineHl", { bg = "#204028", bold = true })
-    vim.fn.sign_define('DapStopped', { text='', texthl='DapStoppedHl', linehl='DapStoppedLineHl', numhl= '' })
-    vim.fn.sign_define('DapBreakpoint', { text='', texthl='DiagnosticSignError', linehl='', numhl='' })
-    vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='DiagnosticSignWarn', linehl='', numhl='' })
-    vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DiagnosticSignError', linehl='', numhl= '' })
-    vim.fn.sign_define('DapLogPoint', { text='', texthl='DiagnosticSignInfo', linehl='', numhl= '' })
+    vim.fn.sign_define('DapStopped', { text = '', texthl = 'DapStoppedHl', linehl = 'DapStoppedLineHl', numhl = '' })
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DiagnosticSignWarn', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'DiagnosticSignInfo', linehl = '', numhl = '' })
 
     dap.listeners.after.event_initialized["dapui_config"] = function()
       require('dapui').open()
@@ -115,16 +115,13 @@ return {
       require('dapui').close()
     end
 
-    -- Add dap configurations based on your language/adapter settings
-    -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-    local dap = require("dap")
-     if vim.fn.executable('gdb') == 1 then
-       require('dap.c')
-     end
-    -- dap.configurations.xxxxxxxxxx = {
-    --   {
-    --   },
-    -- }
+
+    if vim.fn.executable('lldb') == 1 then
+      require('dap.zig')
+    end
+
+    if vim.fn.executable('gdb') == 1 then
+      require('dap.c')
+    end
   end
 }
-

@@ -1,5 +1,5 @@
 return {
-  "B4mbus/oxocarbon-lua.nvim",
+  dir = "~/dotfiles/.config/nvim/local/oxocarbon",
   priority = 1000,
   config = function()
     vim.opt.background = "dark" -- set this to dark or light

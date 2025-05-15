@@ -56,6 +56,7 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({
+      automatic_enable = {},
       automatic_installation = {},
       -- Install these LSPs automatically
       ensure_installed = {
@@ -73,16 +74,6 @@ return {
     })
 
     local lspconfig = require('lspconfig')
-    -- Call setup on each LSP server
-    require('mason-lspconfig').setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup({
-          on_attach    = on_attach,
-          capabilities = capabilities,
-        })
-      end
-    })
-
     -- Lua LSP settings
 
     lspconfig.lua_ls.setup {
