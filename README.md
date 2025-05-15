@@ -1,3 +1,0 @@
-# DOTFILES
-
-- personal dotfiles

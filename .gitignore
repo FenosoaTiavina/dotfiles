@@ -1,6 +1,4 @@
 **/.zsh_history
 **/*.bak
 **/.pk10.zsh*
-**/.zcompdump
 .config/hyde/themes/Oxocarbon/wall.set
-.config/kitty/kitty-sessionx
