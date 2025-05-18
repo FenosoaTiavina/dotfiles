@@ -1,4 +1,3 @@
-
 (defvar music_focus false)
 
 (defwidget music []
@@ -19,16 +18,24 @@
   )
 )
 
-(deflisten music 
-  "playerctl --follow metadata --format '{{ title }}' || true")
+(defpoll music :initial "" :interval "100ms"
+  "playerctl metadata --format '{{ title }}' || true")
 
 
 ;;------------------------------------------------------------------------------
+
+(defvar current_player
+  ""
+)
+
+(defpoll players :interval "200ms" :initial "[]"
+  "widgets/players.sh"
+)
 (defvar player_width 200)
 (defvar player_height 100)
 
-(defvar player_padding "10")
-(defvar player_background_border_radius "10px")
+(defvar player_padding "5")
+(defvar player_background_border_radius "2px")
 
 (defvar load_player_background true)
 (defvar more_info false)
@@ -53,7 +60,7 @@
 (deflisten now_playing_position
   "playerctl --follow position --format '{{ duration(position) }}'"
 )
-(deflisten now_playing_volume
+(deflisten now_playing_volume :initial 0
   "playerctl --follow volume"
 )
 (defvar last_image "")
@@ -71,9 +78,10 @@
     :valign "center"
     :halign "center"
     :width {player_width - 100}
-    :orientation "h"
+    :orientation "v"
     :class "audio_controls"
-    :space-evenly false
+    :spacing "0"
+    :space-evenly true
     (box
       :visible false
       {update_player_blurred_image}
@@ -129,7 +137,7 @@
     (label
       :halign "center"
       :limit-width 300
-      :style "color:white;font-size:large;"
+      :style "color: white;font-size:large;"
       :text {now_playing_artist}
     )
     (label
@@ -137,7 +145,7 @@
       :limit-width 300
       :style "color:white;font-size:large;"
       :text 
-      "${now_playing_position} - ${now_playing_length }"
+      "${now_playing_position} - ${now_playing_length}"
     )
   )
 )
@@ -184,6 +192,19 @@
           :space-evenly false
           :valign "start"
           :style "padding:${player_padding / 4}px;"
+          (box 
+            :orientation "h"
+            :spacing 5
+            :space-evenly true
+            
+            :halign "center"
+              (for p in players
+                (button
+                  :onclick "notify-send '${p}'"
+                  (label :text "${p}")
+                )
+              )
+          )
 
           (box
             :space-evenly false

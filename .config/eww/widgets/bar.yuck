@@ -22,18 +22,26 @@
   (box
     :halign "end"
     :space-evenly false
-    (volumes_main)
     (eventbox 
       :onclick "eww u open_tray=true"
       :onhover "eww u open_tray=true"
       :onhoverlost "eww u open_tray=false"
       (box 
         :orientation "h" :space-evenly false :halign "end" :spacing "2"
-        :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
+        :style "padding: 0px 5px;"
         (tray)
         (tray_button)
       )
     )
+    (eventbox 
+      :onclick "eww o vol_bright"
+      (label 
+        :style "border-left: 1px dashed #ffffff;border-right: 1px dashed #ffffff;padding: 0px 5px;"
+        :text ""
+      )
+    )
+
+
     (eventbox
       :onhover {updates_data != "[]" && open_update == false ? 'eww o updates && eww u open_update=true ' :''}
       :onhoverlost {updates_data != "[]" && open_update == true ? "eww c updates  && eww u open_update=false" : ""}
@@ -44,7 +52,7 @@
         }
       (label
         :class "notif_button"
-        :style "border-right: 1px dashed #ffffff;padding: 0px 5px;"
+        :style "border-left: 1px dashed #ffffff;border-right: 1px dashed #ffffff;padding: 0px 5px;"
         :text "${updates_data.text?:"󰮯"}"
       )
     )

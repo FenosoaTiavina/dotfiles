@@ -1,0 +1,39 @@
+
+(deflisten brt_max   :initial 0
+  "brightnessctl m -q"
+)
+
+(defpoll brightness :initial 0 :interval "500ms"
+  "brightnessctl g -q"
+)
+
+
+(defwidget brightness_main [?style]
+  (box 
+    :style style
+      (metric 
+        :min 1
+        :label {( (brightness * 100 ) / brt_max ) > 50  ? "󰃚": "󰃜"}
+        :value brightness
+        :onchange "brightnessctl -q s {}%"
+    )
+
+  )
+)
+
+
+(defwidget metric [label value onchange ?min]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 1
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)
+  )
+)
+
+
+

@@ -3,4 +3,4 @@
 (include './widgets/updates.yuck')
 (include './widgets/battery.yuck')
 (include './widgets/player.yuck')
-(include './widgets/volumes.yuck')
+(include './widgets/vol_bright.yuck')

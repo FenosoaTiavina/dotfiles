@@ -1,3 +1,7 @@
+
+@import "scss/colors.scss";
+
+
 * {
   all: unset; // Unsets everything so you can style everything from scratch
 }
@@ -7,12 +11,6 @@
   border-radius: 5px;
   background: rgba(#161616, 0.5);
   padding: 2px;
-}
-
-.value_t {
-  border-radius: 50px;
-  padding: 0px 10px;
-  background-color: rgba($color: #ee5396, $alpha: 1.0);
 }
 
 

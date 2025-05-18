@@ -1,7 +1,14 @@
-(defwidget volumes_main [?class]
+(defpoll
+  muted :initial false :interval '100ms'
+  "pamixer --get-mute"
+)
+
+
+(defwidget volumes_main [?style]
   (box 
-    :class class
-      (metric :label ""
+    :style style
+      (metric 
+        :label {muted ? "": ""}
         :value volume
         :onchange "pamixer --set-volume {}")
 
@@ -25,17 +32,4 @@
 (defpoll volume :interval "15ms" :initial 0
   "pamixer --get-volume")
 
-
-(defwindow volumes
-  :monitor 0
-  :namespace "eww-bar"
-  :geometry (geometry 
-                  :y "5px"
-                  :x "5px"
-                  :anchor "top right")
-  :stacking "fg"
-  :exclusive false
-  :focusable "none"
-  (volumes_main)
-)
 
