@@ -1,1 +1,1 @@
-eww daemon --restart ; eww o bar
+eww daemon --restart ; sleep 100ms ; eww o bar
