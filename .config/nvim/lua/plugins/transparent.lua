@@ -30,7 +30,7 @@ return {
         "StatusLine",
         "StatusLineNC",
         "EndOfBuffer",
-        --
+
         -- "TelescopePromptTitle",
         -- "TelescopePromptPrefix",
         -- "TelescopePromptCounter",

@@ -19,7 +19,6 @@ return {
 
           snippets = {
             gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-
             gen_loader.from_lang(),
           },
         })
@@ -43,10 +42,7 @@ return {
       {
 
         snippets = { preset = 'mini_snippets' },
-        -- 'default' for mappings similar to built-in completion
-        -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-        -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-        -- See the full "keymap" documentation for information on defining your own keymap.
+
         signature = {
           window = {
             border = 'rounded',
@@ -125,7 +121,6 @@ return {
             auto_show_delay_ms = 0,
             window = {
               border = 'rounded',
-              -- winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
             }
           },
 
