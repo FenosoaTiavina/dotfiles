@@ -84,9 +84,8 @@ vim.keymap.set('n', 'K', function()
 end, { desc = "Peek into folds" }) --Peek into folds
 
 -- Debugging
---
---
 keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" }) --Toggle breakpoint
+keymap.set("n", "<leader>gb", "<cmd>lua require'dap'.run_to_cursor <dr>", { desc = "Run to cursor" })          --Run to cursor
 keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
   { desc = "Toggle conditional breakpoint" })                                                                  --Toggle conditional breakpoint
 keymap.set("n", "<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
@@ -97,6 +96,7 @@ keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "
 keymap.set("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Debugger step over" })        --Debugger step over
 keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Debugger step into" })        --Debugger step into
 keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Debugger step out" })          --Debugger step out
+
 keymap.set("n", '<leader>dd', function()
   require('dap').disconnect(); require('dapui').close();
 end, { desc = "Debugger disconnect" }) --Debugger disconnect

@@ -84,12 +84,12 @@ Theme.set_general_highlights = function(colors)
   -- diagnostics
   highlight('DiagnosticWarn', 9, none)
   highlight('DiagnosticError', 11, none)
-  highlight('DiagnosticInfo', 5, none)
-  highlight('DiagnosticHint', 5, none)
+  highlight('DiagnosticInfo', 12, none)
+  highlight('DiagnosticHint', 15, none)
   highlight('DiagnosticUnderlineWarn', 9, none, { 'undercurl' })
   highlight('DiagnosticUnderlineError', 11, none, { 'undercurl' })
-  highlight('DiagnosticUnderlineInfo', 5, none, { 'undercurl' })
-  highlight('DiagnosticUnderlineHint', 5, none, { 'undercurl' })
+  highlight('DiagnosticUnderlineInfo', 12, none, { 'undercurl' })
+  highlight('DiagnosticUnderlineHint', 15, none, { 'undercurl' })
 
   -- lsp
   highlight('LspReferenceText', none, 4)

@@ -3,39 +3,35 @@ if not ok then
   return
 end
 
---
--- See
--- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Interpreters.html
--- https://sourceware.org/gdb/current/onlinedocs/gdb.html/Debugger-Adapter-Protocol.html
 dap.adapters.gdb       = {
   id = 'gdb',
   type = 'executable',
   command = 'gdb',
   args = { '--quiet', '--interpreter=dap' },
 }
-local c_pp             = {
+
+local c_cpp            = {
   {
     name = 'Run executable (GDB)',
     type = 'gdb',
     request = 'launch',
-    -- This requires special handling of 'run_last', see
-    -- https://github.com/mfussenegger/nvim-dap/issues/1025#issuecomment-1695852355
     program = function()
-      local path = vim.fn.input({
+      local path = ''
+      vim.ui.input({
         prompt = 'Path to executable: ',
         default = vim.fn.getcwd() .. '/',
         completion = 'file',
-      })
+      }, function(value)
+        path = value
+      end)
 
-      return (path and path ~= '') and path or dap.ABORT
+      return (path and path ~= '') and path or dap.abort
     end,
   },
   {
     name = 'Run executable with arguments (GDB)',
     type = 'gdb',
     request = 'launch',
-    -- This requires special handling of 'run_last', see
-    -- https://github.com/mfussenegger/nvim-dap/issues/1025#issuecomment-1695852355
     program = function()
       local path = vim.fn.input({
         prompt = 'Path to executable: ',
@@ -46,9 +42,12 @@ local c_pp             = {
       return (path and path ~= '') and path or dap.ABORT
     end,
     args = function()
-      local args_str = vim.fn.input({
-        prompt = 'Arguments: ',
-      })
+      local args_str = ''
+      vim.ui.input({
+        prompt = 'Args: ',
+      }, function(value)
+        args_str = value
+      end)
       return vim.split(args_str, ' +')
     end,
   },
@@ -59,5 +58,5 @@ local c_pp             = {
     processId = require('dap.utils').pick_process,
   },
 }
-dap.configurations.c   = c_pp;
-dap.configurations.cpp = c_pp;
+dap.configurations.c   = c_cpp;
+dap.configurations.cpp = c_cpp;

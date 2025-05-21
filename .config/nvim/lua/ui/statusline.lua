@@ -35,7 +35,7 @@ local stl_order = {
   "diag",
   "fileinfo",
   "pad",
-  -- "scrollbar",
+  "scrollbar",
   -- "pad"
 }
 
@@ -105,7 +105,7 @@ local function get_path_info(root, fname, icon_tbl)
   file_icon = file_name ~= "" and tools.hl_str(icon_hl, file_icon) or ""
 
 
-  local file_icon_name = table.concat({ tools.hl_str('SlFgRed', file_name), " ", file_icon })
+  local file_icon_name = table.concat({ tools.hl_str('SlFgOrange', file_name), " ", file_icon })
 
   if vim.bo.buftype == "help" then
     return table.concat({ icon_tbl["file"], file_icon_name })
