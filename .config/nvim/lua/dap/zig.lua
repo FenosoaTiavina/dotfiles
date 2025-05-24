@@ -10,8 +10,6 @@ dap.adapters.gdb = {
   args = { '--quiet', '--interpreter=dap' },
 }
 
-
-
 local zig = {
   {
     name = 'run executable (gdb)',
