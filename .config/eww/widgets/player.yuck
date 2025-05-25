@@ -192,19 +192,19 @@
           :space-evenly false
           :valign "start"
           :style "padding:${player_padding / 4}px;"
-          (box 
-            :orientation "h"
-            :spacing 5
-            :space-evenly true
-            
-            :halign "center"
-              (for p in players
-                (button
-                  :onclick "notify-send '${p}'"
-                  (label :text "${p}")
-                )
-              )
-          )
+          ;; (box 
+          ;;   :orientation "h"
+          ;;   :spacing 5
+          ;;   :space-evenly true
+          ;;   
+          ;;   :halign "center"
+          ;;     (for p in players
+          ;;       (button
+          ;;         :onclick "notify-send '${p}'"
+          ;;         (label :text "${p}")
+          ;;       )
+          ;;     )
+          ;; )
 
           (box
             :space-evenly false
