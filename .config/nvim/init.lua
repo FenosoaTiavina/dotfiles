@@ -24,6 +24,7 @@ require("lazy").setup("plugins", {
 })
 require("globals")
 require("core.cmd")
+require("core.lsp")
 -- These modules are not loaded by lazy
 require("core.options")
 require("core.keymaps")

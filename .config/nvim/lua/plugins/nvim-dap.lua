@@ -7,6 +7,7 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
+      "nvim-telescope/telescope-dap.nvim",
     },
     config = function()
       local dap = require "dap"
@@ -35,11 +36,6 @@ return {
       require("dap.c")
       require("dap.zig")
 
-
-      -- Eval var under cursor
-      vim.keymap.set("n", "<leader>?", function()
-        require("dapui").eval(nil, { enter = true })
-      end)
 
       dap.listeners.before.attach.dapui_config = function()
         ui.open()

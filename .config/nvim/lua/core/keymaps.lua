@@ -3,11 +3,12 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
+
 -- General keymaps
-keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "save and quit" })               --save and quit
-keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "quit without saving" })         --quit without saving
-keymap.set("n", "<leader>ww", ":w<CR>", { desc = "save" })                         --save
-keymap.set("n", "gx", ":!open <c-r><c-a><CR>", { desc = "open URL under cursor" }) --open URL under cursor
+keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "save and quit" })                   --save and quit
+keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "quit without saving" })             --quit without saving
+keymap.set("n", "<leader>ww", ":w<CR>", { desc = "save" })                             --save
+keymap.set("n", "gx", ":!xdg-open <c-r><c-a><CR>", { desc = "open URL under cursor" }) --open URL under cursor
 
 -- Split window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })           --split window vertically
@@ -18,15 +19,11 @@ keymap.set("n", "<leader>sj", "<C-w>-", { desc = "make split window height short
 keymap.set("n", "<leader>sk", "<C-w>+", { desc = "make split windows height taller" })  --make split windows height taller
 keymap.set("n", "<leader>sl", "<C-w>>5", { desc = "make split windows width bigger" })  --make split windows width bigger
 keymap.set("n", "<leader>sh", "<C-w><5", { desc = "make split windows width smaller" }) --make split windows width smaller
--- keymap.set("n", "<C-k>", ":wincmd k <CR>", { desc = "switch to split up" })             --switch to split up
--- keymap.set("n", "<C-j>", ":wincmd j <CR>", { desc = "switch to split down" })           --switch to split down
--- keymap.set("n", "<C-h>", ":wincmd h <CR>", { desc = "switch to split left" })           --switch to split left
--- keymap.set("n", "<C-l>", ":wincmd l <CR>", { desc = "switch to split right" })          --switch to split right
 
 -- buffer management
 keymap.set("n", "<TAB>", "<CMD>bnext<CR>", { desc = "Next buffer" })
 keymap.set("n", "<S-TAB>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
-keymap.set("n", "<leader>x", "<CMD>bdelete<CR>", { desc = "Previous buffer" })
+keymap.set("n", "<leader>bx", "<CMD>bdelete<CR>", { desc = "Previous buffer" })
 
 -- Diff keymaps
 keymap.set("n", "<leader>cc", ":diffput<CR>", { desc = "put diff from current to other during diff" })  --put diff from current to other during diff
@@ -46,17 +43,13 @@ keymap.set("n", "<leader>qc", ":cclose<CR>", { desc = "close quickfix list" })  
 -- Vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "toggle maximize tab" }) --toggle maximize tab
 
--- Nvim-tree
+-- Oil
 keymap.set("n", "<leader>/", ":Oil<CR>", { desc = "toggle file explorer" }) --toggle file explorer
 
-
--- Git-blame
-keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>", { desc = "toggle git blame" }) --toggle git blame
-
 -- Harpoon
-keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "mark harpoon file" })                           -- mark harpoon file
-keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, { desc = "toggle harpoon quick menu" })            -- toggle harpoon quick menu
-keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "harpoon go to marked file 1" }) -- harpoon go to marked file 1
+keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "mark harpoon file" })                -- mark harpoon file
+keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, { desc = "toggle harpoon quick menu" }) -- toggle harpoon quick menu
+--[[ keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "harpoon go to marked file 1" }) -- harpoon go to marked file 1
 keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end, { desc = "harpoon go to marked file 2" }) --harpoon go to marked file 2
 keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end, { desc = "harpoon go to marked file 3" }) --harpoon go to marked file 3
 keymap.set("n", "<leader>h4", function() require("harpoon.ui").nav_file(4) end, { desc = "harpoon go to marked file 4" }) --harpoon go to marked file 4
@@ -64,11 +57,7 @@ keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end, 
 keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end, { desc = "harpoon go to marked file 6" }) --harpoon go to marked file 6
 keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end, { desc = "harpoon go to marked file 7" }) --harpoon go to marked file 7
 keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end, { desc = "harpoon go to marked file 8" }) --harpoon go to marked file 8
-keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end, { desc = "harpoon go to marked file 9" }) --harpoon go to marked file 9
-
--- Vim REST Console
-keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>", { desc = "Run REST query" }) --Run REST query
-
+keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end, { desc = "harpoon go to marked file 9" }) --harpoon go to marked file 9 ]]
 
 -- folding
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Close all folds" }) -- Close all folds

@@ -35,9 +35,6 @@ opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 opt.showmode = false
-vim.diagnostic.config {
-	float = { border = "rounded" }, -- add border to diagnostic popups
-}
 
 -- Backspace
 opt.backspace = "indent,eol,start"

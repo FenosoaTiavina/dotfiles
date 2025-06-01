@@ -3,6 +3,18 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = {
     {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      opts = {
+        library = {
+          -- See the configuration section for more details
+          -- Load luvit types when the `vim.uv` word is found
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
+
+    {
       'echasnovski/mini.snippets',
       config = function()
         local gen_loader = require('mini.snippets').gen_loader
@@ -24,6 +36,7 @@ return {
         })
       end
     },
+
   }
   ,
 
@@ -61,29 +74,19 @@ return {
                 return cmp.show()
               end
             end,
+          },
+          ['<C-e>'] = {
             function(cmp)
-              if cmp.is_menu_visible() then
-                if cmp.is_documentation_visible() then
-                  return cmp.hide_documentation()
-                else
-                  return cmp.show_documentation()
-                end
-              end
+              cmp.show_signature()
             end,
+          },
+          ['<Tab>'] = {
             function(cmp)
-              if cmp.snippet_active() then
+              if cmp.is_visible() then
                 cmp.hide()
                 return cmp.accept()
               end
-            end, },
-          ['<C-e>'] = {},
-          ['<Tab>'] = { function(cmp)
-            if cmp.is_visible() then
-              cmp.hide()
-              return cmp.accept()
-            end
-          end,
-            "fallback",
+            end,
           },
 
           ['<Up>'] = {},
@@ -95,8 +98,7 @@ return {
           ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
           ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
 
-
-          ['<S-K>'] = { 'show_signature', 'hide_signature', 'fallback' },
+          ['<M-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
         },
 
         enabled = function()
@@ -106,11 +108,6 @@ return {
         end,
 
         appearance = {
-          -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-          -- Useful for when your theme doesn't support blink.cmp
-          -- Will be removed in a future release
-          -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-          -- Adjusts spacing to ensure icons are aligned
           nerd_font_variant = 'mono'
         },
 
@@ -125,7 +122,12 @@ return {
           },
 
           menu = {
+            auto_show = false,
+
             draw = {
+              columns = {
+                { "kind_icon", "label", gap = 1, "source_name" },
+              },
               components = {
                 kind_icon = {
                   ellipsis = false,
@@ -144,9 +146,11 @@ return {
             border = 'rounded',
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
           },
+          ghost_text = {
+            enabled = true,
+            show_with_menu = true,
+          },
         },
-        -- Default list of enabled providers defined so that you can extend it
-        -- elsewhere in your config, without redefining it, due to `opts_extend`
 
         sources = {
           default = { 'lsp', 'path', 'snippets', 'buffer', "lazydev" },
@@ -154,7 +158,6 @@ return {
             lazydev = {
               name = "LazyDev",
               module = "lazydev.integrations.blink",
-              -- make lazydev completions top priority (see `:h blink.cmp`)
               score_offset = 100,
             },
           },
