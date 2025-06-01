@@ -5,14 +5,17 @@
     :onclick {music != "" ? "eww o player_container": ""}
     :onhoverlost {"eww get music_focus" == false 
       ? "eww c player_container ; eww u music_focus=false" :""}
-    (box :class "music"
-          :style "border-left: 1px dashed #ffffff;padding: 0px
-          5px;"
 
-         :orientation "h"
-         :space-evenly false
-         :halign "center"
-      {music != "" ? " ${music} " : "No Media"}
+    (box 
+      :class "music"
+      :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
+      :orientation "h"
+      :space-evenly false
+      :halign "center"
+      (label
+        :tooltip "🎧️ ${now_playing_title} 🎙️ ${now_playing_artist}"
+        :text {music != "" ? " 󰝚 " : " 󰝛 "}
+      )
     )
 
   )
