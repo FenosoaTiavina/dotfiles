@@ -122,18 +122,18 @@ return {
           },
 
           menu = {
-            auto_show = false,
-
+            auto_show = true,
             draw = {
               columns = {
                 { "kind_icon", "label", gap = 1, "source_name" },
               },
               components = {
+
                 kind_icon = {
                   ellipsis = false,
                   text = function(ctx)
                     local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                    return kind_icon .. "   " .. ctx.kind
+                    return kind_icon
                   end,
                   -- Optionally, you may also use the highlights from mini.icons
                   highlight = function(ctx)
@@ -145,10 +145,6 @@ return {
             },
             border = 'rounded',
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
-          },
-          ghost_text = {
-            enabled = true,
-            show_with_menu = true,
           },
         },
 

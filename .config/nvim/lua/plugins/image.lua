@@ -4,14 +4,16 @@ return {
     require("image").setup({
       backend = "kitty",
       processor = "magick_cli", -- or "magick_cli"
+      kitty_method = "normal",
       integrations = {
         markdown = {
           enabled = true,
           clear_in_insert_mode = false,
           download_remote_images = true,
-          only_render_image_at_cursor = false,
-          floating_windows = false,              -- if true, images will be rendered in floating markdown windows
-          filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+          only_render_image_at_cursor = true,          -- defaults to false
+          only_render_image_at_cursor_mode = "inline", -- "popup" or "inline", defaults to "popup"
+          floating_windows = false,                    -- if true, images will be rendered in floating markdown windows
+          filetypes = { "markdown", "vimwiki" },       -- markdown extensions (ie. quarto) can go here
         },
         neorg = {
           enabled = true,
