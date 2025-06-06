@@ -22,7 +22,7 @@
 )
 
 (defpoll music :initial "" :interval "100ms"
-  "playerctl metadata --format '{{ title }}' || true")
+  "playerctl -i firefox metadata --format '{{ title }}' || true")
 
 
 ;;------------------------------------------------------------------------------
@@ -44,27 +44,27 @@
 (defvar more_info false)
 
 (deflisten now_playing_artist
-  "playerctl --follow metadata --format '{{ artist }}'"
+  "playerctl -i firefox --follow metadata --format '{{ artist }}'"
 )
 (deflisten now_playing_title
-  "playerctl --follow metadata --format '{{ title }}'"
+  "playerctl -i firefox --follow metadata --format '{{ title }}'"
 )
 
 (deflisten now_playing_status
-  "playerctl --follow metadata --format {{status}}"
+  "playerctl -i firefox --follow metadata --format {{status}}"
 )
 
 (deflisten now_playing_image
-  "playerctl --follow metadata mpris:artUrl"
+  "playerctl -i firefox --follow metadata mpris:artUrl"
 )
 (deflisten now_playing_length
-  "playerctl --follow metadata --format '{{ duration(mpris:length) }}'"
+  "playerctl -i firefox --follow metadata --format '{{ duration(mpris:length) }}'"
 )
 (deflisten now_playing_position
-  "playerctl --follow position --format '{{ duration(position) }}'"
+  "playerctl -i firefox --follow position --format '{{ duration(position) }}'"
 )
 (deflisten now_playing_volume :initial 0
-  "playerctl --follow volume"
+  "playerctl -i firefox --follow volume"
 )
 (defvar last_image "")
 
@@ -97,16 +97,16 @@
     :orientation "h"
 
       (button
-        :onclick "playerctl previous"
+        :onclick "playerctl -i firefox previous"
         ""
       )
       (button
-        :onclick "playerctl play-pause"
+        :onclick "playerctl -i firefox play-pause"
         {now_playing_status == "Playing"? "":""}
         
       )
       (button
-        :onclick "playerctl next"
+        :onclick "playerctl -i firefox next"
         ""
       )
     )

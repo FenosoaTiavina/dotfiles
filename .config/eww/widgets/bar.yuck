@@ -15,6 +15,7 @@
 
     (date)
     (music)
+    (idle_inhibitor)
   )
 )
 
@@ -58,6 +59,31 @@
     )
     (battery :style "padding: 0px 5px;")
   )
+)
+
+(defvar idle_inhibit 
+  'off'
+)
+
+(defwidget idle_inhibitor []
+  (eventbox 
+    :onclick { 
+      idle_inhibit == 'off' ?
+      "eww u idle_inhibit='on' ;~/.local/bin/idle-inhibitor.py --all &" : 
+      "eww u idle_inhibit='off' ;
+      kill -s KILL $(pgrep -f 'python /home/fenosoa/.local/bin/idle-inhibitor.py --all')"
+    }
+    (label 
+      :text 
+      {
+        idle_inhibit == 'off' ?
+        "off" : 
+        "on"
+      }
+
+    )
+  )
+
 )
 
 (defwidget date []
