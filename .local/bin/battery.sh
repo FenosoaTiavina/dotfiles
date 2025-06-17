@@ -42,7 +42,7 @@ average_capacity=$((total_capacity / battery_count))
 index=$((average_capacity / 10))
 
 # Define icons for charging, discharging, and status
-charging_icons=(" " " " " " " " " " " " " ")
+charging_icon=""
 discharging_icons=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
 status_icons=("" "X" "󰂇") # Add appropriate icons for different statuses
 
@@ -56,30 +56,30 @@ output_format() {
     case "$1" in
     icon)
         if [[ "$battery_status" == "Charging" ]]; then
-            echo -n "${charging_icons[$index]} "
+            echo -n ${charging_icon}
         else
-            echo -n "${discharging_icons[$index]} "
+            echo -n "${discharging_icons[$index]}"
         fi
         ;;
     percentage)
-        echo -n "$average_capacity% "
+        echo -n "$average_capacity%"
         ;;
     int)
-        echo -n "$average_capacity "
+        echo -n "$average_capacity"
         ;;
     status)
-        echo -n "$battery_status "
+        echo -n "$battery_status"
         ;;
     status-icon)
         case "$battery_status" in
         "Charging")
-            echo -n "${status_icons[0]} "
+            echo -n "${status_icons[0]}"
             ;;
         "Not Charging")
-            echo -n "${status_icons[1]} "
+            echo -n "${status_icons[1]}"
             ;;
         *)
-            echo -n "${status_icons[2]} "
+            echo -n "${status_icons[2]}"
             ;;
         esac
         ;;
