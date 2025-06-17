@@ -15,18 +15,18 @@ tabbar tabbox {
   margin: 0;
   padding: 0;
   min-height: 10px;
-  background-color: #161616;
+  background-color: transparent;
   font-family: "Iosevka Nerd Font Mono";
 }
 
 tabbar tabbox tab {
   margin: 0;
-  padding: 1px 0;
+  padding: 0;
   color: #fefefe;
 }
 
 tabbar tabbox tab:selected {
-  background-color: #161616;
+  background-color: transparent;
   color: #42be65;
 }
 

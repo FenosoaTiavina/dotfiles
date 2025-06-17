@@ -93,11 +93,12 @@
 (defwidget workspaces []
   (eventbox :onscroll "scripts/workspace_change.sh {} ${current_workspace}"
     (box :orientation "h" :space-evenly false :class "workspaces" :hexpand true
+      :spacing 2
       (for workspace in workspaces
         (button 
-          :width  "10"
-          :height "10"
-          :class "workspace ${current_workspace == workspace.id ? "current" : ""}" 
+          :halign "center"
+          :valign "center"
+          :class "workspace ${workspace.id == 1 ? "w_first" : ""} ${workspace.id != 1 && workspace.id >= arraylength(workspaces) ? "w_last" : ""} ${current_workspace == workspace.id ? "current" : ""} " 
           :onclick "hyprctl dispatch workspace ${workspace.id}" 
           (label :text "${workspace.id}" )
         )

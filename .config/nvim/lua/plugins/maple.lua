@@ -7,6 +7,9 @@ return {
       title = ' Scratch ',
       title_pos = 'center',
       winblend = 0,
+      keymaps = {
+        toggle = "<leader>m"
+      }
     })
   end
 }

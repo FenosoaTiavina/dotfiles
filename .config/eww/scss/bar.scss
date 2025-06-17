@@ -2,22 +2,36 @@
 .bar {
   color: $color-6;
   border-radius: 10px;
-  background: rgba($color-1, 0.3);
+  background: rgba($color-1, 0.1);
   padding: 2px;
   padding-right: 7px;
 }
 
-// Styles on classes (see eww.yuck for more information)
 
 .workspace {
   padding: 0 5px;
-  border-radius: 8px;
+  border-radius: 2px;
+  
 
+  background-color: rgba($color: $color-1, $alpha: 0.5);
+  color: rgba($color: $color-5, $alpha: 1.0);
+
+  &.w_first {
+    /* top-left | top-right | bottom-right | bottom-left */
+    border-radius: 8px 2px 2px 8px;
+    padding: 0 5px;
+  }
+
+  &.w_last {
+    /* top-left | top-right | bottom-right | bottom-left */
+    border-radius:  2px 8px 8px 2px;
+    padding: 0 5px;
+  }
   &.current {
+    padding: 0 5px;
     background-color: rgba($color: $color-11, $alpha: 1.0);
     color: rgba($color: $color-1, $alpha: 1.0);
   }
-
 }
 
 .workspaces button:hover {
@@ -27,7 +41,6 @@
     background-color: rgba($color: $color-14, $alpha: 1.0);
     color: rgba($color: $color-1, $alpha: 1.0);
   }
-
 }
 
 
