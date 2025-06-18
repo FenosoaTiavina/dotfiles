@@ -98,7 +98,7 @@
         (button 
           :halign "center"
           :valign "center"
-          :class "workspace ${workspace.id == 1 ? "w_first" : ""} ${workspace.id != 1 && workspace.id >= arraylength(workspaces) ? "w_last" : ""} ${current_workspace == workspace.id ? "current" : ""} " 
+          :class "workspace ${current_workspace == workspace.id ? "current" : ""}" 
           :onclick "hyprctl dispatch workspace ${workspace.id}" 
           (label :text "${workspace.id}" )
         )
