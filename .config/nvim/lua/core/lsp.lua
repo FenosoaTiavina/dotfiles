@@ -63,12 +63,15 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
   if val.kind == "begin" then
     local message = format_message(val.message, val.percentage)
 
-    notif_data.notification = vim.notify(message, "info", {
-      title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
-      icon = spinner_frames[1],
-      timeout = false,
-      hide_from_history = false,
-    })
+    notif_data.notification = vim.notify(message,
+
+      vim.log.levels.INFO
+      , {
+        title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
+        icon = spinner_frames[1],
+        timeout = false,
+        hide_from_history = false,
+      })
 
     notif_data.spinner = 1
     update_spinner(client_id, result.token)
@@ -93,9 +96,9 @@ end
 vim.lsp.handlers["window/showMessage"] = function(err, method, params)
   _ = params
 
-  local severity = "info"
+  local severity = vim.log.levels.INFO
   if err then
-    severity = "error"
+    severity = vim.log.levels.ERROR
   end
   vim.notify(method.message, severity, {
     title = 'LSP'
@@ -108,7 +111,6 @@ vim.lsp.enable({
   "lua_ls",
   "clangd",
 })
-
 
 vim.diagnostic.config({
   virtual_lines = true,
@@ -134,8 +136,6 @@ vim.diagnostic.config({
   },
 })
 
-
-
 if vim.g.lspconfig ~= nil then
   return
 end
@@ -150,8 +150,25 @@ local contains = function(array, value)
   return false
 end
 
-vim.api.nvim_create_user_command('LspStart', function(info)
-  local server_name = string.len(info.args) > 0 and info.args or nil
+local lsp_stop = function()
+  local clients = {}
+
+  -- default to stopping all servers on current buffer
+  clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+
+  for _, client in ipairs(clients) do
+    vim.notify(
+      "Stopping " .. client.name,
+      vim.log.levels.INFO,
+      {
+        title = "LSP"
+      })
+    vim.lsp.stop_client(client.id)
+  end
+end
+
+local lsp_start = function(info)
+  local server_name = (info ~= nil and string.len(info.args) > 0) and info.args or nil
   local configs = vim.lsp._enabled_configs
   if server_name then
     local config = configs[server_name].resolved_config
@@ -178,31 +195,32 @@ vim.api.nvim_create_user_command('LspStart', function(info)
       end
     end
   end
-end, {
-  desc = 'Manually launches a language server',
+end
+
+local function lsp_toggle()
+
+  local active_clients = vim.lsp.get_clients({})
+
+  if #active_clients >= 1 then
+    lsp_stop()
+    return
+  end
+  lsp_start(nil)
+end
+
+vim.api.nvim_create_user_command('LspStart',
+  lsp_start,
+  {
+    desc = 'Manually launches a language server',
+    nargs = '?',
+  })
+
+
+vim.api.nvim_create_user_command('LspStop', lsp_stop, {
+  desc = 'Manually stops the given language client(s)',
   nargs = '?',
 })
 
 vim.api.nvim_create_user_command('LspInfo', "checkhealth vim.lsp", {})
 
-vim.api.nvim_create_user_command('LspStop', function(info)
-  _ = info
-  ---@type string
-  local clients = {}
-
-  -- default to stopping all servers on current buffer
-  clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-
-  for _, client in ipairs(clients) do
-    vim.notify(
-      "Stopping " .. client.name,
-      vim.log.levels.INFO,
-      {
-        title = "LSP"
-      })
-    vim.lsp.stop_client(client.id)
-  end
-end, {
-  desc = 'Manually stops the given language client(s)',
-  nargs = '?',
-})
+vim.api.nvim_create_user_command('LspToggle', lsp_toggle, {})
