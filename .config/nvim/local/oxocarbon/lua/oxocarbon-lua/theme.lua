@@ -32,7 +32,6 @@ Theme.set_terminal_colors = function(colors)
   end
 end
 
-
 Theme.set_general_highlights = function(colors)
   local highlight = function(name, fg, bg, attrs)
     local fg_color = colors[fg]
@@ -389,6 +388,12 @@ Theme.set_general_highlights = function(colors)
   highlight('MiniIconsPurple', 15, none, {})
   highlight('MiniIconsYellow', 16, none, {})
 
+  -- highlight('MiniNotifyTitle', 16, none, {})
+  highlight('MiniNotifyBorder', 17, none, {})
+  highlight('MiniNotifyNormal', 16, none, {})
+  highlight('MiniNotifyLspProgress', 16, none, {})
+
+
 
 
   --[[ highlight('SnacksInputIcon', 17, none, {})
@@ -591,6 +596,8 @@ Theme.set_general_highlights = function(colors)
   highlight('DashboardHeader', 16, none)
   highlight('DashboardCenter', 15, none)
   highlight('DashboardFooter', 9, none)
+
+
 end
 
 return Theme

@@ -58,7 +58,6 @@ vim.on_key(function(char)
   end
 end, vim.api.nvim_create_namespace "auto_hlsearch")
 
-
 -- ┌─────────┐
 -- │functions│
 -- └─────────┘
