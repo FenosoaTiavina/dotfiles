@@ -6,6 +6,6 @@
 (defwidget battery [style]
   (label
     :style style
-    :text "${EWW_BATTERY.BAT0.capacity} ${bat_icon}"
+    :text " ${bat_icon} ${EWW_BATTERY.BAT0.capacity}"
   )
 )

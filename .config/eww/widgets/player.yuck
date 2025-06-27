@@ -8,13 +8,13 @@
 
     (box 
       :class "music"
-      :style "border-left: 1px dashed #ffffff;padding: 0px 5px;"
+      :style "padding: 0px 5px;"
       :orientation "h"
       :space-evenly false
       :halign "center"
       (label
         :tooltip "🎧️ ${now_playing_title} 🎙️ ${now_playing_artist}"
-        :text {music != "" ? " 󰝚 " : " 󰝛 "}
+        :text {music != "" ? "󰝚" : "󰝛"}
       )
     )
 
