@@ -52,6 +52,6 @@ decoration {
         passes = 2
         new_optimizations = on
         ignore_opacity = on
-        xray = true
+        xray = false
     }
 }
