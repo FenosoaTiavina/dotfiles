@@ -3,7 +3,7 @@
   "brightnessctl m -q"
 )
 
-(defpoll brightness :initial 0 :interval "500ms"
+(defpoll brightness :initial 100 :interval "500ms"
   "brightnessctl g -q"
 )
 
@@ -11,11 +11,20 @@
 (defwidget brightness_main [?style]
   (box 
     :style style
-      (metric 
-        :min 1
-        :label {( (brightness * 100 ) / brt_max ) > 50  ? "󰃚": "󰃜"}
-        :value brightness
-        :onchange "brightnessctl -q s {}%"
+    :space-evenly false
+    :orientation "h"
+    :valign "center"
+    :halign "start"
+    :spacing 6
+
+    (metric 
+      :min 1
+      :label { ( (brightness * 100 ) / brt_max ) > 50  ? "󰃚": "󰃜" }
+      :value { ((brightness * 100 ) / brt_max) }
+      :onchange "brightnessctl -q s {}%"
+    )
+    (label 
+      :text "${ ((brightness * 100 ) / brt_max) }%"
     )
 
   )

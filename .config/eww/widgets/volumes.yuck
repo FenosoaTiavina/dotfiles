@@ -3,18 +3,25 @@
   "pamixer --get-mute"
 )
 
-
 (defwidget volumes_main [?style]
   (box 
     :style style
-      (metric 
-        :label {muted ? "": ""}
-        :value volume
-        :onchange "pamixer --set-volume {}")
+    :space-evenly false
+    :orientation "h"
+    :valign "center"
+    :halign "start"
+    :spacing 6
+
+    (metric 
+      :label {muted ? "": ""}
+      :value volume
+      :onchange "pamixer --set-volume {}")
+    (label 
+      :text "${volume}%"
+    )
 
   )
 )
-
 
 (defwidget metric [label value onchange]
   (box :orientation "h"
@@ -31,5 +38,3 @@
 
 (defpoll volume :interval "15ms" :initial 0
   "pamixer --get-volume")
-
-
