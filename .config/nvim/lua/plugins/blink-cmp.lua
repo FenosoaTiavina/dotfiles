@@ -19,16 +19,6 @@ return {
       config = function()
         local gen_loader = require('mini.snippets').gen_loader
         require('mini.snippets').setup({
-          mappings = {
-            -- Expand snippet at cursor position. Created globally in Insert mode.
-            expand = '<M-j>',
-            accept = '<Tab>',
-            jump_next = '<M-l>',
-            jump_prev = '<M-h>',
-            stop = '<ESC>',
-
-          },
-
           snippets = {
             gen_loader.from_file('~/.config/nvim/snippets/global.json'),
             gen_loader.from_lang(),
@@ -53,22 +43,13 @@ return {
   config = function()
     require('blink-cmp').setup(
       {
-
         snippets = { preset = 'mini_snippets' },
-
-        signature = {
-          window = {
-            border = 'rounded',
-            direction_priority = { 'n' },
-          },
-
-          enabled = false
-        },
-
         keymap = {
+          preset = 'none',
+
           ['<C-space>'] = {
             function(cmp)
-              if cmp.is_visible() and not cmp.is_documentation_visible() then
+              if cmp.is_visible() then
                 return cmp.hide()
               else
                 return cmp.show()
@@ -77,28 +58,18 @@ return {
           },
           ['<C-e>'] = {
             function(cmp)
-              cmp.show_signature()
-            end,
-          },
-          ['<Tab>'] = {
-            function(cmp)
-              if cmp.is_visible() then
-                cmp.hide()
-                return cmp.accept()
+              if cmp.is_signature_visible() then
+                return cmp.hide_signature()
+              else
+                return cmp.show_signature()
               end
             end,
           },
-
-          ['<Up>'] = {},
-          ['<Down>'] = {},
-          ['<C-p>'] = { 'select_prev', 'fallback' },
-          ['<C-n>'] = { 'select_next', 'fallback' },
-
-
-          ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-          ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-          ['<M-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+          ['<tab>'] = { 'select_accept_and_enter', 'fallback' },
+          ['<C-p>'] = { 'select_prev' },
+          ['<C-n>'] = { 'select_next' },
+          ['<C-b>'] = { 'scroll_documentation_up' },
+          ['<C-f>'] = { 'scroll_documentation_down' },
         },
 
         enabled = function()
