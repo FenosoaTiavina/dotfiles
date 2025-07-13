@@ -2,6 +2,7 @@ vim.lsp.config['lua_ls'] = require("core.lsp.lua_ls")
 vim.lsp.config['gopls']  = require("core.lsp.gopls")
 vim.lsp.config['clangd'] = require("core.lsp.clangd")
 vim.lsp.config['zls']    = require("core.lsp.zls")
+vim.lsp.config['pylsp']  = require("core.lsp.pylsp")
 
 -- Utility functions shared between progress reports for LSP and DAP
 
@@ -107,6 +108,7 @@ vim.lsp.enable({
   "zls",
   "lua_ls",
   "clangd",
+  "pylsp",
 })
 
 
@@ -178,8 +180,28 @@ vim.api.nvim_create_user_command('LspStart', function(info)
       end
     end
   end
-end, {
-  desc = 'Manually launches a language server',
+end
+
+local function lsp_toggle()
+  local active_clients = vim.lsp.get_clients({})
+
+  if #active_clients >= 1 then
+    lsp_stop()
+    return
+  end
+  lsp_start(nil)
+end
+
+vim.api.nvim_create_user_command('LspStart',
+  lsp_start,
+  {
+    desc = 'Manually launches a language server',
+    nargs = '?',
+  })
+
+
+vim.api.nvim_create_user_command('LspStop', lsp_stop, {
+  desc = 'Manually stops the given language client(s)',
   nargs = '?',
 })
 
