@@ -20,7 +20,7 @@ temp_file="$HYDE_RUNTIME_DIR/update_info"
 if [ "$1" == "up" ]; then
     if [ -f "$temp_file" ]; then
         # refreshes the module so after you update it will reset to zero
-        trap 'pkill -RTMIN+20 waybar' EXIT
+        trap 'pkill -RTMIN+20 eww' EXIT
         # Read info from env file
         while IFS="=" read -r key value; do
             case "$key" in
@@ -37,7 +37,7 @@ if [ "$1" == "up" ]; then
         $fpk_exup
         read -n 1 -p 'Press any key to continue...'
         "
-        kitty --title systemupdate sh -c "${command}"
+        ghostty -e sh -c "${command}"
     else
         echo "No upgrade info found. Please run the script without parameters first."
     fi
@@ -73,7 +73,6 @@ EOF
 )
 
 # Save the upgrade info
-echo "$upgrade_info" >"$temp_file"
 # Show tooltip
 if [ $upd -eq 0 ]; then
     upd="" #Remove Icon completely
