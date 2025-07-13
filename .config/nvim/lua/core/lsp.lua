@@ -2,6 +2,7 @@ vim.lsp.config['lua_ls'] = require("core.lsp.lua_ls")
 vim.lsp.config['gopls']  = require("core.lsp.gopls")
 vim.lsp.config['clangd'] = require("core.lsp.clangd")
 vim.lsp.config['zls']    = require("core.lsp.zls")
+vim.lsp.config['pylsp']  = require("core.lsp.pylsp")
 
 -- Utility functions shared between progress reports for LSP and DAP
 
@@ -110,6 +111,7 @@ vim.lsp.enable({
   "zls",
   "lua_ls",
   "clangd",
+  "pylsp",
 })
 
 vim.diagnostic.config({
@@ -198,7 +200,6 @@ local lsp_start = function(info)
 end
 
 local function lsp_toggle()
-
   local active_clients = vim.lsp.get_clients({})
 
   if #active_clients >= 1 then
