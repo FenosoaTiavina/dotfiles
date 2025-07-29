@@ -23,18 +23,6 @@
   )
 )
 
-(defwidget metric [label value onchange]
-  (box :orientation "h"
-       :class "metric"
-       :space-evenly false
-    (box :class "label" label)
-    (scale :min 0
-           :max 101
-           :active {onchange != ""}
-           :value value
-           :onchange onchange)
-  )
-)
 
 (defpoll volume :interval "15ms" :initial 0
   "pamixer --get-volume")

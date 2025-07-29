@@ -1,3 +1,4 @@
+(include 'widgets/wigdets.yuck')
 (include './widgets/bar.yuck')
 (include './widgets/tray.yuck')
 (include './widgets/updates.yuck')

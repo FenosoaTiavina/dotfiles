@@ -7,3 +7,8 @@
 
 (deflisten workspaces :initial "[]"
 "scripts/workspaces.sh")
+
+(defpoll updates_data  :initial "[]" :interval "1200s" 
+  "scripts/systemupdate.sh"
+)
+

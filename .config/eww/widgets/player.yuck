@@ -111,7 +111,7 @@
       )
     )
     (eventbox
-      :onscroll 'scripts/player_scroll.sh volume {}'
+      :onscroll {  'scripts/player_scroll.sh volume {} ${now_playing_volume}'}
       (label
         :class "volume_control"
         :text " ${round( now_playing_volume * 100,0 )}%"

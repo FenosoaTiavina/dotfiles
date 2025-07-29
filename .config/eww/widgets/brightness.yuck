@@ -21,7 +21,7 @@
       :min 1
       :label { ( (brightness * 100 ) / brt_max ) > 50  ? "󰃚": "󰃜" }
       :value { ((brightness * 100 ) / brt_max) }
-      :onchange "brightnessctl -q s {}%"
+      :onchange "brightnessctl -q -s s {}%"
     )
     (label 
       :text "${ ((brightness * 100 ) / brt_max) }%"
