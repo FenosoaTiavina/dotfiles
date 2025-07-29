@@ -1,7 +1,7 @@
 $HOME/.config/hypr/themes/theme.conf|> $HOME/.config/hypr/themes/colors.conf
 
-$GTK_THEME = WhiteSur-Dark
-$ICON_THEME = Mkos-Big-Sur-Night
+$GTK_THEME = Colloid-Green
+$ICON_THEME = Colloid-Green
 $CURSOR_THEME = Bibata-Modern-Classic
 $COLOR_SCHEME = prefer-dark
 
