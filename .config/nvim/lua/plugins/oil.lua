@@ -89,7 +89,6 @@ return {
           -- sort order can be "asc" or "desc"
           -- see :help oil-columns to see which columns are sortable
           { "type", "asc" },
-          { "name", "asc" },
         },
       },
       -- Configuration for the floating window in oil.open_float

@@ -59,7 +59,7 @@ return {
           jumpBot = ']'
         }
       },
-      provider_selector = function(bufnr, filetype, buftype)
+      provider_selector = function(buftype, filetype, bufnr)
         -- if you prefer treesitter provider rather than lsp,
         return ftMap[filetype] or { 'treesitter', 'indent' }
         -- refer to ./doc/example.lua for detail

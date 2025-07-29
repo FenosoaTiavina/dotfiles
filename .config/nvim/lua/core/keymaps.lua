@@ -46,19 +46,6 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "toggle maximize 
 -- Oil
 keymap.set("n", "<leader>/", ":Oil<CR>", { desc = "toggle file explorer" }) --toggle file explorer
 
--- Harpoon
-keymap.set("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "mark harpoon file" })                -- mark harpoon file
-keymap.set("n", "<leader>hh", require("harpoon.ui").toggle_quick_menu, { desc = "toggle harpoon quick menu" }) -- toggle harpoon quick menu
---[[ keymap.set("n", "<leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "harpoon go to marked file 1" }) -- harpoon go to marked file 1
-keymap.set("n", "<leader>h2", function() require("harpoon.ui").nav_file(2) end, { desc = "harpoon go to marked file 2" }) --harpoon go to marked file 2
-keymap.set("n", "<leader>h3", function() require("harpoon.ui").nav_file(3) end, { desc = "harpoon go to marked file 3" }) --harpoon go to marked file 3
-keymap.set("n", "<leader>h4", function() require("harpoon.ui").nav_file(4) end, { desc = "harpoon go to marked file 4" }) --harpoon go to marked file 4
-keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end, { desc = "harpoon go to marked file 5" }) --harpoon go to marked file 5
-keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end, { desc = "harpoon go to marked file 6" }) --harpoon go to marked file 6
-keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end, { desc = "harpoon go to marked file 7" }) --harpoon go to marked file 7
-keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end, { desc = "harpoon go to marked file 8" }) --harpoon go to marked file 8
-keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end, { desc = "harpoon go to marked file 9" }) --harpoon go to marked file 9 ]]
-
 -- folding
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Close all folds" }) -- Close all folds
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)

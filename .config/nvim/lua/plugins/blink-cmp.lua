@@ -19,6 +19,16 @@ return {
       config = function()
         local gen_loader = require('mini.snippets').gen_loader
         require('mini.snippets').setup({
+          mappings = {
+            -- Expand snippet at cursor position. Created globally in Insert mode.
+            expand = '<M-j>',
+            accept = '<Tab>',
+            jump_next = '<M-l>',
+            jump_prev = '<M-h>',
+            stop = '<ESC>',
+
+          },
+
           snippets = {
             gen_loader.from_file('~/.config/nvim/snippets/global.json'),
             gen_loader.from_lang(),
@@ -26,7 +36,6 @@ return {
         })
       end
     },
-
   }
   ,
 
@@ -65,7 +74,7 @@ return {
               end
             end,
           },
-          ['<tab>'] = { 'select_accept_and_enter', 'fallback' },
+          ['<tab>'] = { 'select_and_accept', 'fallback' },
           ['<C-p>'] = { 'select_prev' },
           ['<C-n>'] = { 'select_next' },
           ['<C-b>'] = { 'scroll_documentation_up' },
