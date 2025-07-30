@@ -1,6 +1,6 @@
 #!/bin/bash
 
-skip_amount=0.1
+skip_amount=0.05
 
 notify-send "$3"
 
