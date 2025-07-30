@@ -7,3 +7,8 @@
 .local/bin/wallpaper.swww.sh
 .local/bin/pyutils/__pycache__
 .local/bin/pyutils/wrapper/__pycache__
+.config/mpd/state
+.config/mpd/mpd.log
+.config/mpd/database
+.local/bin/bunx
+.local/bin/systemctl-tui
