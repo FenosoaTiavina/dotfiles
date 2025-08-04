@@ -3,20 +3,14 @@ local capabilities = require("core.lsp.utils").capabilities
 
 return {
   cmd                 = {
-    "zls",
+    "glsl_analyzer",
   },
-  filetypes           = {
-    "zig",
-  },
+  filetypes           = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp" },
+  root_markera        = { ".git" },
 
-  on_attach           = on_attach,
+  on_attach           = on_attach(),
   capabilities        = capabilities,
 
-  root_markers        = {
-    ".git",
-    "build.zig",
-    "build.zig.zon",
-  },
   single_file_support = true,
   log_level           = vim.lsp.protocol.MessageType.Warning,
 }
