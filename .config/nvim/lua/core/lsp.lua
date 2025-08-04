@@ -1,12 +1,24 @@
-vim.lsp.config['lua_ls'] = require("core.lsp.lua_ls")
-vim.lsp.config['gopls']  = require("core.lsp.gopls")
-vim.lsp.config['clangd'] = require("core.lsp.clangd")
-vim.lsp.config['zls']    = require("core.lsp.zls")
-vim.lsp.config['pylsp']  = require("core.lsp.pylsp")
+vim.lsp.config['lua_ls']        = require("core.lsp.lua_ls")
+vim.lsp.config['gopls']         = require("core.lsp.gopls")
+vim.lsp.config['clangd']        = require("core.lsp.clangd")
+vim.lsp.config['zls']           = require("core.lsp.zls")
+vim.lsp.config['pylsp']         = require("core.lsp.pylsp")
+vim.lsp.config['glsl_analyzer'] = require("core.lsp.glsl_analyzer")
+
+
+vim.lsp.enable({
+  "gopls",
+  "zls",
+  "lua_ls",
+  "clangd",
+  "pylsp",
+  "glsl_analyzer"
+})
+
 
 -- Utility functions shared between progress reports for LSP and DAP
 
-local client_notifs      = {}
+local client_notifs = {}
 
 local function get_notif_data(client_id, token)
   if not client_notifs[client_id] then
@@ -106,13 +118,6 @@ vim.lsp.handlers["window/showMessage"] = function(err, method, params)
   })
 end
 
-vim.lsp.enable({
-  "gopls",
-  "zls",
-  "lua_ls",
-  "clangd",
-  "pylsp",
-})
 
 vim.diagnostic.config({
   virtual_lines = true,
