@@ -12,3 +12,4 @@
 .config/mpd/database
 .local/bin/bunx
 .local/bin/systemctl-tui
+.config/zsh/.zcompdump
