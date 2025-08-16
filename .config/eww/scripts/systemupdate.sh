@@ -13,7 +13,7 @@ fpk_exup="pkg_installed flatpak && flatpak update"
 
 # Trigger upgrade
 if [ "$1" == "up" ] ; then
-    trap 'pkill -RTMIN+20 waybar' EXIT
+    trap 'pkill -RTMIN+20 eww' EXIT
     command="
     fastfetch ;
     $0 upgrade ;
@@ -21,7 +21,7 @@ if [ "$1" == "up" ] ; then
     $fpk_exup ;
     read -n 1 -p 'Press any key to continue...' ;
     "
-    $TERM_PROGRAM -e sh -c "${command}"
+    $TERM_PROGRAM -e "${command}"
 fi
 
 # Check for AUR updates
