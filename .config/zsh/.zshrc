@@ -55,7 +55,7 @@ bindkey '^[w' kill-region
 
 # History
 HISTSIZE=5000
-HISTFILE=~/.config/zsh/.zsh_history
+HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -88,6 +88,7 @@ alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long li
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 
+alias lg='lazygit'
 # Handy change dir shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -101,6 +102,8 @@ alias mkdir='mkdir -p'
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
+
+
 
 # Add flags to existing aliases.
 alias ls="${aliases[ls]:-ls} -A"
