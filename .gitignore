@@ -13,3 +13,4 @@
 .local/bin/bunx
 .local/bin/systemctl-tui
 .config/zsh/.zcompdump
+.local/bin/zls
