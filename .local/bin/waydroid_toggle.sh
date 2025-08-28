@@ -9,8 +9,8 @@ PORTRAIT_WIDTH=540
 PORTRAIT_HEIGHT=820
 
 # Landscape dimensions (width x height)
-LANDSCAPE_WIDTH=820
-LANDSCAPE_HEIGHT=540
+LANDSCAPE_WIDTH=1900
+LANDSCAPE_HEIGHT=960
 WAYDROID_HYPR_CONFIG="$HOME/dotfiles/.config/hypr/rules/waydroid.conf"
 
 scrDir="$(dirname "$(realpath "$0")")"
