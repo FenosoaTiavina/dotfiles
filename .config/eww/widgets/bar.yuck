@@ -17,6 +17,7 @@
     (date)
     (music)
     (idle_inhibitor)
+    (waydroid)
   )
 )
 
@@ -86,6 +87,19 @@
 
 (defwidget date []
     (label :text "${time}")
+)
+
+(defwidget waydroid []
+  (eventbox 
+    :onclick { 
+      "waydroid_toggle.sh" 
+    }
+    (label 
+      :style "padding: 0px 5px;"
+      :text "󰢅"
+
+    )
+  )
 )
 
 (defwidget workspaces []
