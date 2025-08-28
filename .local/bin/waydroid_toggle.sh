@@ -88,7 +88,7 @@ set_portrait_rules() {
     ' "$WAYDROID_HYPR_CONFIG" > "${WAYDROID_HYPR_CONFIG}.tmp" && mv "${WAYDROID_HYPR_CONFIG}.tmp" "$WAYDROID_HYPR_CONFIG"
     
     hyprctl reload
-    echo "Portrait rules applied and config reloaded."
+    notify-send "waydroid" "Portrait rules applied and config reloaded."
 }
 
 set_landscape_rules() {
@@ -111,21 +111,7 @@ set_landscape_rules() {
     ' "$WAYDROID_HYPR_CONFIG" > "${WAYDROID_HYPR_CONFIG}.tmp" && mv "${WAYDROID_HYPR_CONFIG}.tmp" "$WAYDROID_HYPR_CONFIG"
     
     hyprctl reload
-    echo "Landscape rules applied and config reloaded."
-}
-
-
-# --- Function to apply landscape rules ---
-set_landscape_rules() {
-    # Use sed to replace the Waydroid window rules in the config file
-    sed -i "s/windowrulev2 = size [0-9]\+ [0-9]\+,class:^(Waydroid)$/windowrulev2 = size $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(Waydroid)$/" "$WAYDROID_HYPR_CONFIG"
-    sed -i "s/windowrulev2 = minsize [0-9]\+ [0-9]\+,class:^(Waydroid)$/windowrulev2 = minsize $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(Waydroid)$/" "$WAYDROID_HYPR_CONFIG"
-    sed -i "s/windowrulev2 = maxsize [0-9]\+ [0-9]\+,class:^(Waydroid)$/windowrulev2 = maxsize $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(Waydroid)$/" "$WAYDROID_HYPR_CONFIG"
-    
-    # Reload Hyprland to apply the new rules
-    hyprctl reload
-
-    echo "Landscape rules applied and config reloaded."
+    notify-send "waydroid" "Landscape rules applied and config reloaded."
 }
 
 main() {
