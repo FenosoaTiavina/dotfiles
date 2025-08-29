@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 
-WAYDROID_CLASS="Waydroid"
-
 # --- Define Dimensions ---
 # Portrait dimensions (width x height)
 PORTRAIT_WIDTH=540
@@ -72,6 +70,18 @@ set_portrait_rules() {
     echo "Switching to portrait mode by editing the config file."
     
     awk -v pw="$PORTRAIT_WIDTH" -v ph="$PORTRAIT_HEIGHT" '
+    /windowrulev2 = size.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = size " pw " " ph ",initialClass:^(XtMapper)"
+        next
+    }
+    /windowrulev2 = minsize.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = minsize " pw " " ph ",initialClass:^(XtMapper)"
+        next
+    }
+    /windowrulev2 = maxsize.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = maxsize " pw " " ph ",initialClass:^(XtMapper)"
+        next
+    }
     /windowrulev2 = size.*class:\^?\(Waydroid\)/ {
         print "windowrulev2 = size " pw " " ph ",class:^(Waydroid)"
         next
@@ -95,6 +105,18 @@ set_landscape_rules() {
     echo "Switching to landscape mode by editing the config file."
     
     awk -v lw="$LANDSCAPE_WIDTH" -v lh="$LANDSCAPE_HEIGHT" '
+    /windowrulev2 = size.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = size " lw " " lh ",initialClass:^(XtMapper)"
+        next
+    }
+    /windowrulev2 = minsize.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = minsize " lw " " lh ",initialClass:^(XtMapper)"
+        next
+    }
+    /windowrulev2 = maxsize.*initialClass:\^?\(XtMapper\)/ {
+        print "windowrulev2 = maxsize " lw " " lh ",initialClass:^(XtMapper)"
+        next
+    }
     /windowrulev2 = size.*class:\^?\(Waydroid\)/ {
         print "windowrulev2 = size " lw " " lh ",class:^(Waydroid)"
         next
