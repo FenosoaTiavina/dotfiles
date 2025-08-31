@@ -1,5 +1,5 @@
 windowrulev2 = float,class:^([Ww]aydroid).*
 
-windowrulev2 = size 540 1020,class:^([Ww]aydroid).*
+windowrulev2 = size 1500 820,class:^([Ww]aydroid).*
 windowrulev2 = minsize 540 1020,class:^([Ww]aydroid).*
 windowrulev2 = maxsize 540 1020,class:^([Ww]aydroid).*

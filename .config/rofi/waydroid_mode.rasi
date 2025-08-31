@@ -1,8 +1,9 @@
 // Config //
 configuration {
-    modi:                        "drun";
-			terminal: "ghostty";
-    show-icons:                  false;
+  modi:                         "drun";
+  terminal:                     "ghostty";
+  show-icons:                   false;
+  font:                         "JetBrainsMono Nerd Font 10";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -11,7 +12,7 @@ configuration {
 // Main //
 window {
     width:                       23em;
-    height:                      11em;
+    height:                      15em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;

@@ -1,16 +1,16 @@
 // Config //
 configuration {
-    modi:                        "drun,filebrowser,window,run";
-			terminal: "ghostty";
-    show-icons:                  true;
-    display-drun:                " ";
-    display-run:                 " ";
-    display-filebrowser:         " ";
-    display-window:              " ";
-    drun-display-format:         "{name}";
-    window-format:               "{w}{t}";
-    font:                        "JetBrainsMono Nerd Font 10";
-    icon-theme:                  "Tela-circle-dracula";
+  modi:                         "drun,filebrowser,window,run";
+  terminal:                     "ghostty";
+  show-icons:                   true;
+  display-drun:                 " ";
+  display-run:                  " ";
+  display-filebrowser:          " ";
+  display-window:               " ";
+  drun-display-format:          "{name}";
+  window-format:                "{w}{t}";
+  font:                         "JetBrainsMono Nerd Font 10";
+  icon-theme:                   "Tela-circle-dracula";
 }
 
 @theme "~/.config/rofi/theme.rasi"

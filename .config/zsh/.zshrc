@@ -103,12 +103,10 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
-
-
 # Add flags to existing aliases.
 alias ls="${aliases[ls]:-ls} -A"
-
-
 # Shell integrations
+
 eval "$(fzf --zsh)"
+eval "$(eww shell-completions -s zsh)"
 eval "$(zoxide init --cmd cd zsh)"

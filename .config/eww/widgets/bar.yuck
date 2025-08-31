@@ -17,7 +17,7 @@
     (date)
     (music)
     (idle_inhibitor)
-    (waydroid)
+    ;; (waydroid)
   )
 )
 
