@@ -1,10 +1,11 @@
 local opt = vim.opt
+local o = vim.o
 
-opt.winborder = 'single'
+o.winborder = 'none'
 
 
-opt.wrap = true
-vim.opt.swapfile = false
+opt.wrap = false
+o.swapfile = false
 
 -- Session Management
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -16,10 +17,10 @@ opt.number = true
 opt.scrolloff = 8
 
 
-opt.textwidth = 80
+o.textwidth = 0
 -- Tabs & Indentation
 opt.tabstop = 4
-opt.shiftwidth = 2
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.autoindent = true
 vim.bo.softtabstop = 2
