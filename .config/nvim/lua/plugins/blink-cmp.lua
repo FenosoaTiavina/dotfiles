@@ -7,8 +7,6 @@ return {
       ft = "lua", -- only load on lua files
       opts = {
         library = {
-          -- See the configuration section for more details
-          -- Load luvit types when the `vim.uv` word is found
           { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         },
       },
@@ -36,8 +34,7 @@ return {
         })
       end
     },
-  }
-  ,
+  },
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -97,7 +94,7 @@ return {
             auto_show = true,
             auto_show_delay_ms = 0,
             window = {
-              border = 'rounded',
+              border = 'none',
             }
           },
 
@@ -123,8 +120,8 @@ return {
                 }
               },
             },
-            border = 'rounded',
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+            border = 'none',
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:none",
           },
         },
 

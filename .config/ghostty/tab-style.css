@@ -15,19 +15,24 @@ tabbar tabbox {
   margin: 0;
   padding: 0;
   min-height: 10px;
-  background-color: transparent;
+  background-color: #161616;
   font-family: "Iosevka Nerd Font Mono";
 }
 
 tabbar tabbox tab {
   margin: 0;
-  padding: 0;
+  padding-bottom: 2px;
   color: #fefefe;
 }
 
-tabbar tabbox tab:selected {
+tabbar tabbox tab:hover {
+  color: #33b1ff !important;
   background-color: transparent;
+}
+
+tabbar tabbox tab:selected {
   color: #42be65;
+  background-color: transparent;
 }
 
 tabbar tabbox tab label {

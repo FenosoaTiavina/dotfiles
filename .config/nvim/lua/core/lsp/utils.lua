@@ -10,21 +10,21 @@ vim.diagnostic.config {
 M.on_attach = function()
   local keymap = vim.keymap
   -- LSP
-  keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { desc = "code action" })              --code action
-  keymap.set('n', '<S-k>', '<cmd>lua vim.lsp.buf.hover()<CR>', { desc = "Hover" })                               --Hover
-  keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { desc = "goto to definition" })        --goto to definition
-  keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { desc = "goto to declaration" })      --goto to declaration
-  keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { desc = "go to implementation" })  --go to implementation
-  keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { desc = "goto type definition" }) --goto type definition
+  keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, { desc = "code action" })              --code action
+  keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, { desc = "goto to definition" })        --goto to definition
+  keymap.set('n', '<leader>gD', function() vim.lsp.buf.declaration() end, { desc = "goto to declaration" })      --goto to declaration
+  keymap.set('n', '<leader>gi', function() vim.lsp.buf.implementation() end, { desc = "go to implementation" })  --go to implementation
+  keymap.set('n', '<leader>gt', function() vim.lsp.buf.type_definition() end, { desc = "goto type definition" }) --goto type definition
   keymap.set('n', '<leader>gr', function() telescope.lsp_references() end, { desc = "Goto references" })         --Goto references
-  keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = "Signature help" })        --Signature help
-  keymap.set('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', { desc = "Lsp rename" })                    --Lsp rename
-  keymap.set('n', '<leader>fm', '<cmd>lua vim.lsp.buf.format()<CR>', { desc = "Format file" })                   --Format file
-  keymap.set('n', '<leader>gl', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = "Diagnostic float" })       --Diagnostic float
-  keymap.set('n', '<leader>gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { desc = "Previous diagnostic" })     --Previous diagnostic
-  keymap.set('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', { desc = "Next diagnostic" })         --Next diagnostic
+  keymap.set('n', '<leader>gs', function() vim.lsp.buf.signature_help() end, { desc = "Signature help" })        --Signature help
+  keymap.set('n', '<leader>rr', function() vim.lsp.buf.rename() end, { desc = "Lsp rename" })                    --Lsp rename
+  keymap.set('n', '<leader>fm', function() vim.lsp.buf.format() end, { desc = "Format file" })                   --Format file
+  keymap.set('n', '<leader>gl', function() vim.diagnostic.open_float() end, { desc = "Diagnostic float" })       --Diagnostic float
+  keymap.set('n', '<S-k>', function()
+    vim.lsp.buf.hover({ border = "none", max_height = 25, max_width = 120 })
+  end, { desc = "Hover" }) --Hover
 end
 
 
 
-return M 
+return M

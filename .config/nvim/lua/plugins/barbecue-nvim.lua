@@ -5,9 +5,9 @@ return {
   name = "barbecue",
   version = "*",
   dependencies = {
-  -- https://github.com/SmiteshP/nvim-navic
+    -- https://github.com/SmiteshP/nvim-navic
     "SmiteshP/nvim-navic",
-  -- https://github.com/nvim-tree/nvim-web-devicons
+    -- https://github.com/nvim-tree/nvim-web-devicons
   },
   opts = {
     -- configurations go here

@@ -9,7 +9,7 @@ local borders = {
 
 _G.tools = {
   ui = {
-    cur_border = borders.invs,
+    cur_border = borders.none,
     borders = borders,
     icons = {
       branch = '',
