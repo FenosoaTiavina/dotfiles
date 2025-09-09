@@ -11,14 +11,19 @@ keymap.set("n", "<leader>ww", ":w<CR>", { desc = "save" })                      
 keymap.set("n", "gx", ":!xdg-open <c-r><c-a><CR>", { desc = "open URL under cursor" }) --open URL under cursor
 
 -- Split window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })           --split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" })         --split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "make split windows equal width" })    --make split windows equal width
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })   --split window vertically
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" }) --split window horizontally
+
+
 keymap.set("n", "<leader>sx", ":close<CR>", { desc = "close split window" })            --close split window
 keymap.set("n", "<leader>sj", "<C-w>-", { desc = "make split window height shorter" })  --make split window height shorter
 keymap.set("n", "<leader>sk", "<C-w>+", { desc = "make split windows height taller" })  --make split windows height taller
 keymap.set("n", "<leader>sl", "<C-w>>5", { desc = "make split windows width bigger" })  --make split windows width bigger
 keymap.set("n", "<leader>sh", "<C-w><5", { desc = "make split windows width smaller" }) --make split windows width smaller
+keymap.set("n", "<C-k>", ":wincmd k <CR>", { desc = "switch to split up" })             --switch to split up
+keymap.set("n", "<C-j>", ":wincmd j <CR>", { desc = "switch to split down" })           --switch to split down
+keymap.set("n", "<C-h>", ":wincmd h <CR>", { desc = "switch to split left" })           --switch to split left
+keymap.set("n", "<C-l>", ":wincmd l <CR>", { desc = "switch to split right" })          --switch to split right
 
 -- buffer management
 keymap.set("n", "<TAB>", "<CMD>bnext<CR>", { desc = "Next buffer" })
@@ -52,20 +57,20 @@ vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
 vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = "closeAllFolds == closeFoldsWith(0)" }) -- closeAllFolds == closeFoldsWith(0)
 vim.keymap.set('n', 'K', function()
-  local winid = require('ufo').peekFoldedLinesUnderCursor()
-  if not winid then
-    -- choose one of coc.nvim and nvim lsp
-    vim.lsp.buf.hover()
-  end
+    local winid = require('ufo').peekFoldedLinesUnderCursor()
+    if not winid then
+        -- choose one of coc.nvim and nvim lsp
+        vim.lsp.buf.hover()
+    end
 end, { desc = "Peek into folds" }) --Peek into folds
 
 -- Debugging
 keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" }) --Toggle breakpoint
 keymap.set("n", "<leader>gb", "<cmd>lua require'dap'.run_to_cursor <dr>", { desc = "Run to cursor" })          --Run to cursor
 keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-  { desc = "Toggle conditional breakpoint" })                                                                  --Toggle conditional breakpoint
+    { desc = "Toggle conditional breakpoint" })                                                                --Toggle conditional breakpoint
 keymap.set("n", "<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-  { desc = "Toggle log breakpoint" })                                                                          --Toggle log breakpoint
+    { desc = "Toggle log breakpoint" })                                                                        --Toggle log breakpoint
 keymap.set("n", '<leader>br', "<cmd>lua require'dap'.clear_breakpoints()<cr>", { desc = "Clear breakpoints" }) --Clear breakpoints
 keymap.set("n", '<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', { desc = "List all breakpoints" })    --List all breakpoints
 keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Debugger continue" })          --Debugger continue
@@ -74,22 +79,22 @@ keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", { desc = 
 keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Debugger step out" })          --Debugger step out
 
 keymap.set("n", '<leader>dd', function()
-  require('dap').disconnect(); require('dapui').close();
+    require('dap').disconnect(); require('dapui').close();
 end, { desc = "Debugger disconnect" }) --Debugger disconnect
 keymap.set("n", '<leader>dt', function()
-  require('dap').terminate(); require('dapui').close();
+    require('dap').terminate(); require('dapui').close();
 end, { desc = "Debugger terminate" }) --Debugger terminate
 keymap.set("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>")
 keymap.set("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>")
 keymap.set("n", '<leader>di', function() require "dap.ui.widgets".hover() end)
 keymap.set("n", '<leader>d?',
-  function()
-    local widgets = require "dap.ui.widgets"; widgets.centered_float(widgets.scopes)
-  end)
+    function()
+        local widgets = require "dap.ui.widgets"; widgets.centered_float(widgets.scopes)
+    end)
 keymap.set("n", '<leader>df', '<cmd>Telescope dap frames<cr>')
 keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
 keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({ default_text = ":E:" }) end)
 
 
 keymap.set("n", "<leader>dus", "<cmd>lua require('dap.ui.widgets.sidebar.scopes').open() <CR>",
-  { desc = "Open debugging sidebar" })
+    { desc = "Open debugging sidebar" })
