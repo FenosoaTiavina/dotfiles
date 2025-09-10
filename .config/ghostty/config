@@ -1,6 +1,6 @@
 font-family = Iosevka Nerd Font Mono 
 font-size = 14
-background-opacity = 1
+background-opacity = 1.0
 background-blur = false
 link-url = true
 
@@ -13,4 +13,4 @@ config-file = ./keybind
 gtk-custom-css = tab-style.css 
 gtk-wide-tabs = true
 
-cursor-invert-fg-bg = false
+cursor-invert-fg-bg = true
