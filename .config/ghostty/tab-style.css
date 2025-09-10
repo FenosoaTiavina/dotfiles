@@ -6,35 +6,38 @@ https://docs.gtk.org/gtk4/css-properties.html
 
 
 headerbar {
-  min-height: 24px;
-  padding: 0;
-  margin: 0;
+    min-height: 24px;
+    padding: 0;
+    margin: 0;
 }
 
+
+
 tabbar tabbox {
-  margin: 0;
-  padding: 0;
-  min-height: 10px;
-  background-color: #161616;
-  font-family: "Iosevka Nerd Font Mono";
+    margin: 0;
+    padding: 0;
+    min-height: 10px;
+    background-color: #161616;
+    font-family: "Iosevka Nerd Font Mono";
 }
 
 tabbar tabbox tab {
-  margin: 0;
-  padding-bottom: 2px;
-  color: #fefefe;
+    margin: 0;
+    padding-bottom: 0px;
+    color: #fefefe;
+    border-radius: 0px;
 }
 
 tabbar tabbox tab:hover {
-  color: #33b1ff !important;
-  background-color: transparent;
+    color: #33b1ff;
+    background-color: transparent;
 }
 
 tabbar tabbox tab:selected {
-  color: #42be65;
-  background-color: transparent;
+    color: #42be65;
+    background-color: transparent;
 }
 
 tabbar tabbox tab label {
-  font-size: 13px;
+    font-size: 14px;
 }
