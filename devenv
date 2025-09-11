@@ -1,3 +1,4 @@
 export PATH=$PATH:~/dev/zig/zig/zig-x86_64-linux-0.15.1
 export EDITOR=/usr/bin/nvim
 export PATH="/home/fenosoa/.bun/bin:$PATH"
+export MANPAGER="nvim +Man! "
