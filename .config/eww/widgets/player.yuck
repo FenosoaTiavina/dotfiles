@@ -231,7 +231,7 @@
   :exclusive false
   :geometry (geometry 
              :x "1.5%"
-             :y "2%"
+             :y "0.5%"
              :anchor "top center"
             )
   (box
