@@ -10,7 +10,4 @@
 .config/mpd/state
 .config/mpd/mpd.log
 .config/mpd/database
-.local/bin/bunx
-.local/bin/systemctl-tui
 .config/zsh/.zcompdump
-.local/bin/zls
