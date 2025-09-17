@@ -64,12 +64,12 @@ generate_thumbnail() {
     local thumb_path="$CACHE_DIR/thumbs/${hash}.sqre"
 
     # Skip if already exists
-    [-f "$thumb_path" ] && return
+    [ -f "$thumb_path" ] && return
 
     if command -v convert >/dev/null 2>&1; then
-        convert "$img" -thumbnail 256x256^ -gravity center -extent 256x256 "$thumb_path" 2>/dev/null
+        convert "$img" -thumbnail 512x512^ -gravity center -extent 512x512 "$thumb_path" 2>/dev/null
     elif command -v ffmpeg >/dev/null 2>&1; then
-        ffmpeg -i "$img" -vf "scale=256:256:force_original_aspect_ratio=decrease,pad=256:256:(ow-iw)/2:(oh-ih)/2" "$thumb_path" -y 2>/dev/null
+        ffmpeg -i "$img" -vf "scale=512:512:force_original_aspect_ratio=decrease,pad=512:512:(ow-iw)/2:(oh-ih)/2" "$thumb_path" -y 2>/dev/null
     fi
 }
 
@@ -95,15 +95,28 @@ Wall_Select() {
     max_avail=$((mon_x_res - (4 * font_scale)))
     col_count=$((max_avail / elm_width))
 
-    r_override="window{width:100%;}
-    element{orientation:vertical;
-        children:[element-icon, element-text];}
-    element-icon{size:256px;}
-    listview{columns:${col_count};spacing:5em;}
+    r_override="
+    window{width:100%;}
+    element{
+        orientation:vertical;
+        children: [ element-icon, element-text];
+    }
+    element-icon{ size:512px; }
+    element-text{ padding: 1em; }
+    listview{ columns:${col_count}; spacing:5em; }
     "
-    # This part of the Wall_Json output is not needed for the new layout.
-    # The jq part will now just output the path and basename.
-    # The rofi theme will be configured to handle the thumbnail display.
+    # Read the current wallpaper path from the cache file
+    current_wallpaper_path="$(cat "$wallSet" 2>/dev/null)"
+    
+    # Check if a wallpaper is set
+    if [ -f "$wallSet" ]; then
+        current_wallpaper_basename="$(basename "$current_wallpaper_path")"
+        # The string passed to -select must match the rofi entry format
+        rofi_select_string="${current_wallpaper_basename}:::${current_wallpaper_path}:::/path/to/thumbnail"
+    else
+        rofi_select_string=""
+    fi
+
     local entry
     entry=$(Wall_Json | jq -r '.[].rofi_sqre' | rofi -dmenu \
         -display-column-separator ":::" \
@@ -111,8 +124,8 @@ Wall_Select() {
         -theme-str "${font_override}" \
         -theme-str "${r_override}" \
         -theme "${ROFI_THEME}" \
-        -select "$(basename "$(readlink "$wallSet" 2>/dev/null)")")
-    
+        -select "$rofi_select_string")
+
     selected_thumbnail="$(awk -F ':::' '{print $3}' <<<"${entry}")"
     selected_wallpaper_path="$(awk -F ':::' '{print $2}' <<<"${entry}")"
     selected_wallpaper="$(awk -F ':::' '{print $1}' <<<"${entry}")"
