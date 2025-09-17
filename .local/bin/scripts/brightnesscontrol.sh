@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 scrDir=$(dirname "$(realpath "$0")")
-# shellcheck disable=SC1091
-source "$scrDir/globalcontrol.sh"
 
 # Check if SwayOSD is installed
 use_swayosd=false

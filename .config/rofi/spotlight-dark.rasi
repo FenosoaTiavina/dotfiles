@@ -1,24 +1,14 @@
 /* MACOS SPOTLIGHT LIKE DARK THEME FOR ROFI  */
 /* Author: Newman Sanchez (https://github.com/newmanls) */
 
-* {
-    font:   "Montserrat 12";
-
-    bg0:    #242424E6;
-    bg1:    #7E7E7E80;
-    bg2:    #0860f2E6;
-
-    fg0:    #DEDEDE;
-    fg1:    #FFFFFF;
-    fg2:    #DEDEDE80;
-
-    background-color:   transparent;
-    text-color:         @fg0;
-
-    margin:     0;
-    padding:    0;
-    spacing:    0;
+// Config //
+configuration {
+    modi:               "drun";
+	terminal:           "ghostty";
+    show-icons:         false;
 }
+
+@theme "~/.config/rofi/theme.rasi"
 
 window {
     background-color:   @bg0;

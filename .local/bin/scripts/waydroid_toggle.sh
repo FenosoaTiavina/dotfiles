@@ -13,8 +13,6 @@ WAYDROID_HYPR_CONFIG="$HOME/dotfiles/.config/hypr/rules/waydroid.conf"
 
 scrDir="$(dirname "$(realpath "$0")")"
 confDir="${confDir}/config"
-# shellcheck source=/dev/null
-. "${scrDir}/globalcontrol.sh"
 
 
 font_override="* {font: \"${font_name:-"JetBrainsMono Nerd Font"} ${font_scale}\";}"
