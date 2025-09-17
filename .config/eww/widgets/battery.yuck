@@ -1,5 +1,5 @@
 (defpoll bat_icon :interval "1s"
-  "~/.local/bin/battery.sh icon"
+  "~/.local/bin/scripts/battery.sh icon"
 )
 
 
