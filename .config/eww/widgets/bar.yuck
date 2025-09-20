@@ -48,7 +48,6 @@
     (eventbox
       :onhover { open_update == false ? 'eww o updates && eww u open_update=true ' :''}
       :onhoverlost { open_update == true ? "eww c updates  && eww u open_update=false" : ""}
-      :onclick "scripts/systemupdate.sh up"
       (label
         :class "notif_button"
         :style "padding: 0px 5px;"
@@ -67,9 +66,8 @@
   (eventbox 
     :onclick { 
       idle_inhibit == 'off' ?
-      "eww u idle_inhibit='on' ;~/.local/bin/idle-inhibitor.py --all &" : 
-      "eww u idle_inhibit='off' ;
-      kill -s KILL $(pgrep -f 'python /home/fenosoa/.local/bin/idle-inhibitor.py --all')"
+      " eww u idle_inhibit='on'  ; ~/.local/bin/vigiland & disown " : 
+      " eww u idle_inhibit='off' ; killall vigiland "
     }
     (label 
       :style "padding: 0px 5px;"

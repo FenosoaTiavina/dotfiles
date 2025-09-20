@@ -1,35 +1,66 @@
 #!/usr/bin/env bash
 
-# Check release
-if [ ! -f /etc/arch-release ] ; then
+# Check if the system is Arch Linux
+if [ ! -f /etc/arch-release ]; then
+    echo "This script is intended for Arch Linux systems only."
     exit 0
 fi
 
-# source variables
-source "globalcontrol.sh"
-get_aurhlpr
-export -f pkg_installed
-fpk_exup="pkg_installed flatpak && flatpak update"
+#---
+## Helper Functions
 
-# Trigger upgrade
-if [ "$1" == "up" ] ; then
+# Checks if a package is installed
+pkg_installed() {
+    pacman -Qq "$1" &>/dev/null
+}
+
+# Gets the first available AUR helper from a predefined list
+get_aur_helper() {
+    local helpers=("paru" "yay")
+    for helper in "${helpers[@]}"; do
+        if pkg_installed "$helper"; then
+            echo "$helper"
+            return
+        fi
+    done
+    echo ""
+}
+
+#---
+## Script Logic
+
+# Source variables
+aurhlpr=$(get_aur_helper)
+fpk_exup="flatpak update"
+
+# Trigger a system upgrade
+if [ "$1" == "up" ]; then
+    if [ -z "$aurhlpr" ]; then
+        echo "No AUR helper found. Please install paru or yay to use this feature."
+        exit 1
+    fi
     trap 'pkill -RTMIN+20 eww' EXIT
     command="
-    fastfetch ;
-    $0 upgrade ;
-    ${aurhlpr} -Syu ;
-    $fpk_exup ;
-    read -n 1 -p 'Press any key to continue...' ;
+    read -n 1 -p 'Press any key to continue...';
     "
-    ghostty -e "${command}"
+    # fastfetch;
+    # $0 upgrade;
+    # ${aurhlpr} -Syu;
+    # $fpk_exup;
+
+    ~/.local/bin/ghostty -e "echo ${command}"
+    exit 0
 fi
 
-# Check for AUR updates
-aur=$(${aurhlpr} -Qua | wc -l)
-ofc=$( (while pgrep -x checkupdates > /dev/null ; do sleep 1; done) ; checkupdates | wc -l)
+# Check for official and AUR updates
+ofc=$( (while pgrep -x checkupdates > /dev/null; do sleep 1; done); checkupdates | wc -l)
+aur=0
+if [ -n "$aurhlpr" ]; then
+    aur=$(${aurhlpr} -Qua | wc -l)
+fi
 
-# Check for flatpak updates
-if pkg_installed flatpak ; then
+# Check for Flatpak updates
+if pkg_installed flatpak; then
     fpk=$(flatpak remote-ls --updates | wc -l)
     fpk_disp="\n󰏓 Flatpak $fpk"
 else
@@ -40,11 +71,15 @@ fi
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
 
-[ "${1}" == upgrade ] && printf "[Official] %-10s\n[AUR]      %-10s\n[Flatpak]  %-10s\n" "$ofc" "$aur" "$fpk" && exit
+# Display package counts for the 'upgrade' action
+if [ "${1}" == "upgrade" ]; then
+    printf "[Official] %-10s\n[AUR]      %-10s\n[Flatpak]  %-10s\n" "$ofc" "$aur" "$fpk"
+    exit 0
+fi
 
-# Show tooltip
-if [ $upd -eq 0 ] ; then
-    upd="󰮯"   #If zero Display Icon only
+# Show tooltip output for eww or similar tools
+if [ "$upd" -eq 0 ]; then
+    upd="󰮯" # If zero, display icon only
     echo "{\"text\":\"$upd\", \"tooltip\":[\" Packages are up to date\"]}"
 else
     echo "{\"text\":\"󰮯 $upd\", \"tooltip\":[\"󱓽 Official $ofc\",\"󱓾 AUR $aur$fpk_disp\"]}"
