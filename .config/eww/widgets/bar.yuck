@@ -71,6 +71,7 @@
     }
     (label 
       :style "padding: 0px 5px;"
+      :class { idle_inhibit == 'off' ?  "" : "active" }
       :text 
       {
         idle_inhibit == 'off' ?
