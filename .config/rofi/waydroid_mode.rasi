@@ -12,7 +12,6 @@ configuration {
 // Main //
 window {
     width:                       23em;
-    height:                      20em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
