@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # Portrait dimensions (width x height)
-PORTRAIT_WIDTH=540
-PORTRAIT_HEIGHT=1020
+PORTRAIT_WIDTH=640
+PORTRAIT_HEIGHT=1048
 
 # Landscape dimensions (width x height)
-LANDSCAPE_WIDTH=1820
-LANDSCAPE_HEIGHT=1020
+LANDSCAPE_WIDTH=1912
+LANDSCAPE_HEIGHT=1048
 WAYDROID_HYPR_CONFIG="$HOME/dotfiles/.config/hypr/rules/waydroid.conf"
 
 scrDir="$(dirname "$(realpath "$0")")"
@@ -65,9 +65,9 @@ set_portrait_rules() {
     check_config
     
     sed -E \
-        -e "s/^(windowrulev2 = size) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
-        -e "s/^(windowrulev2 = minsize) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
-        -e "s/^(windowrulev2 = maxsize) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
+        -e "s/^(windowrulev2 = size) [0-9]+ [0-9]+,tag:waydroid\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,tag:waydroid*/g" \
+        -e "s/^(windowrulev2 = minsize) [0-9]+ [0-9]+,tag:waydroid\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,tag:waydroid*/g" \
+        -e "s/^(windowrulev2 = maxsize) [0-9]+ [0-9]+,tag:waydroid\*/\1 $PORTRAIT_WIDTH $PORTRAIT_HEIGHT,tag:waydroid*/g" \
         "$WAYDROID_HYPR_CONFIG" > "${WAYDROID_HYPR_CONFIG}.tmp"
     
     if [ $? -eq 0 ] && [ -s "${WAYDROID_HYPR_CONFIG}.tmp" ]; then
@@ -98,9 +98,9 @@ set_landscape_rules() {
     check_config
     
     sed -E \
-        -e "s/^(windowrulev2 = size) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
-        -e "s/^(windowrulev2 = minsize) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
-        -e "s/^(windowrulev2 = maxsize) [0-9]+ [0-9]+,class:\^\(.\*\[Ww\]aydroid\).\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,class:^(.*[Ww]aydroid).*/g" \
+        -e "s/^(windowrulev2 = size) [0-9]+ [0-9]+,tag:waydroid\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,tag:waydroid*/g" \
+        -e "s/^(windowrulev2 = minsize) [0-9]+ [0-9]+,tag:waydroid\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,tag:waydroid*/g" \
+        -e "s/^(windowrulev2 = maxsize) [0-9]+ [0-9]+,tag:waydroid\*/\1 $LANDSCAPE_WIDTH $LANDSCAPE_HEIGHT,tag:waydroid*/g" \
         "$WAYDROID_HYPR_CONFIG" > "${WAYDROID_HYPR_CONFIG}.tmp"
     
     if [ $? -eq 0 ] && [ -s "${WAYDROID_HYPR_CONFIG}.tmp" ]; then
@@ -164,7 +164,6 @@ main() {
   esac
 
   waydroid session stop
-
 }
 
 # run main function
