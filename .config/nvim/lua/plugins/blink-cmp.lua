@@ -95,7 +95,7 @@ return {
                         auto_show = true,
                         auto_show_delay_ms = 0,
                         window = {
-                            border = 'none',
+                            border = 'solid',
                         }
                     },
 
@@ -121,11 +121,13 @@ return {
                                 }
                             },
                         },
-                        border = 'none',
+                        border = 'solid',
 
                         -- winhighlight =
                         -- "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:none",
                     },
+
+
                 },
 
                 sources = {

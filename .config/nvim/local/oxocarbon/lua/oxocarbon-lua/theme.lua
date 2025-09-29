@@ -219,7 +219,7 @@ Theme.set_general_highlights = function(colors)
     -- neovim
     highlight('NvimInternalError', 1, 9)
     highlight('NormalFloat', 6, 2)
-    highlight('FloatBorder', 6, none)
+    highlight('FloatBorder', 6, 2)
     highlight('NormalNC', 6, 1)
 
     highlight('TermCursor', 1, 5)

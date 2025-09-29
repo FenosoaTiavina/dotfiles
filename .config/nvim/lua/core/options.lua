@@ -1,7 +1,7 @@
 local opt = vim.opt
 local o = vim.o
 
-o.winborder = 'none'
+o.winborder = 'solid'
 
 
 opt.wrap = false

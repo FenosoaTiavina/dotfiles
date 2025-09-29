@@ -22,10 +22,11 @@ return {
         },
         icons = _G.tools.ui.kind_icons,
         show_guides = true,
-        open_automatic = function()
-            local aerial = require("aerial")
-            return vim.api.nvim_win_get_width(0) > 80 and not aerial.was_closed()
-        end,
+
+        -- open_automatic = function()
+        --     local aerial = require("aerial")
+        --     return vim.api.nvim_win_get_width(0) > 80 and not aerial.was_closed()
+        -- end,
 
     },
     config = function(_, opts)

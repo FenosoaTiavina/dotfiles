@@ -7,14 +7,15 @@ vim.lsp.config['glsl_analyzer'] = require("core.lsp.glsl_analyzer")
 vim.lsp.config['vtsls']         = require("core.lsp.vtsls")
 
 
+
 vim.lsp.enable({
-  "gopls",
-  "zls",
-  "lua_ls",
-  "clangd",
-  "pylsp",
-  "vtsls",
-  "glsl_analyzer"
+    "gopls",
+    "zls",
+    "lua_ls",
+    "clangd",
+    "pylsp",
+    "vtsls",
+    "glsl_analyzer"
 })
 
 
@@ -23,184 +24,184 @@ vim.lsp.enable({
 local client_notifs = {}
 
 local function get_notif_data(client_id, token)
-  if not client_notifs[client_id] then
-    client_notifs[client_id] = {}
-  end
+    if not client_notifs[client_id] then
+        client_notifs[client_id] = {}
+    end
 
-  if not client_notifs[client_id][token] then
-    client_notifs[client_id][token] = {}
-  end
+    if not client_notifs[client_id][token] then
+        client_notifs[client_id][token] = {}
+    end
 
-  return client_notifs[client_id][token]
+    return client_notifs[client_id][token]
 end
 
 
 
 local function format_title(title, client_name)
-  return client_name .. (#title > 0 and ": " .. title or "")
+    return client_name .. (#title > 0 and ": " .. title or "")
 end
 
 local function format_message(message, percentage)
-  return (percentage and percentage .. "%\t" or "") .. (message or "")
+    return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
 
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
-  local client_id = ctx.client_id
+    local client_id = ctx.client_id
 
-  local val = result.value
+    local val = result.value
 
-  if not val.kind then
-    return
-  end
+    if not val.kind then
+        return
+    end
 
-  local notif_data = get_notif_data(client_id, result.token)
+    local notif_data = get_notif_data(client_id, result.token)
 
-  if val.kind == "begin" then
-    local message = format_message(val.message, val.percentage)
+    if val.kind == "begin" then
+        local message = format_message(val.message, val.percentage)
 
-    notif_data.notification = vim.notify_once(message,
+        notif_data.notification = vim.notify_once(message,
 
-      vim.log.levels.INFO
-      , {
-        title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
-        timeout = false,
-        hide_from_history = false,
-      })
-  elseif val.kind == "report" and notif_data then
-    notif_data.notification = vim.notify_once(format_message(val.message, val.percentage), vim.log.levels.INFO, {
-      replace = notif_data.notification,
-      hide_from_history = false,
-    })
-  elseif val.kind == "end" and notif_data then
-    notif_data.notification =
-        vim.notify_once(val.message and format_message(val.message) or "Complete", vim.log.levels.INFO, {
-          icon = "",
-          replace = notif_data.notification,
-          timeout = 3000,
+            vim.log.levels.INFO
+            , {
+                title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
+                timeout = false,
+                hide_from_history = false,
+            })
+    elseif val.kind == "report" and notif_data then
+        notif_data.notification = vim.notify_once(format_message(val.message, val.percentage), vim.log.levels.INFO, {
+            replace = notif_data.notification,
+            hide_from_history = false,
         })
-  end
+    elseif val.kind == "end" and notif_data then
+        notif_data.notification =
+            vim.notify_once(val.message and format_message(val.message) or "Complete", vim.log.levels.INFO, {
+                icon = "",
+                replace = notif_data.notification,
+                timeout = 3000,
+            })
+    end
 end
 
 -- table from lsp severity to vim severity.
 vim.lsp.handlers["window/showMessage"] = function(err, method, params)
-  _ = params
+    _ = params
 
-  local severity = vim.log.levels.INFO
-  if err then
-    severity = vim.log.levels.ERROR
-  end
-  vim.notify_once(method.message, severity, {
-    title = 'LSP'
-  })
+    local severity = vim.log.levels.INFO
+    if err then
+        severity = vim.log.levels.ERROR
+    end
+    vim.notify_once(method.message, severity, {
+        title = 'LSP'
+    })
 end
 
 
 vim.diagnostic.config({
-  virtual_lines = true,
-  -- virtual_text = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = true,
-  float = {
-    source = true,
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "󰅚",
-      [vim.diagnostic.severity.WARN] = "󰀪",
-      [vim.diagnostic.severity.INFO] = "󰋽",
-      [vim.diagnostic.severity.HINT] = "󰌶",
+    virtual_lines = true,
+    -- virtual_text = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        source = true,
     },
-    numhl = {
-      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-      [vim.diagnostic.severity.WARN] = "WarningMsg",
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚",
+            [vim.diagnostic.severity.WARN] = "󰀪",
+            [vim.diagnostic.severity.INFO] = "󰋽",
+            [vim.diagnostic.severity.HINT] = "󰌶",
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+            [vim.diagnostic.severity.WARN] = "WarningMsg",
+        },
     },
-  },
 })
 
 if vim.g.lspconfig ~= nil then
-  return
+    return
 end
 vim.g.lspconfig = 1
 
 local contains = function(array, value)
-  for _, v in ipairs(array) do
-    if v == value then
-      return true
+    for _, v in ipairs(array) do
+        if v == value then
+            return true
+        end
     end
-  end
-  return false
+    return false
 end
 
 local lsp_stop = function()
-  local clients = {}
+    local clients = {}
 
-  -- default to stopping all servers on current buffer
-  clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+    -- default to stopping all servers on current buffer
+    clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
 
-  for _, client in ipairs(clients) do
-    vim.notify_once(
-      "Stopping " .. client.name,
-      vim.log.levels.INFO,
-      {
-        title = "LSP"
-      })
-    vim.lsp.stop_client(client.id)
-  end
+    for _, client in ipairs(clients) do
+        vim.notify_once(
+            "Stopping " .. client.name,
+            vim.log.levels.INFO,
+            {
+                title = "LSP"
+            })
+        vim.lsp.stop_client(client.id)
+    end
 end
 
 local lsp_start = function(info)
-  local server_name = (info ~= nil and string.len(info.args) > 0) and info.args or nil
-  local configs = vim.lsp._enabled_configs
-  if server_name then
-    local config = configs[server_name].resolved_config
-    if config then
-      print("Starting: " .. config.name)
-      vim.lsp.start(config, {})
-      return
+    local server_name = (info ~= nil and string.len(info.args) > 0) and info.args or nil
+    local configs = vim.lsp._enabled_configs
+    if server_name then
+        local config = configs[server_name].resolved_config
+        if config then
+            print("Starting: " .. config.name)
+            vim.lsp.start(config, {})
+            return
+        end
     end
-  end
 
-  for _, config in pairs(configs) do
-    local client = config.resolved_config
+    for _, config in pairs(configs) do
+        local client = config.resolved_config
 
-    if client then
-      if contains(client.filetypes, vim.bo.filetype) then
-        vim.notify_once(
-          "Starting " .. client.name,
-          vim.log.levels.INFO,
-          {
-            title = "LSP"
-          })
+        if client then
+            if contains(client.filetypes, vim.bo.filetype) then
+                vim.notify_once(
+                    "Starting " .. client.name,
+                    vim.log.levels.INFO,
+                    {
+                        title = "LSP"
+                    })
 
-        vim.lsp.start(client, {})
-      end
+                vim.lsp.start(client, {})
+            end
+        end
     end
-  end
 end
 
 local function lsp_toggle()
-  local active_clients = vim.lsp.get_clients({})
+    local active_clients = vim.lsp.get_clients({})
 
-  if #active_clients >= 1 then
-    lsp_stop()
-    return
-  end
-  lsp_start(nil)
+    if #active_clients >= 1 then
+        lsp_stop()
+        return
+    end
+    lsp_start(nil)
 end
 
 vim.api.nvim_create_user_command('LspStart',
-  lsp_start,
-  {
-    desc = 'Manually launches a language server',
-    nargs = '?',
-  })
+    lsp_start,
+    {
+        desc = 'Manually launches a language server',
+        nargs = '?',
+    })
 
 
 vim.api.nvim_create_user_command('LspStop', lsp_stop, {
-  desc = 'Manually stops the given language client(s)',
-  nargs = '?',
+    desc = 'Manually stops the given language client(s)',
+    nargs = '?',
 })
 
 vim.api.nvim_create_user_command('LspInfo', "checkhealth vim.lsp", {})
