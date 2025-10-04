@@ -1,6 +1,6 @@
 #!/bin/bash
 
-skip_amount=0.05
+skip_amount=0.01
 
 if [ "$2" == "up" ] ; then
   playerctl -i firefox $1 $skip_amount+
