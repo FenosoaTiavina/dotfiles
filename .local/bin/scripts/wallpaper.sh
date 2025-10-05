@@ -111,8 +111,7 @@ Wall_Select() {
     # Check if a wallpaper is set
     if [ -f "$wallSet" ]; then
         current_wallpaper_basename="$(basename "$current_wallpaper_path")"
-        # The string passed to -select must match the rofi entry format
-        rofi_select_string="${current_wallpaper_basename}:::${current_wallpaper_path}:::/path/to/thumbnail"
+        rofi_select_string="${current_wallpaper_basename}:::${current_wallpaper_path}:::${CACHE_DIR}/thumbs"
     else
         rofi_select_string=""
     fi
