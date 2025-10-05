@@ -50,7 +50,10 @@ notify_vol() {
     local vol=$1
     ico="audio-volume-high.svg"
 
-    if [ "$vol" -eq 0 ]; then
+    mute=$(pamixer "${srce}" --get-mute | cat)
+
+
+    if [ "$vol" -eq 0 || "${mute}" == "true" ]; then
         ico="audio-volume-muted.svg"
     elif [ "$vol" -gt 67 ]; then
         ico="audio-volume-high.svg"
