@@ -10,7 +10,7 @@
     origin = top-right
 
     # Offset from the origin (horizontal, vertical)
-    offset = (10, 10)
+    offset = (5, 5)
 
     scale = 0
 
@@ -27,7 +27,7 @@
     progress_bar_corners = all
 
     # Corner radius for the icon image.
-    icon_corner_radius = 2
+    icon_corner_radius = 0
     icon_corners = all
 
     # Show how many messages are currently hidden (because of
@@ -37,9 +37,9 @@
     transparency = 0
 
     separator_height = 2
-    padding = 6
+    padding = 10
     horizontal_padding = 6
-    text_icon_padding = 6
+    text_icon_padding = 20
 
     frame_width = 0
     frame_color = "#42be65"
@@ -67,7 +67,7 @@
     # Markup is allowed
     format = "<b>%s</b>\n%b"
 
-    alignment = center
+    alignment = left
     vertical_alignment = center
 
     # Show age of message if message is older than show_age_threshold
@@ -95,8 +95,8 @@
     enable_recursive_icon_lookup = true
     icon_theme = Colloid-Green-Dark
     icon_position = left
-    min_icon_size = 32
-    max_icon_size = 32
+    min_icon_size = 64
+    max_icon_size = 128
 
     ### History ###
 
@@ -108,8 +108,8 @@
     history_length = 20
 
     ### Misc/Advanced ###
-    dmenu = /usr/bin/dmenu -p dunst:
-    browser = /usr/bin/xdg-open
+    # dmenu = /usr/bin/dmenu -p dunst:
+    # browser = /usr/bin/xdg-open
     always_run_script = true
     title = Dunst
     class = Dunst
@@ -137,6 +137,8 @@
     foreground = "#42be65"
     timeout = 10
     default_icon = bell
+    min_icon_size = 32
+    max_icon_size = 64
 
 [urgency_normal]
     background = "#161616"
@@ -144,6 +146,8 @@
     timeout = 10
     override_pause_level = 30
     default_icon = dialog-information
+    min_icon_size = 32
+    max_icon_size = 64
 
 [urgency_critical]
     background = "#161616"
@@ -152,3 +156,6 @@
     timeout = 0
     override_pause_level = 60
     default_icon = dialog-warning
+    min_icon_size = 32
+    max_icon_size = 64
+

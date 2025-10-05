@@ -48,22 +48,29 @@ EOF
 
 notify_vol() {
     local vol=$1
-    angle=$((((vol + 2) / 5) * 5))
-    iconStyle="knob"
-    # cap the icon at 100 if vol > 100
-    [ "$angle" -gt 100 ] && angle=100
-    ico="${icodir}/${iconStyle}-${angle}.svg"
-    bar=$(seq -s "." $((vol / 15)) | sed 's/[0-9]//g')
-    [[ "${isNotify}" == true ]] && notify-send -a "HyDE Notify" -r 8 -t 800 -i "${ico}" "${vol}${bar}" "${nsink}"
+    ico="audio-volume-high.svg"
+
+    if [ "$vol" -eq 0 ]; then
+        ico="audio-volume-muted.svg"
+    elif [ "$vol" -gt 67 ]; then
+        ico="audio-volume-high.svg"
+    elif [ "$vol" -gt 34 ]; then
+        ico="audio-volume-medium.svg"
+    else
+        ico="audio-volume-low.svg"
+    fi
+
+    bar=$(seq -s "⣿" $((vol / 5)) | sed 's/[0-9]//g')
+    [[ "${isNotify}" == true ]] && notify-send -r 8 -t 800 -i  ~/.icons/Colloid-Green-Dark/status/32/${ico} "${bar} ${vol}" "${nsink}"
 }
 
 notify_mute() {
     mute=$(pamixer "${srce}" --get-mute | cat)
     [ "${srce}" == "--default-source" ] && dvce="microphone" || dvce="speaker"
     if [ "${mute}" == "true" ]; then
-        [[ "${isNotify}" == true ]] && notify-send -a "HyDE Notify" -r 8 -t 800 -i "${icodir}/muted-${dvce}.svg" "muted" "${nsink}"
+        [[ "${isNotify}" == true ]] && notify-send -r 8 -t 800 -i ~/.icons/Colloid-Green-Dark/status/16/audio-volume-muted.svg "muted" "${nsink}"
     else
-        [[ "${isNotify}" == true ]] && notify-send -a "HyDE Notify" -r 8 -t 800 -i "${icodir}/unmuted-${dvce}.svg" "unmuted" "${nsink}"
+        [[ "${isNotify}" == true ]] && notify-send -r 8 -t 800 -i ~/.icons/Colloid-Green-Dark/status/16/audio-volume-high.svg "unmuted" "${nsink}"
     fi
 }
 

@@ -27,11 +27,19 @@ EOF
 send_notification() {
     brightness=$(brightnessctl info | grep -oP "(?<=\()\d+(?=%)" | cat)
     brightinfo=$(brightnessctl info | awk -F "'" '/Device/ {print $2}')
-    angle="$((((brightness + 2) / 5) * 5))"
     # shellcheck disable=SC2154
-    ico="${iconsDir}/Wallbash-Icon/media/knob-${angle}.svg"
-    bar=$(seq -s "." $((brightness / 15)) | sed 's/[0-9]//g')
-    [[ "${isNotify}" == true ]] && notify-send -a "HyDE Notify" -r 7 -t 800 -i "${ico}" "${brightness}${bar}" "${brightinfo}"
+    ico=display-brightness-symbolic.svg
+    if [ "$brightness" -gt 75 ]; then
+        ico="display-brightness-high-symbolic.svg"
+    elif [ "$brightness" -gt 50 ]; then
+        ico="display-brightness-medium-symbolic.svg"
+    elif [ "$brightness" -gt 25 ]; then
+        ico="display-brightness-low-symbolic.svg"
+    else
+        ico="display-brightness-off-symbolic.svg"
+    fi
+    bar=$(seq -s "⣿" $((brightness / 5)) | sed 's/[0-9]//g')
+    [[ "${isNotify}" == true ]] && notify-send -r 7 -t 800 -i ~/.icons/Colloid-Green-Dark/status/symbolic/${ico} "${bar} ${brightness}" "${brightinfo} ${brightness}"
 }
 
 get_brightness() {
