@@ -46,6 +46,35 @@ charging_icon=""
 discharging_icons=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
 status_icons=("" "X" "󰂇") # Add appropriate icons for different statuses
 
+charging_icons_path=(
+    "battery-000-charging"
+    "battery-010-charging"
+    "battery-020-charging"
+    "battery-030-charging"
+    "battery-040-charging"
+    "battery-050-charging"
+    "battery-060-charging"
+    "battery-070-charging"
+    "battery-080-charging"
+    "battery-090-charging"
+    "battery-100-charging"
+)
+
+discharging_icons_path=(
+    "battery-000"
+    "battery-010"
+    "battery-020"
+    "battery-030"
+    "battery-040"
+    "battery-050"
+    "battery-060"
+    "battery-070"
+    "battery-080"
+    "battery-090"
+    "battery-100"
+)
+
+
 battery_status=$(cat /sys/class/power_supply/BAT0/status)
 
 # Parse format options
@@ -54,6 +83,13 @@ formats=("$@")
 # Function to output the appropriate information based on format option
 output_format() {
     case "$1" in
+    icon-path)
+        if [ "$battery_status" -eq "Charging" ]; then
+            echo -n "${charging_icons_path[$index]}"
+        else
+            echo -n "${discharging_icons_path[$index]}"
+        fi
+        ;;
     icon)
         if [[ "$battery_status" == "Charging" ]]; then
             echo -n ${charging_icon}

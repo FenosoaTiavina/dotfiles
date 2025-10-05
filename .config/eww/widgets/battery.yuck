@@ -1,11 +1,16 @@
 (defpoll bat_icon :interval "1s"
-  "~/.local/bin/scripts/battery.sh icon"
+  "~/.local/bin/scripts/battery.sh icon-path"
 )
 
 
 (defwidget battery [style]
-  (label
-    :style style
-    :text " ${bat_icon} ${EWW_BATTERY.BAT0.capacity}"
-  )
+    (box
+        :orientation "h" :space-evenly false :halign "end" :spacing "5"
+        (image
+            :icon "${bat_icon}"
+        )
+        (label
+            :text " ${EWW_BATTERY.BAT0.capacity}"
+        )
+    )
 )
