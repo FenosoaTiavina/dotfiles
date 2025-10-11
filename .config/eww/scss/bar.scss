@@ -3,15 +3,14 @@
   color: $color-6;
   border-radius: $outer-radius;
   background: rgba($color-17, 1.0);
-  padding: 2px;
+  padding: $padding-sm;
 }
 
 .workspace {
-  padding: 0 5px;
+  padding: $padding-none $padding-md;
   border-radius: $inner-radius;
 
   &.current {
-    padding: 0 5px;
     background-color: rgba($color: $color-11, $alpha: 1.0);
     color: rgba($color: $color-1, $alpha: 1.0);
   }
@@ -21,7 +20,7 @@
 
   > *{
     color: rgba($color: $color-5, $alpha: 1.0);
-    padding: 0 6px;
+    padding: $padding-none $padding-md;
   }
 
   > :first-child {
