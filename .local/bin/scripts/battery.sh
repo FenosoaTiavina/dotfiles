@@ -84,7 +84,7 @@ formats=("$@")
 output_format() {
     case "$1" in
     icon-path)
-        if [ "$battery_status" -eq "Charging" ]; then
+        if [[ "$battery_status" -eq "Charging" ]]; then
             echo -n "${charging_icons_path[$index]}"
         else
             echo -n "${discharging_icons_path[$index]}"
