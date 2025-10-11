@@ -1,5 +1,5 @@
 
-@import "scss/colors.scss";
+@import "scss/variables.scss";
 
 
 * {
@@ -9,9 +9,9 @@
 
 .window {
   color: #ffffff;
-  border-radius: 5px;
-  background: rgba(#161616, 1.0);
-  padding: 2px;
+  border-radius: $outer-radius;
+  background: $color-17;
+  padding: $padding-sm;
 }
 
 

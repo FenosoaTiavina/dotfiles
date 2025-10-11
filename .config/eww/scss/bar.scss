@@ -1,14 +1,14 @@
 // Global Styles
 .bar {
   color: $color-6;
-  border-radius: 5px;
+  border-radius: $outer-radius;
   background: rgba($color-17, 1.0);
   padding: 2px;
 }
 
 .workspace {
   padding: 0 5px;
-  border-radius: 2px;
+  border-radius: $inner-radius;
 
   &.current {
     padding: 0 5px;
@@ -20,29 +20,28 @@
 .pill {
 
   > *{
-    background-color: rgba($color: $color-2, $alpha: 1.0);
     color: rgba($color: $color-5, $alpha: 1.0);
     padding: 0 6px;
   }
 
   > :first-child {
     /* top-left | top-right | bottom-right | bottom-left */
-    border-radius: 4px 2px 2px 4px;
+    border-radius: $outer-radius $inner-radius $inner-radius $outer-radius;
   }
 
   > :last-child {
     /* top-left | top-right | bottom-right | bottom-left */
-    border-radius:  2px 4px 4px 2px;
+    border-radius: $inner-radius $outer-radius  $outer-radius $inner-radius;
   }
 
   > :only-child {
-    border-radius: 4px;
+    border-radius: $outer-radius;
   }
 }
 
 .workspaces button:hover {
   color: $color-14;
-  border-radius :10px;
+  border-radius :$hover-radius;
 
   &.current {
     background-color: rgba($color: $color-14, $alpha: 1.0);
@@ -59,7 +58,7 @@
   all: unset;
   background-color: $color-14;
   color: $color-11;
-  border-radius: 10px;
+  border-radius: $outer-radius;
 }
 
 .label{
@@ -68,10 +67,10 @@
 
 .metric scale trough {
   background-color: $color-2;
-  border-radius: 50px;
+  border-radius: $outer-radius;
   min-height: 10px;
   min-width: 75px;
-  margin: 0px 5px;
+  margin: 0px $padding-md;
 }
 
 .active {

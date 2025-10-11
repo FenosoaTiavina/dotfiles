@@ -37,9 +37,6 @@
 (defvar player_width 200)
 (defvar player_height 100)
 
-(defvar player_padding "5")
-(defvar player_background_border_radius "2px")
-
 (defvar load_player_background true)
 (defvar more_info false)
 
@@ -132,7 +129,7 @@
     (box
       (label
         :halign "center"
-        :limit-width {player_width - player_padding}
+        :limit-width {player_width}
         :text {now_playing_title}
         :style "color:white"
       )
@@ -161,9 +158,10 @@
     :halign "start"
     :space-evenly true
     (box
-      :height 100
-      :width 100
-      :style "margin:10px;border-radius:10px;background:center no-repeat url('${replace(now_playing_image,"file://","")}')"
+        :height 100
+        :width 100
+        :class "cover"
+        :style "margin:10px;background:center no-repeat url('${replace(now_playing_image,"file://","")}')"
     )
   )
 )
@@ -181,9 +179,9 @@
         :halign "center"
         :valign "center"
         (box
-          :height {player_height * 1.5 + player_padding}
-          :width {player_width * 1.5 + player_padding}
-          :style "border-radius:${player_background_border_radius};background:center no-repeat url('${player_blured_image}');background-size:cover;opacity:0.6;"
+          :height {player_height * 1.5}
+          :width {player_width * 1.5}
+          :style "background:center no-repeat url('${player_blured_image}');background-size:cover;opacity:0.6;"
         )
       )
       (eventbox
@@ -194,7 +192,6 @@
           :spacing 5
           :space-evenly false
           :valign "start"
-          :style "padding:${player_padding / 4}px;"
           ;; (box 
           ;;   :orientation "h"
           ;;   :spacing 5
@@ -236,7 +233,6 @@
             )
   (box
     :class "window"
-    :style "padding: ${player_padding}px ; "
     (eventbox 
       :onhoverlost "eww close player_container ; eww u music_focus=false"
       :onhover "eww u music_focus=true"
