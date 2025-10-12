@@ -6,6 +6,7 @@
 WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
 WALLPAPER_CUSTOM_PATHS=()
 CACHE_DIR="$HOME/.cache/wallpaper"
+wallSetPath="$CACHE_DIR/wall.set.path"
 wallSet="$CACHE_DIR/wall.set"
 
 ROFI_THEME="$HOME/.config/rofi/selector.rasi"
@@ -106,15 +107,17 @@ Wall_Select() {
     listview{ columns:${col_count}; spacing:5em; }
     "
     # Read the current wallpaper path from the cache file
-    current_wallpaper_path="$(cat "$wallSet" 2>/dev/null)"
+    current_wallpaper_path="$(cat "$wallSetPath" 2>/dev/null)"
     
     # Check if a wallpaper is set
-    if [ -f "$wallSet" ]; then
+    if [ -f "$wallSetPath" ]; then
         current_wallpaper_basename="$(basename "$current_wallpaper_path")"
         rofi_select_string="${current_wallpaper_basename}:::${current_wallpaper_path}:::${CACHE_DIR}/thumbs"
     else
         rofi_select_string=""
     fi
+
+
 
     local entry
     entry=$(Wall_Json | jq -r '.[].rofi_sqre' | rofi -dmenu \
@@ -145,7 +148,8 @@ set_wallpaper() {
     local hash
     hash=$(echo -n "$img" | sha1sum | awk '{print $1}')
 
-    echo "$img" > "$wallSet"
+    echo "$img" > "$wallSetPath"
+    ln -sf $img $wallSet
     swww img "$img" --transition-type grow --transition-fps 60 --transition-duration 1
 
     generate_thumbnail "$img" "$hash"
@@ -176,7 +180,7 @@ case "$1" in
         Wall_Json
         ;;
     current)
-        [ -f "$wallSet" ] && cat "$wallSet" || echo "No wallpaper set"
+        [ -f "$wallSetPath" ] && cat "$wallSetPath" || echo "No wallpaper set"
         ;;
     *)
         echo "Usage: $0 {select|random|list|current}"
