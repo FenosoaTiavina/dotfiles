@@ -2,33 +2,33 @@
   "Import": {
     "prefix": "import",
     "body": [
-      "const ${1} = @import(\"${1}\")"
+      "const ${1} = @import(\"${1}\");"
     ],
     "description": "Importing Libraries"
   },
   "PubImport": {
     "prefix": "pimport",
     "body": [
-      "pub const ${1} = @import(\"${2}\")"
+      "pub const ${1} = @import(\"${2}\");"
     ],
     "description": "Public Importing Libraries"
   },
   "PubStruct": {
     "prefix": "pstr",
     "body": [
-      "pub const ${1} = struct {$2}"
+      "pub const ${1} = struct {$2};"
     ],
     "description": "public struct"
   },
   "PubEnum": {
     "prefix": "penum",
     "body": [
-      "pub const ${1} = enum {$2}"
+      "pub const ${1} = enum {$2};"
     ],
     "description": "public enum"
   },
   "PubFunc": {
-    "prefix": "pfunc",
+    "prefix": "pfn",
     "body": [
       "pub fn ${1:func} (${2:param}) ${3:!void} {${0}}"
     ],
@@ -38,7 +38,7 @@
     "prefix": "cimport",
     "body": [
       "const c = @cImport({",
-      "    @cDefine(\"${1}\")",
+      "    @cDefine(\"${1}\");",
       "});"
     ],
     "description": "Importing C Header Files"
