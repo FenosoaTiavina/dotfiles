@@ -10,8 +10,8 @@ configuration {
 
 // Main //
 window {
-    width:                       23em;
-    height:                      30em;
+    width:                       25em;
+    height:                      25em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -35,18 +35,8 @@ wallbox {
     expand:                      false;
     orientation:                 horizontal;
     background-color:            transparent;
-    background-image:            url("~/.cache/wallpaper/wall.set", width);
-    children:                    [ "wallframe" , "inputbar" ];
+    children:                    [ "inputbar" ];
 }
-wallframe {
-    width:                       5em;
-    spacing:                     0em;
-    padding:                     0em;
-    expand:                      false;
-    background-color:            @main-bg;
-    background-image:            url("~/.cache/wallpaper/wall.set", width);
-}
-
 
 // Inputs //
 inputbar {
