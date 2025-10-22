@@ -60,7 +60,7 @@ charging_icons_path=(
     "battery-100-charging"
 )
 
-discharging_icons_path=(
+battery_icons_path=(
     "battery-000"
     "battery-010"
     "battery-020"
@@ -84,10 +84,10 @@ formats=("$@")
 output_format() {
     case "$1" in
     icon-path)
-        if [[ "$battery_status" -eq "Charging" ]]; then
+        if [[ "$battery_status" == "Charging" ]]; then
             echo -n "${charging_icons_path[$index]}"
         else
-            echo -n "${discharging_icons_path[$index]}"
+            echo -n "${battery_icons_path[$index]}"
         fi
         ;;
     icon)
