@@ -4,7 +4,7 @@
     :transition "slideright" :reveal {open_tray} :duration {ANIM_DURATION}
     (box :class "tray_box" :orientation "h" :space-evenly false
       :style "padding: 0 5px;"
-      (systray
+      (systray 
         :hexpand true :halign "center" :spacing "10" 
         :icon-size "15" :prepend-new "true"
       )

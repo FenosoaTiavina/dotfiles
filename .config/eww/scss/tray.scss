@@ -3,14 +3,17 @@
   background-color: transparent;
 }
 
-.tray_button {
-}
-
 menu {
   border-radius: $outer-radius;
   padding: $padding-md $padding-l;
   background-color: $color-17;
   transition: all .2s ease;
+}
+
+menutitle {
+  border-radius: $inner-radius;
+  padding: $padding-md;
+  background-color: $color-7;
 }
 
 menuitem {
@@ -28,4 +31,9 @@ tooltip {
   border-radius: $outer-radius;
   background-color: $color-2;
   color: $color-14;
+}
+
+separator { /* works */
+    margin: $padding-sm $padding-md;
+    border-bottom: 1px solid $color-7;
 }
