@@ -1,12 +1,12 @@
 return {
-  "folke/snacks.nvim",
-  opts = {
-    input = {
-      enabled = true
+    "folke/snacks.nvim",
+    opts = {
+        input = {
+            enabled = false
+        },
+        picker = {
+        },
     },
-    picker = {
-    },
-  },
-  init = function()
-  end,
+    init = function()
+    end,
 }
