@@ -1,0 +1,26 @@
+[user]
+	email = fenosoa.t.r@fenosoa.com
+	name = FenosoaTiavina
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = main
+
+[diff]
+    tool = nvimdiff
+    guitool = nvimdiff
+[merge]
+    tool = nvimdiff
+    conflictstyle = diff3
+[mergetool]
+    keepBackup = false
+    trustExitCode = false
+    prompt = true
+[difftool]
+    prompt = false
+
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
