@@ -64,18 +64,22 @@ vim.keymap.set('n', 'K', function()
 end, { desc = "Peek into folds" }) --Peek into folds
 
 -- Debugging
-keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" }) --Toggle breakpoint
-keymap.set("n", "<leader>gb", "<cmd>lua require'dap'.run_to_cursor <dr>", { desc = "Run to cursor" })          --Run to cursor
-keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-    { desc = "Toggle conditional breakpoint" })                                                                --Toggle conditional breakpoint
-keymap.set("n", "<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-    { desc = "Toggle log breakpoint" })                                                                        --Toggle log breakpoint
-keymap.set("n", '<leader>br', "<cmd>lua require'dap'.clear_breakpoints()<cr>", { desc = "Clear breakpoints" }) --Clear breakpoints
-keymap.set("n", '<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', { desc = "List all breakpoints" })    --List all breakpoints
-keymap.set("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Debugger continue" })          --Debugger continue
-keymap.set("n", "<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Debugger step over" })        --Debugger step over
-keymap.set("n", "<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Debugger step into" })        --Debugger step into
-keymap.set("n", "<leader>do", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Debugger step out" })          --Debugger step out
+local dap = require('dap')
+keymap.set("n", "<leader>bb", function() dap.toggle_breakpoint() end, { desc = "Toggle breakpoint" }) --Toggle breakpoint
+keymap.set("n", "<leader>gb", function() dap.run_to_cursor() end, { desc = "Run to cursor" })         --Run to cursor
+
+keymap.set("n", "<leader>bc", function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    { desc = "Toggle conditional breakpoint" })                                                             --Toggle conditional breakpoint
+keymap.set("n", "<leader>bl", function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+    { desc = "Toggle log breakpoint" })                                                                     --Toggle log breakpoint
+keymap.set("n", '<leader>br', function() dap.clear_breakpoints() end, { desc = "Clear breakpoints" })       --Clear breakpoints
+keymap.set("n", '<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', { desc = "List all breakpoints" }) --List all breakpoints
+
+keymap.set("n", "<leader>dc", function() dap.continue() end, { desc = "Debugger continue" })                --Debugger continue
+keymap.set("n", "<leader>dn", function() dap.down() end, { desc = "Debugger continue" })                    --Debugger continue
+keymap.set("n", "<leader>dj", function() dap.step_over() end, { desc = "Debugger step over" })              --Debugger step over
+keymap.set("n", "<leader>dk", function() dap.step_into() end, { desc = "Debugger step into" })              --Debugger step into
+keymap.set("n", "<leader>do", function() dap.step_out() end, { desc = "Debugger step out" })                --Debugger step out
 
 keymap.set("n", '<leader>dd', function()
     require('dap').disconnect(); require('dapui').close();
