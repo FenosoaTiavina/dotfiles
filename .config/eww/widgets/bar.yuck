@@ -27,22 +27,23 @@
     :space-evenly false
     :class "pill"
     :spacing 2
-    (eventbox 
-      :onclick "eww u open_tray=true"
-      :onhover "eww u open_tray=true"
-      :onhoverlost "eww u open_tray=false"
-      (box 
-        :orientation "h" :space-evenly false :halign "end" :spacing "2"
-        :style "padding: 0px 5px;"
+    ;; (eventbox 
+    ;;   :onclick "eww u open_tray=true"
+    ;;   :onhover "eww u open_tray=true"
+    ;;   :onhoverlost "eww u open_tray=false"
+    ;;   (box 
+    ;;     :orientation "h" :space-evenly false :halign "end" :spacing "2"
+    ;;     :style "padding: 0px 5px;"
         (tray)
-        (tray_button)
-      )
-    )
+    ;;  (tray_button)
+    ;;   )
+    ;; )
     (eventbox 
       :onclick "eww o vol_bright"
-      (label 
-        :style "padding: 0px 5px;"
-        :text ""
+      (image 
+        :style "padding: 0px 5px"
+        :icon-size: "15"
+        :icon "system"
       )
     )
     (eventbox
