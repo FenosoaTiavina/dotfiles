@@ -1,87 +1,116 @@
 (defwidget bar []
-  (centerbox :orientation "h"
-    (workspaces)
-    (centerwidgets)
-    (rightwidgets)
-  )
+    (centerbox :orientation "h"
+        (leftwidgets)
+        (centerwidgets)
+        (rightwidgets)
+    )
+)
+
+(defwidget leftwidgets []
+    (box 
+        :orientation "h"
+        :halign "start"
+        :spacing 6
+        :space-evenly false
+        :class "pill"
+        (menu)
+        (workspaces)
+    )
 )
 
 (defwidget centerwidgets []
-  (box 
-    :orientation "h"
-    :halign "center"
-    :spacing 2
-    :space-evenly false
-    :class "pill"
+    (box 
+        :orientation "h"
+        :halign "center"
+        :spacing 2
+        :space-evenly false
+        :class "pill"
 
-    (date)
-    (music)
-    (idle_inhibitor)
-    ;; (waydroid)
-  )
+        (date)
+        (music)
+        (idle_inhibitor)
+        ;; (waydroid)
+    )
 )
 
 (defwidget rightwidgets []
-  (box
-    :halign "end"
-    :space-evenly false
-    :class "pill"
-    :spacing 2
-    ;; (eventbox 
-    ;;   :onclick "eww u open_tray=true"
-    ;;   :onhover "eww u open_tray=true"
-    ;;   :onhoverlost "eww u open_tray=false"
-    ;;   (box 
-    ;;     :orientation "h" :space-evenly false :halign "end" :spacing "2"
-    ;;     :style "padding: 0px 5px;"
+    (box
+        :halign "end"
+        :space-evenly false
+        :class "pill"
+        :spacing 2
         (tray)
-    ;;  (tray_button)
-    ;;   )
-    ;; )
-    (eventbox 
-      :onclick "eww o vol_bright"
-      (image 
-        :style "padding: 0px 5px"
-        :icon-size: "15"
-        :icon "system"
-      )
+        (eventbox 
+            :onclick "eww o vol_bright"
+            (image 
+                :style "padding: 0px 5px"
+                :icon-size: "15"
+                :icon "system"
+            )
+        )
+        (eventbox
+            :onhover { open_update == false ? 'eww o updates && eww u open_update=true ' :''}
+            :onhoverlost { open_update == true ? "eww c updates  && eww u open_update=false" : ""}
+            (label
+                :class "notif_button"
+                :style "padding: 0px 5px;"
+                :text "${updates_data.text?:"󰮯"}"
+            )
+        )
+        (battery :style "padding: 0px 5px;")
     )
-    (eventbox
-      :onhover { open_update == false ? 'eww o updates && eww u open_update=true ' :''}
-      :onhoverlost { open_update == true ? "eww c updates  && eww u open_update=false" : ""}
-      (label
-        :class "notif_button"
-        :style "padding: 0px 5px;"
-        :text "${updates_data.text?:"󰮯"}"
-      )
-    )
-    (battery :style "padding: 0px 5px;")
-  )
 )
 
-(defvar idle_inhibit 
-  'off'
+;; leftwidgets
+(defwidget workspaces []
+    (eventbox 
+        :onscroll "scripts/workspace_change.sh {} ${current_workspace}"
+        (box
+            :class "workspaces pill"
+            :orientation "h" :space-evenly false 
+            :hexpand true :spacing 2
+            (for workspace in workspaces
+                (button 
+                    :halign "center"
+                    :valign "center"
+                    :class "workspace ${current_workspace == workspace.id ? "current" : ""}" 
+                    :onclick "hyprctl dispatch workspace ${workspace.id}" 
+                    (label :text "${workspace.id}" )
+                )
+            )
+        )
+    )
 )
+
+(defwidget menu []
+    (eventbox 
+        :onhover "eww o power_menu"
+        (image
+            :fill-svg "#FFF"
+            :icon "distributor-logo-archlinux"
+        )
+    )
+)
+
+
+;; centerwidgets
+
+(defvar idle_inhibit 'off')
 
 (defwidget idle_inhibitor []
-  (eventbox 
-    :onclick { 
-      idle_inhibit == 'off' ?
-      " eww u idle_inhibit='on'  ; ~/.local/bin/vigiland & disown " : 
-      " eww u idle_inhibit='off' ; killall vigiland "
-    }
-    (label 
-      :style "padding: 0px 5px;"
-      :class { idle_inhibit == 'off' ?  "" : "active" }
-      :text 
-      {
-        idle_inhibit == 'off' ?
-        "" : 
-        "󰖙"
-      }
+    (eventbox 
+        :onclick { 
+            idle_inhibit == 'off' ?
+            " eww u idle_inhibit='on'  ; ~/.local/bin/vigiland & disown " : 
+            " eww u idle_inhibit='off' ; killall vigiland "
+        }
+        (label 
+            :style "padding: 0px 5px;"
+            :class { idle_inhibit == 'off' ?  "" : "active" }
+            :text  { idle_inhibit == 'off' ?  "" : "󰖙" }
 
+        )
     )
-  )
 
 )
 
@@ -89,48 +118,22 @@
     (label :text "${time}")
 )
 
-(defwidget waydroid []
-  (eventbox 
-    :onclick { 
-      "waydroid_toggle.sh" 
-    }
-    (label 
-      :style "padding: 0px 5px;"
-      :text "󰢅"
-
-    )
-  )
-)
-
-(defwidget workspaces []
-  (eventbox :onscroll "scripts/workspace_change.sh {} ${current_workspace}"
-    (box :orientation "h" :space-evenly false :class "workspaces pill" :hexpand true
-      :spacing 2
-      (for workspace in workspaces
-        (button 
-          :halign "center"
-          :valign "center"
-          :class "workspace ${current_workspace == workspace.id ? "current" : ""}" 
-          :onclick "hyprctl dispatch workspace ${workspace.id}" 
-          (label :text "${workspace.id}" )
-        )
-      )
-    )
-  )
-)
 
 (defpoll time :interval "60s"
-  "date '+%b %d - %H:%M'")
+"date '+%b %d - %H:%M'")
 
 (defwindow bar
-  :monitor 0
-  :namespace "eww-bar"
-  :geometry (geometry :x "0%"
-                      :y "2px"
-                      :width "99.5%"
-                      :anchor "top center")
-  :stacking "fg"
-  :exclusive true
-  :focusable "none"
-  (bar)
+    :monitor 0
+    :namespace "eww-bar"
+    :geometry 
+    (geometry 
+        :x "0%"
+        :y "2px"
+        :width "99.5%"
+        :anchor "top center"
+    )
+    :stacking "fg"
+    :exclusive true
+    :focusable "none"
+    (bar)
 )

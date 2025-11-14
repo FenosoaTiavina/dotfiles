@@ -1,0 +1,85 @@
+(defvar power_menu_focus false)
+
+(defwidget power_menu_buttons 
+    [
+        shutdown shutdown_icon 
+        reboot   reboot_icon 
+        lock   lock_icon
+    ]
+    (box 
+        :class "power-menu"
+        :space-evenly false
+        :orientation "v"
+        :valign "baseline" 
+        :halign "center"
+        :vexpand true :hexpand true
+        (button 
+            :onclick shutdown
+            (box
+                (image
+                    :icon shutdown_icon
+                )
+                (label
+                    :valign "baseline" 
+                    :halign "start"
+                    :text "Shutdown"
+                )
+            )
+        )
+        (button 
+            :onclick reboot 
+            (box
+                (image
+                    :icon reboot_icon
+                )
+                (label
+                    :valign "baseline" 
+                    :halign "start"
+                    :text "Reboot"
+                )
+            )
+        )
+        (button 
+            :onclick lock 
+            (box
+                (image
+                    :icon lock_icon
+                )
+                (label
+                    :valign "baseline" 
+                    :halign "start"
+                    :text "Lock"
+                )
+            )
+        )
+    )
+)
+
+
+
+(defwindow power_menu
+    :monitor 0
+    :stacking "overlay"
+    :windowtype "dock"
+    :exclusive false
+    :geometry 
+    (geometry 
+        :x "4px"
+        :y "0.5%"
+        :anchor "top left"
+    )
+
+    (eventbox 
+        :onhoverlost "eww close power_menu ; eww u power_menu_focus=false"
+        :onhover "eww u power_menu_focus=true"
+        :class "window"
+        (power_menu_buttons 
+            :shutdown "poweroff" 
+            :reboot "reboot"
+            :lock "hyprlock & sleep 1"
+            :shutdown_icon "system-shutdown-symbolic"
+            :reboot_icon "system-reboot-symbolic" 
+            :lock_icon "system-lock-screen"
+        )
+    )
+)
