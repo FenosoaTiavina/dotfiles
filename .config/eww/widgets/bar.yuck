@@ -84,7 +84,7 @@
 
 (defwidget menu []
     (eventbox 
-        :onhover "eww o power_menu"
+        :onclick "eww o power_menu"
         (image
             :fill-svg "#FFF"
             :icon "distributor-logo-archlinux"
