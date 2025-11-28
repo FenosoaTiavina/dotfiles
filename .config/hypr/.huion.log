@@ -1,0 +1,414 @@
+2025-11-18 09:49:29.148 INFO log test start----------------------------------------------------------------------------------->
+2025-11-18 09:49:29.148 INFO log test end ----------------------------------------------------------------------------------------
+2025-11-18 09:49:29.151 INFO HnUsb ctx=0x7f3fbba6c4d8, path=0x7f3fbba6c710
+2025-11-18 09:49:29.151 INFO HnUsb ctx=0x7f3fbba6db30, path=0x7f3fbba6dd68
+2025-11-18 09:49:29.151 INFO Load tabletsession dll _dll= 0x56552ba5e650 
+
+2025-11-18 09:49:29.151 INFO load tabletsession OK 
+2025-11-18 09:49:29.157 INFO hnuc_dll_load ld = 2ba61e70
+2025-11-18 09:49:29.157 INFO after load dll
+2025-11-18 09:49:29.157 ERROR Cannot get tty state
+2025-11-18 09:49:29.157 INFO Open uhid-cdev /dev/uhid
+2025-11-18 09:49:29.157 ERROR Cannot open uhid-cdev /dev/uhid: Permission denied
+2025-11-18 09:49:29.157 ERROR Cannot get tty state
+2025-11-18 09:49:29.157 INFO Open uhid-cdev /dev/uhid
+2025-11-18 09:49:29.157 ERROR Cannot open uhid-cdev /dev/uhid: Permission denied
+2025-11-18 09:49:29.157 INFO create uinput pen  fd=5
+2025-11-18 09:49:29.158 INFO EXIT_SUCCESS *pFd=5
+2025-11-18 09:49:29.160 INFO /dev/input/event2
+2025-11-18 09:49:29.160 INFO     evdev version: 1.0.1
+2025-11-18 09:49:29.160 INFO     name: GAOMON Gaomon Tablet_M10KPRO
+2025-11-18 09:49:29.160 INFO     features:
+2025-11-18 09:49:29.166 INFO /dev/input/event24
+2025-11-18 09:49:29.166 INFO     evdev version: 1.0.1
+2025-11-18 09:49:29.166 INFO     name: GAOMON Gaomon Tablet_M10KPRO
+2025-11-18 09:49:29.166 INFO     features:
+2025-11-18 09:49:29.178 INFO /dev/input/event25
+2025-11-18 09:49:29.178 INFO     evdev version: 1.0.1
+2025-11-18 09:49:29.178 INFO     name: GAOMON Gaomon Tablet_M10KPRO Touch Strip
+2025-11-18 09:49:29.178 INFO     features:
+2025-11-18 09:49:29.190 INFO /dev/input/event26
+2025-11-18 09:49:29.190 INFO     evdev version: 1.0.1
+2025-11-18 09:49:29.190 INFO     name: GAOMON Gaomon Tablet_M10KPRO Dial
+2025-11-18 09:49:29.190 INFO     features:
+2025-11-18 09:49:29.216 INFO 
+ mouse rel event path = /dev/input/event26 
+
+2025-11-18 09:49:29.216 INFO init event OK
+2025-11-18 09:49:29.216 INFO Destroy uhid device
+2025-11-18 09:49:29.216 ERROR Wrong size written to uhid: 4368 != 8
+2025-11-18 09:49:29.216 ERROR destroy uhid dev error!
+2025-11-18 09:49:29.216 INFO --> remove@/devices/virtual/input/input56/event3
+
+2025-11-18 09:49:29.230 INFO --> remove@/devices/virtual/input/input56/mouse0
+
+2025-11-18 09:49:29.238 INFO --> remove@/devices/virtual/input/input56
+
+2025-11-18 09:49:29.238 INFO create uinput pen  fd=5
+2025-11-18 09:49:29.238 INFO --> add@/devices/virtual/input/input59
+
+2025-11-18 09:49:29.238 INFO --> add@/devices/virtual/input/input59/event3
+
+2025-11-18 09:49:29.238 INFO EXIT_SUCCESS *pFd=5
+2025-11-18 09:49:29.238 INFO --> add@/devices/virtual/input/input59/mouse0
+
+2025-11-18 09:49:29.770 INFO on_screen_changed huion_reload_uhid_pen_event
+2025-11-18 09:49:29.770 INFO Destroy uhid device
+2025-11-18 09:49:29.770 ERROR Wrong size written to uhid: 4368 != 8
+2025-11-18 09:49:29.770 ERROR destroy uhid dev error!
+2025-11-18 09:49:29.770 INFO --> remove@/devices/virtual/input/input59/event3
+
+2025-11-18 09:49:29.778 INFO --> remove@/devices/virtual/input/input59/mouse0
+
+2025-11-18 09:49:29.786 INFO --> remove@/devices/virtual/input/input59
+
+2025-11-18 09:49:29.786 INFO create uinput pen  fd=5
+2025-11-18 09:49:29.786 INFO --> add@/devices/virtual/input/input60
+
+2025-11-18 09:49:29.786 INFO --> add@/devices/virtual/input/input60/event3
+
+2025-11-18 09:49:29.786 INFO --> add@/devices/virtual/input/input60/mouse0
+
+2025-11-18 09:49:29.786 INFO EXIT_SUCCESS *pFd=5
+2025-11-18 09:49:29.786 INFO on_screen_changed on_screen_changed on_screen_changed
+2025-11-18 09:49:30.189 INFO On Timer TIMER_ID_DETECT_DEVICE 0 
+
+2025-11-18 09:49:30.335 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:00
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    0
+2025-11-18 09:49:30.335 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:01
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    1
+2025-11-18 09:49:30.335 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:02
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    2
+2025-11-18 09:49:30.335 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:00
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    0
+2025-11-18 09:49:30.335 INFO found 9580 109,path=0001:000b:00
+2025-11-18 09:49:30.338 INFO  ** REV HNMC_CORE_BLZ_ON 6001 
+
+2025-11-18 09:49:30.338 INFO RUN tablet_thread, Count =0
+
+2025-11-18 09:49:30.339 INFO Thread::threadFunc(2ba9fdd0) a5ffd6c0 begin
+2025-11-18 09:49:30.339 INFO open param->tspfFlag =0 
+2025-11-18 09:49:30.339 INFO HnTabletSession::close() _protocol=0
+2025-11-18 09:49:30.339 INFO  _context.idClient=0x56552ba9fe80 
+2025-11-18 09:49:30.466 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:00
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    0
+2025-11-18 09:49:30.466 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:01
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    1
+2025-11-18 09:49:30.466 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:02
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    2
+2025-11-18 09:49:30.466 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:00
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    0
+2025-11-18 09:49:30.466 INFO USBfound__ 256c 6d,_context=0x7f3fbba6c4d8,path=0001:000b:00 selr=0x7f3f90005360
+2025-11-18 09:49:30.468 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input52/event2
+
+2025-11-18 09:49:30.473 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input52/mouse2
+
+2025-11-18 09:49:30.481 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input52
+
+2025-11-18 09:49:30.481 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input53/event24
+
+2025-11-18 09:49:30.493 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input53/js0
+
+2025-11-18 09:49:30.503 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input53
+
+2025-11-18 09:49:30.503 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input54/event25
+
+2025-11-18 09:49:30.512 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input54/js1
+
+2025-11-18 09:49:30.520 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input54
+
+2025-11-18 09:49:30.520 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input55/event26
+
+2025-11-18 09:49:30.528 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input55/mouse6
+
+2025-11-18 09:49:30.540 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input55/js2
+
+2025-11-18 09:49:30.548 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/input/input55
+
+2025-11-18 09:49:30.548 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F/hidraw/hidraw0
+
+2025-11-18 09:49:30.548 INFO USB device 256c remove !! 
+
+2025-11-18 09:49:30.555 INFO  256c =? 109,_context=0x7f3fbba6c4d8,path=0x7f3fa5ffccf0
+2025-11-18 09:49:30.555 INFO cc 256c 6d,_context={bba6c4d8},_context.usbIDPath=0x7f3fbba6c710 ,cur_dev->path ={0001:000b:} ID=0
+2025-11-18 09:49:30.555 NOTICE HnTabletSession::open() usb&hid open success
+2025-11-18 09:49:30.555 INFO h 2 
+
+2025-11-18 09:49:30.555 INFO HnSessionTablet::reqCmd(cmd:201, , )
+2025-11-18 09:49:30.555 INFO getStringDesc strIndex = 201, 
+
+2025-11-18 09:49:30.569 INFO getStringDesc strIndex = 201,bufLen=256 ,bRet=1
+
+2025-11-18 09:49:30.569 INFO parse_cmd_resp_201() p->sFullModel ---->> OEM02_T19n_200311
+2025-11-18 09:49:30.569 INFO parse_cmd_resp_201() p->sModel ---->> OEM02_T19n
+2025-11-18 09:49:30.569 INFO h 201 OK
+
+2025-11-18 09:49:30.569 INFO HnSessionTablet::reqCmd(cmd:200, , )
+2025-11-18 09:49:30.569 INFO getStringDesc strIndex = 200, 
+
+2025-11-18 09:49:30.578 INFO getStringDesc strIndex = 200,bufLen=256 ,bRet=1
+
+2025-11-18 09:49:30.578 INFO h 200 OK
+
+2025-11-18 09:49:30.578 INFO HnSessionTablet::reqCmd(cmd:202, , )
+2025-11-18 09:49:30.578 INFO getStringDesc strIndex = 202, 
+
+2025-11-18 09:49:30.602 INFO getStringDesc strIndex = 202,bufLen=256 ,bRet=1
+
+2025-11-18 09:49:30.602 INFO h 202 OK 
+
+2025-11-18 09:49:30.602 INFO t 1 _obj->tc.sModel=OEM02_T19n
+
+2025-11-18 09:49:30.602 INFO 1 s=/usr/lib/gaomontablet/res/tablet.cfg pf=0x7f3f90006170,p=0x7f3fa5ffcaf0 
+
+2025-11-18 09:49:30.602 INFO read_a_config(HnTabletCfg,) read OEM02_T19n success
+2025-11-18 09:49:30.602 INFO HnSessionTablet::reqCmd(cmd:212, , )
+2025-11-18 09:49:30.603 INFO getStringDesc strIndex = 212, 
+
+2025-11-18 09:49:30.606 INFO getStringDesc strIndex = 212,bufLen=256 ,bRet=1
+
+2025-11-18 09:49:30.608 INFO screen0 mw=508,mh=285,sw 1920,sh 1080 
+
+2025-11-18 09:49:30.610 INFO hncb_enum_display_Xrandr monitorCount=1 
+2025-11-18 09:49:30.610 INFO XRRMonitorInfo: index:0 primary:0 x:0 y: 0 noutput:1 width:1920 height:1080 widthmm:290 heightm:170 outputs:33 
+
+2025-11-18 09:49:30.610 INFO _monitorNum = 1,_monitors = 0x56552ba6f7b0 
+
+2025-11-18 09:49:30.610 INFO HnCoordMap::updateAllScreenActRect() _asActRect {lt(0,0), rb(1920,1080)}
+2025-11-18 09:49:30.610 INFO HnCoordMap::updateCurScreenVrtRect() _csVrtRect {lt(0,0), rb(1920,1080)}
+2025-11-18 09:49:30.611 INFO screen0 mw=508,mh=285,sw 1920,sh 1080 
+
+2025-11-18 09:49:30.611 INFO screenWidth=1920 screenHeight=1080 
+
+2025-11-18 09:49:30.611 INFO 
+ WWWWWWWWWWWWWWWWWWW pointSave reset x=1261,y=591,wx=1261,wy=591,Cursorx=26270.833984,Cursory=13680.554688 
+
+
+2025-11-18 09:49:30.612 INFO HnTabletThread::initDriverInfo() success dev:OEM02_T19n
+2025-11-18 09:49:30.612 INFO HnThread::start(0x5654f87bf8f1) pid=139911712315264
+2025-11-18 09:49:31.613 INFO Thread::threadFunc(2ba895e0) 96ffe6c0 begin
+2025-11-18 09:49:31.613 INFO open param->tspfFlag =0 
+2025-11-18 09:49:31.613 INFO HnTabletSession::close() _protocol=0
+2025-11-18 09:49:31.613 INFO  _context.idClient=0x56552ba89690 
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:00
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    0
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:01
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    1
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:02
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    2
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:00
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    0
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:01
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    1
+2025-11-18 09:49:31.740 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:02
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    2
+2025-11-18 09:49:31.740 INFO HnThread::threadFunc 96ffe6c0 end
+2025-11-18 09:49:31.740 INFO HnThread::start(0x5654f87bf8f1) pid=139911712315264
+2025-11-18 09:49:32.740 INFO RUN tablet_thread, Count =0
+
+2025-11-18 09:49:32.740 INFO RUN tablet_thread n =1 
+
+2025-11-18 09:49:32.740 INFO HnThread::waitQuit() WaitForSingleObject(bbe99780, )
+2025-11-18 09:49:32.740 INFO HnThread::waitQuit() end
+2025-11-18 09:49:32.741 INFO Thread::threadFunc(2baa21f0) 96ffe6c0 begin
+2025-11-18 09:49:32.742 INFO open param->tspfFlag =0 
+2025-11-18 09:49:32.742 INFO HnTabletSession::close() _protocol=0
+2025-11-18 09:49:32.742 INFO  _context.idClient=0x56552baa22a0 
+2025-11-18 09:49:32.863 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:00
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    0
+2025-11-18 09:49:32.863 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:01
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    1
+2025-11-18 09:49:32.863 INFO Device Found
+  type: 1532 006e
+  path: 0001:0007:02
+  serial_number: (null)
+  Manufacturer: (null)
+  Product:      (null)
+  Release:      200
+  Interface:    2
+2025-11-18 09:49:32.864 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:00
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    0
+2025-11-18 09:49:32.864 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:01
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    1
+2025-11-18 09:49:32.864 INFO Device Found
+  type: 256c 006d
+  path: 0001:000b:02
+  serial_number: 
+  Manufacturer: GAOMON
+  Product:      Gaomon Tablet_M10KPRO
+  Release:      100
+  Interface:    2
+2025-11-18 09:49:32.864 INFO HnThread::threadFunc 96ffe6c0 end
+2025-11-18 09:49:32.864 INFO HnThread::start(0x5654f87bf8f1) pid=139911712315264
+2025-11-18 09:49:33.865 INFO  ***** HNMC_CORE_USB_OUT ***** 
+
+2025-11-18 09:49:33.865 INFO --> unbind@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F
+
+2025-11-18 09:49:33.865 INFO --> remove@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.000F
+
+2025-11-18 09:49:39.441 INFO -- Received quit signal 10, quiting
+2025-11-18 09:49:39.441 INFO entryNoDriverMode before close! 
+
+2025-11-18 09:49:39.441 INFO HnSessionTablet::reqCmd(cmd:205, , )
+2025-11-18 09:49:39.441 INFO getStringDesc strIndex = 205, 
+
+2025-11-18 09:49:39.498 INFO getStringDesc strIndex = 205,bufLen=256 ,bRet=1
+
+2025-11-18 09:49:39.498 INFO HnTabletSession::close() _protocol=bba6b2c0
+2025-11-18 09:49:39.498 INFO _protocol will close
+2025-11-18 09:49:39.498 INFO HnUsb::close()1I=1 _pDevice =0x7f3f90005380 _pDevice->cancelled=0 
+
+2025-11-18 09:49:39.499 INFO HBtnHandler::handleHek(0) heks[0]
+2025-11-18 09:49:39.499 INFO nK =1 
+2025-11-18 09:49:39.499 INFO hndc_send_ekey over
+2025-11-18 09:49:39.500 INFO HnThread::threadFunc a5ffd6c0 end
+2025-11-18 09:49:39.517 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010
+
+2025-11-18 09:49:39.542 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input61
+
+2025-11-18 09:49:39.542 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input61/event2
+
+2025-11-18 09:49:39.542 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input61/mouse2
+
+2025-11-18 09:49:39.542 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input62
+
+2025-11-18 09:49:39.542 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input62/event24
+
+2025-11-18 09:49:39.543 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input62/js0
+
+2025-11-18 09:49:39.543 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input63
+
+2025-11-18 09:49:39.543 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input63/event25
+
+2025-11-18 09:49:39.543 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input63/js1
+
+2025-11-18 09:49:39.543 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input64
+
+2025-11-18 09:49:39.544 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input64/event26
+
+2025-11-18 09:49:39.544 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input64/mouse6
+
+2025-11-18 09:49:39.544 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/input/input64/js2
+
+2025-11-18 09:49:39.544 INFO --> add@/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:256C:006D.0010/hidraw/hidraw0
+
+2025-11-18 09:49:39.544 INFO USB device 256c add !! 
+
+2025-11-18 09:49:39.544 INFO HnUsb::close()4I=1 _2
+2025-11-18 09:49:39.544 INFO entryNoDriverMode after close! 
+
+2025-11-18 09:49:39.544 INFO entryNoDriverMode before close! 
+
+2025-11-18 09:49:39.544 INFO entryNoDriverMode after close! 
+
+2025-11-18 09:49:40.545 INFO signal 10, quiting
+2025-11-18 09:49:40.545 INFO HnTabletSession::close() _protocol=0
+2025-11-18 09:49:40.545 INFO HnTabletSession::close() _protocol=0

@@ -12,6 +12,13 @@ dap.adapters.codelldb = {
     },
 }
 
+dap.adapters.gdb = {
+    id = 'gdb',
+    type = 'executable',
+    command = 'gdb',
+    args = { '--quiet', '--interpreter=dap' },
+}
+
 local zig = {
     {
         name = 'Launch',
@@ -63,6 +70,25 @@ local zig = {
             return (args and args ~= '') and args or dap.abort
         end,
     },
+
+    {
+        name = 'run executable (gdb)',
+        type = 'gdb',
+        request = 'launch',
+        program = function()
+            local path = ''
+            vim.ui.input({
+                prompt = 'Path to executable: ',
+                default = vim.fn.getcwd() .. '/',
+                completion = 'file',
+            }, function(value)
+                path = value
+            end)
+
+            return (path and path ~= '') and path or dap.abort
+        end,
+    },
+
 }
 
 dap.configurations.zig = zig;

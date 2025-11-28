@@ -9,9 +9,8 @@
     &:hover {
       transition: 200ms linear background-color, border-radius;
       background-color: $color-14;
-      box {
-        padding: $padding-md $padding-none;
-      }
+    }
+    image {
     }
   }
 }

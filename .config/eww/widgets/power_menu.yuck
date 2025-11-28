@@ -8,7 +8,7 @@
     ]
     (box 
         :class "power-menu"
-        :space-evenly false
+        :space-evenly true
         :orientation "v"
         :valign "baseline" 
         :halign "center"
@@ -16,11 +16,12 @@
         (button 
             :onclick shutdown
             (box
-                (image
+                :space-evenly false :spacing 6
+				(image
+                    :halign "start"
                     :icon shutdown_icon
                 )
                 (label
-                    :valign "baseline" 
                     :halign "start"
                     :text "Shutdown"
                 )
@@ -29,11 +30,12 @@
         (button 
             :onclick reboot 
             (box
-                (image
+                :space-evenly false :spacing 6
+				(image
+                    :halign "start"
                     :icon reboot_icon
                 )
                 (label
-                    :valign "baseline" 
                     :halign "start"
                     :text "Reboot"
                 )
@@ -42,11 +44,12 @@
         (button 
             :onclick lock 
             (box
-                (image
+                :space-evenly false :spacing 6
+				(image
+                    :halign "start"
                     :icon lock_icon
                 )
                 (label
-                    :valign "baseline" 
                     :halign "start"
                     :text "Lock"
                 )
