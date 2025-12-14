@@ -48,29 +48,56 @@
   }
 }
 
+.label{
+  color: $color-6;
+}
 
 .sidestuff slider {
   all: unset;
 }
+.hmetric image {
+  min-height:16px;
+  min-width:16px;
+}
+.vmetric image {
+  min-height:16px;
+  min-width:16px;
+}
 
-.metric scale trough highlight {
+.hmetric scale trough highlight {
   all: unset;
   background-color: $color-14;
   color: $color-11;
   border-radius: $outer-radius;
 }
 
-.label{
-  color: $color-6;
-}
 
-.metric scale trough {
+.hmetric scale trough {
   background-color: $color-2;
   border-radius: $outer-radius;
   min-height: 10px;
-  min-width: 75px;
+  min-width: 100px;
   margin: 0px $padding-md;
 }
+
+.vmetric scale trough highlight {
+  all: unset;
+  background-color: $color-14;
+  color: $color-11;
+  border-radius: $outer-radius;
+}
+
+
+.vmetric scale trough {
+  background-color: $color-2;
+  border-radius: $outer-radius;
+  min-width: 10px;
+  min-height: 100px;
+  margin: 0px $padding-md;
+}
+
+
+
 
 .active {
     color: rgba($color: $color-14, $alpha: 1.0);

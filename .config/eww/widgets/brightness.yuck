@@ -1,48 +1,27 @@
 
-(deflisten brt_max   :initial 0
-  "brightnessctl m -q"
-)
+(deflisten brt_max   :initial 0 "brightnessctl m -q" )
 
-(defpoll brightness :initial 100 :interval "500ms"
-  "brightnessctl g -q"
-)
+(defpoll brightness :initial 100 :interval "500ms" "brightnessctl g -q" )
 
 
-(defwidget brightness_main [?style]
-  (box 
-    :style style
-    :space-evenly false
-    :orientation "h"
-    :valign "center"
-    :halign "start"
-    :spacing 6
+(defwidget brightness_main [?style orientation]
+    (box 
+        :style style
+        :space-evenly false
+        :orientation orientation
+        :valign "center"
+        :halign "start"
+        :spacing 6
 
-    (metric 
-      :min 1
-      :label { ( (brightness * 100 ) / brt_max ) > 50  ? "󰃚": "󰃜" }
-      :value { ((brightness * 100 ) / brt_max) }
-      :onchange "brightnessctl -q -s s {}%"
+        (metric 
+            :orientation orientation
+            :min 1
+            :label { ( (brightness * 100 ) / brt_max ) > 50  ? "brightness-high": "brightness-low" }
+            :value { ((brightness * 100 ) / brt_max) }
+            :onchange "brightnessctl -q -s s {}%"
+        )
+        ;; (label 
+        ;;     :text "${ ((brightness * 100 ) / brt_max) }%"
+        ;; )
     )
-    (label 
-      :text "${ ((brightness * 100 ) / brt_max) }%"
-    )
-
-  )
 )
-
-
-(defwidget metric [label value onchange ?min]
-  (box :orientation "h"
-       :class "metric"
-       :space-evenly false
-    (box :class "label" label)
-    (scale :min 1
-           :max 101
-           :active {onchange != ""}
-           :value value
-           :onchange onchange)
-  )
-)
-
-
-

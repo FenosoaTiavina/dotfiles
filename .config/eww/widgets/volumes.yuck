@@ -1,28 +1,30 @@
 (defpoll
-  muted :initial false :interval '100ms'
-  "pamixer --get-mute"
+    muted :initial false :interval '100ms'
+    "pamixer --get-mute"
 )
 
-(defwidget volumes_main [?style]
-  (box 
-    :style style
-    :space-evenly false
-    :orientation "h"
-    :valign "center"
-    :halign "start"
-    :spacing 6
+(defwidget volumes_main [?style orientation]
+    (box 
+        :style style
+        :space-evenly false
+        :orientation orientation
+        :valign "center"
+        :halign "start"
+        :spacing 0
 
-    (metric 
-      :label {muted ? "": ""}
-      :value volume
-      :onchange "pamixer --set-volume {}")
-    (label 
-      :text "${volume}%"
+        (metric 
+            :orientation orientation
+            :label {muted ? "audio-volume-muted": "audio-volume-high"}
+            :value volume
+            :onchange "pamixer --set-volume {}"
+        )
+        ;; (label 
+        ;;     :text "${volume}%"
+        ;; )
+
     )
-
-  )
 )
 
 
 (defpoll volume :interval "15ms" :initial 0
-  "pamixer --get-volume")
+"pamixer --get-volume")

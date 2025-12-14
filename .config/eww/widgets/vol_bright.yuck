@@ -3,35 +3,33 @@
 (include 'widgets/brightness.yuck')
 
 (defwidget vol_bright_main []
-  (eventbox 
-    :onhoverlost "eww c vol_bright"
-      (box 
-         :class "window"
-         :space-evenly false
-         :orientation "v"
-         :valign "center"
-         :halign "start"
-         :spacing 6
-         :style "padding: 10px;"
+    (eventbox 
+        :onhoverlost "eww c vol_bright"
+        (box 
+            :class "window"
+            :space-evenly false
+            :orientation "h"
+            :valign "center"
+            :halign "start"
+            :spacing 6
+            :style "padding: 10px;"
 
-         (brightness_main)
-         (volumes_main)
-
-       
-       )
- )
+            (brightness_main :orientation "v")
+            (volumes_main :orientation    "v")
+        )
+    )
 )
 
 (defwindow vol_bright
-  :monitor 0
-  :namespace "eww-bar"
-  :geometry (geometry 
-                  :y "5px"
-                  :x "5px"
-                  :anchor "top right")
-  :stacking "fg"
-  :exclusive false
-  :focusable "none"
-  (vol_bright_main)
+    :monitor 0
+    :namespace "eww-bar"
+    :geometry (geometry 
+    :y "5px"
+    :x "32px"
+    :anchor "top right")
+    :stacking "fg"
+    :exclusive false
+    :focusable "none"
+    (vol_bright_main)
 )
 
