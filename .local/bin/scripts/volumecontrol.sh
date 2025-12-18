@@ -64,7 +64,7 @@ notify_vol() {
     fi
 
     bar=$(seq -s "⣿" $((vol / 5)) | sed 's/[0-9]//g')
-    [[ "${isNotify}" == true ]] && notify-send -r 8 -t 800 -i  ~/.icons/Colloid-Green-Dark/status/32/${ico} "${bar} ${vol}" "${nsink}"
+    [[ "${isNotify}" == true ]] && notify-send -a "Volume" -r 8 -t 800 -i  ~/.icons/Colloid-Green-Dark/status/32/${ico} "${bar} ${vol}" "${nsink}"
 }
 
 notify_mute() {

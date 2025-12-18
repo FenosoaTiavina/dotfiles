@@ -39,7 +39,7 @@ send_notification() {
         ico="display-brightness-off-symbolic.svg"
     fi
     bar=$(seq -s "⣿" $((brightness / 5)) | sed 's/[0-9]//g')
-    [[ "${isNotify}" == true ]] && notify-send -r 7 -t 800 -i ~/.icons/Colloid-Green-Dark/status/symbolic/${ico} "${bar} ${brightness}" "${brightinfo} ${brightness}"
+    [[ "${isNotify}" == true ]] && notify-send -a "Brightness" -r 7 -t 800 -i ~/.icons/Colloid-Green-Dark/status/symbolic/${ico} "${bar} ${brightness}" "${brightinfo} ${brightness}"
 }
 
 get_brightness() {

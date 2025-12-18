@@ -2,3 +2,5 @@ export PATH=$PATH:~/dev/tools/zig/zig-x86_64-linux-0.15.2
 export PATH=$PATH:~/.bun/bin
 export EDITOR=/usr/bin/nvim
 export MANPAGER="nvim +Man! "
+
+source "$HOME/dev/lib/1.4.313.0/setup-env.sh"
