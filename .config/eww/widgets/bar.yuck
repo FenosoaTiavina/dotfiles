@@ -13,7 +13,6 @@
         :spacing 6
         :space-evenly false
         :class "pill"
-        (menu)
         (workspaces)
     )
 )
@@ -81,17 +80,6 @@
         )
     )
 )
-
-(defwidget menu []
-    (eventbox 
-        :onclick "eww o power_menu"
-        (image
-            :fill-svg "#FFF"
-            :icon "distributor-logo-archlinux"
-        )
-    )
-)
-
 
 ;; centerwidgets
 
