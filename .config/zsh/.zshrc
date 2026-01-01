@@ -108,6 +108,4 @@ alias ls="${aliases[ls]:-ls} -A"
 # Shell integrations
 
 eval "$(fzf --zsh)"
-eval "$(eww shell-completions -s zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-

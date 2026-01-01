@@ -1,3 +1,3 @@
-if [ -z "$DISPLAY" ] && [[ "$(tty)" == /dev/tty* ]]; then
-    exec hyprland
-fi
+# if [ -z "$DISPLAY" ] && [[ "$(tty)" == /dev/tty* ]]; then
+#    exec star-hyprland
+# fi
