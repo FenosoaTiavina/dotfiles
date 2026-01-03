@@ -4,3 +4,4 @@ export PATH=$PATH:~/.bun/bin
 export EDITOR=/usr/bin/nvim
 export MANPAGER="nvim +Man! "
 
+source $HOME/dev/lib/VulkanSDK/setup-env.sh

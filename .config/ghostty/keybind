@@ -1,4 +1,3 @@
-
 keybind = ctrl+shift+h=new_split:left
 keybind = ctrl+shift+l=new_split:right
 keybind = ctrl+shift+j=new_split:down
