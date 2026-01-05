@@ -1,16 +1,12 @@
-font-family = Iosevka Nerd Font Mono 
-font-size = 14
-background-opacity = 1.0
-background-blur = false
-link-url = true
-
-window-padding-x = 5
-window-padding-y = 5
-config-file = Oxocarbon 
-config-file = ./keybind
-
-
-gtk-custom-css = tab-style.css 
-gtk-wide-tabs = true
-
-cursor-invert-fg-bg = true
+font-family                      = Iosevka Nerd Font Mono 
+font-size                        = 14
+background-opacity               = 1.0
+background-blur                  = false
+link-url                         = true
+window-padding-x                 = 5
+window-padding-y                 = 5
+config-file                      = Oxocarbon 
+config-file                      = ./keybind
+window-inherit-working-directory = true
+gtk-custom-css                   = tab-style.css 
+gtk-wide-tabs                    = true
