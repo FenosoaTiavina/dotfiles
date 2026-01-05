@@ -50,6 +50,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # context                 # user@host
+    time                    # current time
     dir                       # current directory
     vcs                       # git status
     # command_execution_time  # previous command duration
@@ -62,7 +63,7 @@
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    command_execution_time    # previous command duration
+    # command_execution_time    # previous command duration
     virtualenv                # python virtual environment
     context                   # user@host
     # time                    # current time
@@ -156,7 +157,7 @@
   # Grey current time.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=$grey
   # Format for the current time: 09:51:02. See `man 3 strftime`.
-  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{[%d %b]%H:%M}'
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands rather than the end times of
   # their preceding commands.
