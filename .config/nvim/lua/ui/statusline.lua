@@ -158,19 +158,10 @@ local function venv_widget()
 end
 
 
--- scrollbar ---------------------------------------------
-local function scrollbar_widget()
-    local cur = api.nvim_win_get_cursor(0)[1]
-    local total = api.nvim_buf_line_count(0)
-    local idx = math.floor((cur - 1) / total * #SBAR) + 1
-    return tools.hl_str("Substitute", SBAR[idx]:rep(2))
-end
-
 -- VIM mode ---------------------------------------------
 local function get_current_mode()
     local current_mode = vim.api.nvim_get_mode().mode
     local mode_SYM
-    local mode_hl
     if current_mode == "n" then
         mode_SYM = "NOR"
         mode_SYM = tools.hl_str('SlFgBlue', mode_SYM)
