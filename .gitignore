@@ -1,14 +1,8 @@
 **/.zsh_history
 **/*.bak
 **/.pk10.zsh*
-.config/hyde/themes/Oxocarbon/wall.set
-.config/hyde/themes/Oxocarbon/wall.swww.png
-.config/eww/scripts/blur_image_name.jpeg
-.local/bin/wallpaper.swww.sh
-.local/bin/pyutils/__pycache__
-.local/bin/pyutils/wrapper/__pycache__
+.local/bin/**/pyutils__
 .config/mpd/state
 .config/mpd/mpd.log
 .config/mpd/database
 .config/zsh/.zcompdump
-.config/eww/0
