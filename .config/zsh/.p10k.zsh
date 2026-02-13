@@ -50,7 +50,6 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # context                 # user@host
-    time                    # current time
     dir                       # current directory
     vcs                       # git status
     # command_execution_time  # previous command duration
@@ -66,9 +65,9 @@
     # command_execution_time    # previous command duration
     virtualenv                # python virtual environment
     context                   # user@host
-    # time                    # current time
     # =========================[ Line #2 ]=========================
     newline                   # \n
+    time                      # current time
   )
 
   # Basic style options that define the overall prompt look.
