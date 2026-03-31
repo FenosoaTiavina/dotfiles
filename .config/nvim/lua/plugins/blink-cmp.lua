@@ -1,147 +1,35 @@
 return {
     'saghen/blink.cmp',
-    -- optional: provides snippets for the snippet source
-    dependencies = {
-        {
-            "folke/lazydev.nvim",
-            ft = "lua", -- only load on lua files
-            opts = {
-                library = {
-                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                },
-            },
+    dependencies = { 'rafamadriz/friendly-snippets' },
+
+    version = '1.*',
+
+    opts = {
+        cmdline = {
+            keymap = { preset = 'inherit' },
+            completion = { menu = { auto_show = true } },
+        },
+        keymap = {
+            preset = 'none',
+            ['<c-p>'] = { 'select_prev', 'fallback' },
+            ['<c-n>'] = { 'select_next', 'fallback' },
+            ['<tab>'] = { 'accept', 'fallback' },
+
+            ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets', 'lsp', 'buffer' } }) end },
         },
 
-        {
-            'echasnovski/mini.snippets',
-            config = function()
-                local gen_loader = require('mini.snippets').gen_loader
-                require('mini.snippets').setup({
-                    mappings = {
-                        expand = '<M-j>',
-                        accept = '<Tab>',
-                        jump_next = '<M-l>',
-                        jump_prev = '<M-h>',
-                        stop = '<ESC>',
-
-                    },
-
-                    snippets = {
-                        -- gen_loader.from_file('~/.config/nvim/snippets/global.json'),
-                        -- gen_loader.from_lang(),
-                    },
-                })
-            end
+        appearance = {
+            nerd_font_variant = 'mono'
         },
-    },
 
-    -- use a release tag to download pre-built binaries
-    version = '*',
-    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-    -- If you use nix, you can build from source using latest nightly rust with:
-    -- build = 'nix run .#build-plugin',
+        completion = { documentation = { auto_show = true } },
+        signature = { enabled = true },
 
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
-    opts_extend = { "sources.default" },
-    config = function()
-        require('blink-cmp').setup(
-            {
-                snippets = { preset = 'mini_snippets' },
-                keymap = {
-                    preset = 'none',
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
 
-                    ['<C-space>'] = {
-                        function(cmp)
-                            if cmp.is_visible() then
-                                return cmp.hide()
-                            else
-                                return cmp.show()
-                            end
-                        end,
-                    },
-                    ['<C-e>'] = {
-                        function(cmp)
-                            if cmp.is_signature_visible() then
-                                return cmp.hide_signature()
-                            else
-                                return cmp.show_signature()
-                            end
-                        end,
-                    },
-                    ['<tab>'] = { 'select_and_accept', 'fallback' },
-                    ['<C-p>'] = { 'select_prev' },
-                    ['<C-n>'] = { 'select_next' },
-                    ['<C-b>'] = { 'scroll_documentation_up' },
-                    ['<C-f>'] = { 'scroll_documentation_down' },
-                },
-
-                enabled = function()
-                    return not vim.tbl_contains({ "oil" }, vim.bo.filetype)
-                        and vim.bo.buftype ~= "prompt"
-                        and vim.b.completion ~= false
-                end,
-
-                appearance = {
-                    use_nvim_cmp_as_default = true,
-                    nerd_font_variant = 'mono'
-                },
-
-                completion = {
-                    documentation = {
-                        treesitter_highlighting = true,
-                        auto_show = true,
-                        auto_show_delay_ms = 0,
-                        window = {
-                            border = 'solid',
-                        }
-                    },
-
-                    menu = {
-                        auto_show = true,
-                        draw = {
-                            columns = {
-                                { "kind_icon", "label", gap = 1, "source_name" },
-                            },
-                            components = {
-
-                                kind_icon = {
-                                    ellipsis = false,
-                                    text = function(ctx)
-                                        local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                                        return kind_icon
-                                    end,
-                                    -- Optionally, you may also use the highlights from mini.icons
-                                    highlight = function(ctx)
-                                        local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                                        return hl
-                                    end,
-                                }
-                            },
-                        },
-                        border = 'solid',
-
-                        -- winhighlight =
-                        -- "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:none",
-                    },
-
-
-                },
-
-                sources = {
-                    default = { 'lsp', 'path', 'snippets', 'buffer', "lazydev" },
-                    providers = {
-                        lazydev = {
-                            name = "LazyDev",
-                            module = "lazydev.integrations.blink",
-                            score_offset = 100,
-                        },
-                    },
-
-                },
-            }
-        )
-    end
-
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        opts_extend = { "sources.default" }
+    }
 }

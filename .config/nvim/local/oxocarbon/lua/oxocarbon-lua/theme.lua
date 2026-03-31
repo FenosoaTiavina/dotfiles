@@ -279,6 +279,10 @@ Theme.set_general_highlights = function(colors)
     highlight('CmpItemAbbrMatch', 6, none, { 'bold' })
     highlight('CmpItemAbbr', 20, none, { 'bold' })
 
+
+    highlight('BlinkCmpLabel', 7 , none, { 'bold' })
+
+
     -- gitsigns
     highlight('GitSignsAdd', 9, none)
     highlight('GitSignsChange', 10, none)
@@ -325,10 +329,6 @@ Theme.set_general_highlights = function(colors)
     highlight('SlBgPurple', none, 15, {})
     highlight('SlBgYellow', none, 16, {})
 
-
-    -- Oil
-    -- highlight('OilHidden', 5, 17, {})
-
     -- TODO
     highlight('Todo', 17, none, {})
 
@@ -366,18 +366,6 @@ Theme.set_general_highlights = function(colors)
     highlight('TodoBgWARN', none, 9, {})
     highlight('TodoFgWARN', 9, none, {})
     highlight('TodoSignWARN', 9, none, {})
-
-
-
-    highlight('AerialGuide1', 5, none, {})
-    highlight('AerialGuide2', 5, none, {})
-    highlight('AerialGuide3', 5, none, {})
-    highlight('AerialGuide4', 5, none, {})
-    highlight('AerialGuide5', 5, none, {})
-    highlight('AerialGuide6', 5, none, {})
-    highlight('AerialGuide7', 5, none, {})
-    highlight('AerialGuide8', 5, none, {})
-    highlight('AerialGuide9', 5, none, {})
 end
 
 return Theme

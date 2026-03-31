@@ -52,8 +52,7 @@ keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", { desc = "toggle maximize 
 keymap.set("n", "<leader>/", ":Oil<CR>", { desc = "toggle file explorer" }) --toggle file explorer
 
 -- folding
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Close all folds" }) -- Close all folds
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = "Close all folds" })                      -- Close all folds
 vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
 vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = "closeAllFolds == closeFoldsWith(0)" }) -- closeAllFolds == closeFoldsWith(0)
 vim.keymap.set('n', 'K', function()
