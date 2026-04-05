@@ -1,0 +1,8 @@
+require("plugins.oil")
+require("plugins.blink-cmp")
+require("plugins.undotree")
+require("plugins.telescope-nvim")
+require("plugins.mini-icons")
+require("plugins.ufo")
+require("plugins.quickfixdd")
+require("plugins.treesitter")

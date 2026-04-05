@@ -1,5 +1,4 @@
 -- https://www.compart.com/en/unicode to search Unicode
-
 _G.tools = {
     ui = {
         icons = {

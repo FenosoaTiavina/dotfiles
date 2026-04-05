@@ -1,20 +1,19 @@
-return {
-    "folke/snacks.nvim",
-    opts = {
-        ---@class snacks.input.Config
-        input = {
-            enabled = false
+vim.pack.add {
+    "https://github.com/folke/snacks.nvim",
+}
 
-        },
-        ---@class snacks.picker.Config
-        picker = {
-            ui_select = true,
-        },
+require("snacks").setup {
+    ---@class snacks.input.Config
+    input = {
+        enabled = false
 
-        statuscolumn = {
-            enabled = true,
-        }
     },
-    init = function()
-    end,
+    ---@class snacks.picker.Config
+    picker = {
+        ui_select = true,
+    },
+
+    statuscolumn = {
+        enabled = true,
+    }
 }
