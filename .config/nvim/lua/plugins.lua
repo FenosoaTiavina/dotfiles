@@ -16,10 +16,14 @@ vim.pack.add {
     'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
     "https://github.com/folke/snacks.nvim",
     'https://github.com/TamaMcGlinn/quickfixdd',
+    'https://github.com/numToStr/Comment.nvim',
+    "https://github.com/LunarVim/bigfile.nvim",
+    "https://github.com/lukas-reineke/indent-blankline.nvim",
+    "https://github.com/stevearc/conform.nvim.git",
 }
 
 -- native plugins
-vim.cmd.packadd {    "nvim.undotree"}
+vim.cmd.packadd { "nvim.undotree" }
 
 
 -- config
@@ -30,3 +34,7 @@ require("plugins.telescope-nvim")
 require("plugins.ufo")
 require("plugins.quickfixdd")
 require("plugins.treesitter")
+require("plugins.ibl")
+require("plugins.comment")
+require("plugins.big-file")
+require("plugins.conform")

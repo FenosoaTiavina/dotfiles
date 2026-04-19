@@ -1,11 +1,11 @@
 local on_attach = require("lsp.utils").on_attach
 local capabilities = require("lsp.utils").capabilities
 
-vim.api.nvim_create_autocmd('BufWritePre',{
-  pattern = {"*.zig", "*.zon"},
-  callback = function(ev)
-    vim.lsp.buf.format()
-  end
+vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = { "*.zig", "*.zon" },
+    callback = function(ev)
+        vim.lsp.buf.format()
+    end
 })
 
 

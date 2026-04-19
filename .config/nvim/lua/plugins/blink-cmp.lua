@@ -6,7 +6,7 @@ require("blink.cmp").setup {
             ['<c-n>'] = { 'select_next' },
             ['<tab>'] = { 'accept' },
 
-            ['<C-space>'] = { function(cmp) cmp.show({ providers = {  'lsp' } }) end },
+            ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'lsp' } }) end },
         },
         completion = { menu = { auto_show = true } },
     },

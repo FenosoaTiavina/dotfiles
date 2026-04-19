@@ -6,14 +6,14 @@ local keymap = vim.keymap
 
 -- General keymaps
 keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "save and quit" })                   --save and quit
-keymap.set("n", "<leader>wa", ":wqall<CR>", { desc = "save all and quit" })                   --save and quit
+keymap.set("n", "<leader>wa", ":wqall<CR>", { desc = "save all and quit" })            --save and quit
 keymap.set("n", "<leader>qq", ":q!<CR>", { desc = "quit without saving" })             --quit without saving
 keymap.set("n", "<leader>ww", ":w<CR>", { desc = "save" })                             --save
 keymap.set("n", "gx", ":!xdg-open <c-r><c-a><CR>", { desc = "open URL under cursor" }) --open URL under cursor
 
 -- Split window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })   --split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" }) --split window horizontally
+keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })           --split window vertically
+keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" })         --split window horizontally
 keymap.set("n", "<leader>sx", ":close<CR>", { desc = "close split window" })            --close split window
 keymap.set("n", "<leader>sj", "<C-w>-", { desc = "make split window height shorter" })  --make split window height shorter
 keymap.set("n", "<leader>sk", "<C-w>+", { desc = "make split windows height taller" })  --make split windows height taller
@@ -35,4 +35,3 @@ keymap.set("n", "<leader>cj", ":diffget 1<CR>", { desc = "get diff from left (lo
 keymap.set("n", "<leader>ck", ":diffget 3<CR>", { desc = "get diff from right (remote) during merge" }) --get diff from right (remote) during merge
 keymap.set("n", "<leader>cn", "]c", { desc = "next diff hunk" })                                        --next diff hunk
 keymap.set("n", "<leader>cp", "[c", { desc = "previous diff hunk" })                                    --previous diff hunk
-
