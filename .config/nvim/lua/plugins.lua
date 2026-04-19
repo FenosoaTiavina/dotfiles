@@ -20,6 +20,8 @@ vim.pack.add {
     "https://github.com/LunarVim/bigfile.nvim",
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/stevearc/conform.nvim.git",
+    "https://github.com/kylechui/nvim-surround",
+    "https://github.com/windwp/nvim-autopairs",
 }
 
 -- native plugins
@@ -38,3 +40,5 @@ require("plugins.ibl")
 require("plugins.comment")
 require("plugins.big-file")
 require("plugins.conform")
+require("plugins.autopairs")
+require("lua.plugins.surround")
