@@ -22,6 +22,10 @@ vim.pack.add {
     "https://github.com/stevearc/conform.nvim.git",
     "https://github.com/kylechui/nvim-surround",
     "https://github.com/windwp/nvim-autopairs",
+    "https://github.com/norcalli/nvim-colorizer.lua",
+    'https://github.com/sindrets/diffview.nvim',
+    "https://github.com/lewis6991/gitsigns.nvim",
+
 }
 
 -- native plugins
@@ -41,4 +45,7 @@ require("plugins.comment")
 require("plugins.big-file")
 require("plugins.conform")
 require("plugins.autopairs")
-require("lua.plugins.surround")
+require("plugins.surround")
+require("plugins.diffview")
+require("plugins.gitsigns")
+require("plugins.colorizer")
