@@ -22,10 +22,8 @@ vim.pack.add {
     "https://github.com/stevearc/conform.nvim.git",
     "https://github.com/kylechui/nvim-surround",
     "https://github.com/windwp/nvim-autopairs",
-    "https://github.com/norcalli/nvim-colorizer.lua",
     'https://github.com/sindrets/diffview.nvim',
     "https://github.com/lewis6991/gitsigns.nvim",
-
 }
 
 -- native plugins
@@ -48,4 +46,3 @@ require("plugins.autopairs")
 require("plugins.surround")
 require("plugins.diffview")
 require("plugins.gitsigns")
-require("plugins.colorizer")
