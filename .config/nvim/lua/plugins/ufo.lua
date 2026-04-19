@@ -1,7 +1,3 @@
-vim.pack.add { 
-    'https://github.com/kevinhwang91/nvim-ufo',
-    'https://github.com/kevinhwang91/promise-async'
-}
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}

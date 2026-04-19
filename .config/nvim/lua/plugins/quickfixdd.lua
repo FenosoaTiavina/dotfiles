@@ -1,8 +1,3 @@
--- Adds delete functionality to quickfix list (keymap dd)
-vim.pack.add {
-  'https://github.com/TamaMcGlinn/quickfixdd',
-}
-
 -- Quickfix keymaps
 vim.keymap.set("n", "<leader>qo", ":copen<CR>", { desc = "open quickfix list" })                --open quickfix list
 vim.keymap.set("n", "<leader>qn", ":cnext<CR>", { desc = "jump to next quickfix list item" })   --jump to next quickfix list item
