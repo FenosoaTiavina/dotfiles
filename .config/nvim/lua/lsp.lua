@@ -4,6 +4,7 @@ vim.lsp.config['clangd']        = require("lsp.clangd")
 vim.lsp.config['zls']           = require("lsp.zls")
 vim.lsp.config['pylsp']         = require("lsp.pylsp")
 vim.lsp.config['glsl_analyzer'] = require("lsp.glsl_analyzer")
+vim.lsp.config['tsserver']      = require("lsp.tsserver")
 
 
 
@@ -13,7 +14,8 @@ vim.lsp.enable({
     "lua_ls",
     "clangd",
     "pylsp",
-    "glsl_analyzer"
+    "glsl_analyzer",
+    "tsserver",
 })
 
 

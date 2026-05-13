@@ -1,5 +1,5 @@
 # local bin
-export PATH="$PATH:/home/fenosoa/.local/bin"
+export PATH="$PATH:/home/fenosoa/.local/bin:/home/fenosoa/.cargo/bin:/home/fenosoa/.bun/bin"
 # local scripts
 export PATH="$PATH:/home/fenosoa/.local/bin/scripts"
 

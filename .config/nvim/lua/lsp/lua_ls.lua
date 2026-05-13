@@ -33,6 +33,9 @@ return {
                 },
             },
             telemetry = { enable = false },
+            runtime = {
+                version = 'LuaJIT',
+            }
         },
     },
 
