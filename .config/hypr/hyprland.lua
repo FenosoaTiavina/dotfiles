@@ -1,8 +1,9 @@
 local monitor_scale = 1;
 local script = "$HOME/.local/bin/scripts" -- set scripts path
 
-hl.monitor({ output = "eDP-1", mode = "1920x1080@120", position = "0x0", scale = monitor_scale })
-hl.monitor({ output = "DP-1", mode = "1920x1080@60", position = "0x-1080", scale = monitor_scale })
+hl.monitor({ output = "eDP-1", mode = "highres@highrr", position = "auto", scale = monitor_scale })
+hl.monitor({ output = "DP-1", mode = "highres@highrr", position = "auto-up", scale = monitor_scale })
+hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = monitor_scale })
 
 -- workspace
 hl.workspace_rule({ workspace = 1, monitor = "eDP-1" })
@@ -79,3 +80,4 @@ hl.device {
 
 require("theme")
 require("keybinding")
+require("windowrules")
