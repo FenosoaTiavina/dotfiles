@@ -32,6 +32,10 @@
       "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "hyprlang-to-lua.nvim": {
+      "rev": "aa0809b5089e28aef9db8adcefae031fba03fa4e",
+      "src": "https://github.com/pynappo/hyprlang-to-lua.nvim"
+    },
     "indent-blankline.nvim": {
       "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
       "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
@@ -95,6 +99,10 @@
     "telescope.nvim": {
       "rev": "cfb85dcf7f822b79224e9e6aef9e8c794211b20b",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "tree-sitter-manager.nvim": {
+      "rev": "ae287204a4fe9174e82bad17c102e721e5aa8520",
+      "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     }
   }
 }

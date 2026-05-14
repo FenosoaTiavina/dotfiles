@@ -1,5 +1,7 @@
 local function run_build(spec, path)
+
     local build = spec.data and spec.data.build
+
     if not build then return end
 
     vim.system({ "sh", "-c", build }, {
