@@ -89,7 +89,7 @@ hl.bind(super .. " + CTRL + ALT + SHIFT + C", function()
             }
         }
         hl.exec_cmd(
-            "notify-send -r 12 -t 3000 -i ~/.themes/Colloid-Green-Dark-Compact/actions/symbolic/cross-small-symbolic.svg 'Compose key' 'Disabled'")
+            "notify-send -r 12 -t 3000 -i ~/.icons/Colloid-Green-Dark/actions/symbolic/cross-small-symbolic.svg 'Compose key' 'Disabled'")
     else
         hl.config {
             input = {
@@ -97,9 +97,9 @@ hl.bind(super .. " + CTRL + ALT + SHIFT + C", function()
             }
         }
         hl.exec_cmd(
-            "notify-send -r 12 -t 3000 -i ~/.themes/Colloid-Green-Dark-Compact/actions/symbolic/ornament-check-symbolic.svg 'Compose key' 'Enabled'")
+            "notify-send -r 12 -t 3000 -i ~/.icons/Colloid-Green-Dark/actions/symbolic/ornament-check-symbolic.svg 'Compose key' 'Enabled'")
     end
-end, { description = "Toggle compose key" })
+end, { auto_consuming = true, description = "Toggle compose key" })
 
 
 -- workspace

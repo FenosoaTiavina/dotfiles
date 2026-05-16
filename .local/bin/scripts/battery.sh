@@ -47,31 +47,31 @@ discharging_icons=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁
 status_icons=("" "X" "󰂇") # Add appropriate icons for different statuses
 
 charging_icons_path=(
-    "battery-000-charging"
-    "battery-010-charging"
-    "battery-020-charging"
-    "battery-030-charging"
-    "battery-040-charging"
-    "battery-050-charging"
-    "battery-060-charging"
-    "battery-070-charging"
-    "battery-080-charging"
-    "battery-090-charging"
-    "battery-100-charging"
+    "battery-000-charging-symbolic"
+    "battery-010-charging-symbolic"
+    "battery-020-charging-symbolic"
+    "battery-030-charging-symbolic"
+    "battery-040-charging-symbolic"
+    "battery-050-charging-symbolic"
+    "battery-060-charging-symbolic"
+    "battery-070-charging-symbolic"
+    "battery-080-charging-symbolic"
+    "battery-090-charging-symbolic"
+    "battery-100-charging-symbolic"
 )
 
 battery_icons_path=(
-    "battery-000"
-    "battery-010"
-    "battery-020"
-    "battery-030"
-    "battery-040"
-    "battery-050"
-    "battery-060"
-    "battery-070"
-    "battery-080"
-    "battery-090"
-    "battery-100"
+    "battery-000-symbolic"
+    "battery-010-symbolic"
+    "battery-020-symbolic"
+    "battery-030-symbolic"
+    "battery-040-symbolic"
+    "battery-050-symbolic"
+    "battery-060-symbolic"
+    "battery-070-symbolic"
+    "battery-080-symbolic"
+    "battery-090-symbolic"
+    "battery-100-symbolic"
 )
 
 
