@@ -1,4 +1,4 @@
-local monitor_scale = 1;
+local monitor_scale = "1";
 local script = "$HOME/.local/bin/scripts" -- set scripts path
 
 hl.monitor({ output = "eDP-1", mode = "highres@highrr", position = "auto", scale = monitor_scale })
@@ -6,13 +6,13 @@ hl.monitor({ output = "DP-1", mode = "highres@highrr", position = "auto-up", sca
 hl.monitor({ output = "", mode = "highres@highrr", position = "auto", scale = monitor_scale })
 
 -- workspace
-hl.workspace_rule({ workspace = 1, monitor = "eDP-1" })
-hl.workspace_rule({ workspace = 2, monitor = "eDP-1" })
-hl.workspace_rule({ workspace = 3, monitor = "eDP-1" })
-hl.workspace_rule({ workspace = 4, monitor = "DP-1" })
-hl.workspace_rule({ workspace = 5, monitor = "DP-1" })
-hl.workspace_rule({ workspace = 6, monitor = "DP-1" })
-hl.workspace_rule({ workspace = 7, monitor = "DP-1" })
+hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "3", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "4", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "5", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "6", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "7", monitor = "DP-1" })
 
 -- autostart
 hl.on("hyprland.start", function()
@@ -52,7 +52,6 @@ hl.config({
 })
 
 -- input
-
 hl.config {
     input = {
         kb_layout          = "us",

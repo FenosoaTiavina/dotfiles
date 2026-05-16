@@ -130,17 +130,11 @@ hl.window_rule({
         class = "^(.*[Ww]lroots).*",
     },
 })
-hl.window_rule({
-    name = "windowrule-3",
-    tag = "+waydroid",
-    match = {
-        class = "^(.*WaydroidHelper\\.KeyMapper.*)",
-    },
-})
 -- Rule for any Waydroid window
 hl.window_rule({
     name = "windowrule-4",
     workspace = "emptym",
+    border_size = 0,
     match = {
         tag = "waydroid*",
     },
@@ -150,10 +144,14 @@ hl.window_rule({
     name = "keymap_rule",
     border_size = 1,
     workspace = "emptym",
+    float = false,
+    no_max_size = true,
+    pseudo = false,
     match = {
-        tag = "wayhelper*",
+        class = "^(.*WaydroidHelper\\.KeyMapper.*)",
     },
 })
+
 -- common modals
 hl.window_rule({
     name = "windowrule-31",
