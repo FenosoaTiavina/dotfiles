@@ -66,7 +66,7 @@ hl.config {
         force_no_accel     = 1,
         numlock_by_default = true,
         touchpad           = {
-            natural_scroll = false,
+            natural_scroll = true,
         },
     }
 }
