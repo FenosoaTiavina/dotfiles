@@ -68,10 +68,10 @@ hl.bind(super .. " + L", hl.dsp.focus({ direction = "r" }), { description = "Foc
 hl.bind(super .. " + K", hl.dsp.focus({ direction = "u" }), { description = "Focus window UP" })
 hl.bind(super .. " + J", hl.dsp.focus({ direction = "d" }), { description = "Focus window DOWN" })
 
-hl.bind(super .. " + SHIFT + H", hl.dsp.window.resize({ x = 05, y = 00 }), { repeating = true, description = "" })
-hl.bind(super .. " + SHIFT + L", hl.dsp.window.resize({ x = -5, y = 00 }), { repeating = true, description = "" })
-hl.bind(super .. " + SHIFT + K", hl.dsp.window.resize({ x = 00, y = -5 }), { repeating = true, description = "" })
-hl.bind(super .. " + SHIFT + J", hl.dsp.window.resize({ x = 00, y = 05 }), { repeating = true, description = "" })
+-- hl.bind(super .. " + SHIFT + H", hl.dsp.window.resize({ x = "05", y = "00" }), { repeating = true, description = "" })
+-- hl.bind(super .. " + SHIFT + L", hl.dsp.window.resize({ x = "-5", y = "00" }), { repeating = true, description = "" })
+-- hl.bind(super .. " + SHIFT + K", hl.dsp.window.resize({ x = "00", y = "-5" }), { repeating = true, description = "" })
+-- hl.bind(super .. " + SHIFT + J", hl.dsp.window.resize({ x = "00", y = "05" }), { repeating = true, description = "" })
 
 
 hl.bind(super .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, description = "Move window with mouse" })
@@ -82,8 +82,24 @@ hl.bind(super .. " + Tab", hl.dsp.layout("cyclenext"), { description = "Next win
 hl.bind(super .. " + SHIFT + Tab", hl.dsp.layout("cycleprev"), { description = "Previous window" })
 hl.bind(super .. " + ALT + Tab", hl.dsp.layout("swapwithmaster"), { description = "Swap active window with master" })
 hl.bind(super .. " + CTRL + ALT + SHIFT + C", function()
-
-end)
+    if hl.get_config("input.kb_options") == "compose:ralt" then
+        hl.config {
+            input = {
+                kb_options = ""
+            }
+        }
+        hl.exec_cmd(
+            "notify-send -r 12 -t 3000 -i ~/.themes/Colloid-Green-Dark-Compact/actions/symbolic/cross-small-symbolic.svg 'Compose key' 'Disabled'")
+    else
+        hl.config {
+            input = {
+                kb_options = "compose:ralt"
+            }
+        }
+        hl.exec_cmd(
+            "notify-send -r 12 -t 3000 -i ~/.themes/Colloid-Green-Dark-Compact/actions/symbolic/ornament-check-symbolic.svg 'Compose key' 'Enabled'")
+    end
+end, { description = "Toggle compose key" })
 
 
 -- workspace
