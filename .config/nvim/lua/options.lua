@@ -2,7 +2,7 @@ local opt = vim.opt
 local o = vim.o
 
 vim.g.mapleader = " "
-o.winborder = 'solid'
+o.winborder = 'single'
 
 opt.wrap = false
 o.swapfile = false
@@ -64,3 +64,6 @@ opt.foldenable = true
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
+
+
+o.autocomplete = false;
