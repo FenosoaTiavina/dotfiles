@@ -20,6 +20,7 @@ vim.pack.add {
     { src = "https://github.com/sindrets/diffview.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
+    { src = "https://github.com/jake-stewart/multicursor.nvim" },
 }
 
 -- native plugins
@@ -42,3 +43,4 @@ require("plugins.surround")
 require("plugins.diffview")
 require("plugins.gitsigns")
 require("plugins.treesitter-manager")
+require("plugins.multicursor")

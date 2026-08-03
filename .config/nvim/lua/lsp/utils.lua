@@ -14,11 +14,13 @@ M.on_attach = function()
     keymap.set('n', '<leader>gD', function() vim.lsp.buf.declaration() end, { desc = "goto to declaration" })      --goto to declaration
     keymap.set('n', '<leader>gi', function() vim.lsp.buf.implementation() end, { desc = "go to implementation" })  --go to implementation
     keymap.set('n', '<leader>gt', function() vim.lsp.buf.type_definition() end, { desc = "goto type definition" }) --goto type definition
-    keymap.set('n', '<leader>gr', function() vim.lsp.references() end, { desc = "Goto references" })               --Goto references
+    keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end, { desc = "Goto references" })           --Goto references
     keymap.set('n', '<leader>gs', function() vim.lsp.buf.signature_help() end, { desc = "Signature help" })        --Signature help
+    keymap.set('n', '<leader>fo', function() vim.lsp.buf.workspace_symbol() end, { desc = "Diagnostic float" })    --Diagnostic float
     keymap.set('n', '<leader>rr', function() vim.lsp.buf.rename() end, { desc = "Lsp rename" })                    --Lsp rename
     keymap.set('n', '<leader>fm', function() vim.lsp.buf.format() end, { desc = "Format file" })                   --Format file
     keymap.set('n', '<leader>gl', function() vim.diagnostic.open_float() end, { desc = "Diagnostic float" })       --Diagnostic float
+    keymap.set('n', '<leader>fd', function() vim.diagnostic.setqflist({}) end, { desc = "Diagnostic float" })      --Diagnostic float
     keymap.set('n', '<S-k>', function() vim.lsp.buf.hover() end, { desc = "Hover" })                               --Hover
 end
 

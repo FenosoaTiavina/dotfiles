@@ -144,7 +144,7 @@ hl.window_rule({
     name = "keymap_rule",
     border_size = 1,
     workspace = "emptym",
-    float = false,
+    float = true,
     no_max_size = true,
     pseudo = false,
     match = {

@@ -18,7 +18,7 @@ hl.dsp.exec_cmd("hyprctl setcursor $CURSOR_THEME " .. CURSOR_THEME);
 hl.config({
     general = {
         gaps_in          = 2,
-        gaps_out         = 4,
+        gaps_out         = 2,
         border_size      = 0,
         resize_on_border = true,
         allow_tearing    = false,
