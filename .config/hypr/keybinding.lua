@@ -9,13 +9,13 @@ local clipboard = "vicinae 'vicinae://extensions/vicinae/clipboard/history'"
 local script    = "$HOME/.local/bin/scripts" -- set scripts path
 local super     = "SUPER"                    -- super / meta / windows key
 
-hl.bind(super .. "+ T", hl.dsp.exec_cmd(term), { description = "Open terminap - " .. term })
+hl.bind(super .. "+ T", hl.dsp.exec_cmd(term), { description = "Open terminal - " .. term })
 hl.bind(super .. "+ E", hl.dsp.exec_cmd(file), { description = "Open file manager - " .. file })
 hl.bind(super .. "+ C", hl.dsp.exec_cmd(editor), { description = "Open editor" })
 hl.bind(super .. "+ B", hl.dsp.exec_cmd(browser), { description = "Open browser - " .. browser })
 hl.bind(super .. "+ SPACE", hl.dsp.exec_cmd(launcher), { description = "App launcher - " .. launcher })
 hl.bind(super .. "+ V", hl.dsp.exec_cmd(clipboard), { description = "Clipboard" })
-hl.bind(super .. "+ SHIFT + W", hl.dsp.exec_cmd(wallpaper), { description = "Wallpaper selectow" })
+hl.bind(super .. "+ SHIFT + W", hl.dsp.exec_cmd(wallpaper), { description = "Wallpaper selector" })
 
 -- # Window/Session actions
 hl.bind(super .. "+ Q", hl.dsp.window.close(), { description = "Close window" })
@@ -106,8 +106,8 @@ end, { auto_consuming = true, description = "Toggle compose key" })
 hl.bind(super .. " + mouse_down", hl.dsp.focus({ workspace = "e-1" }), { description = "Move to active workspace -1" })
 hl.bind(super .. " + mouse_up", hl.dsp.focus({ workspace = "e+1" }), { description = "Move to active workspace +1" })
 
-hl.bind(super .. " + CTRL + LEFT", hl.dsp.focus({ workspace = "r-1" }), { description = "Move to workspace -1" })
-hl.bind(super .. " + CTRL + RIGHT", hl.dsp.focus({ workspace = "r+1" }), { description = "Move to workspace +1" })
+hl.bind(super .. " + CTRL + H", hl.dsp.focus({ workspace = "r-1" }), { description = "Move to workspace -1" })
+hl.bind(super .. " + CTRL + L", hl.dsp.focus({ workspace = "r+1" }), { description = "Move to workspace +1" })
 
 hl.bind(super .. " + S", hl.dsp.workspace.toggle_special("magic"), { description = "Toggle special workspace" })
 hl.bind(super .. " + ALT + S", hl.dsp.window.move({ workspace = "special:magic" }),
